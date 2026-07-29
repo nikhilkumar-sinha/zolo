@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Khaliyar Khetihaar - Admin Dashboard</title>
+  <meta name="description" content="Store administration and harvest management system for Khaliyar Khetihaar. Manage stock inventory and track regional customer orders.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap">
+  <!-- Lucide Icons via CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <style>
+    /* --- Admin Specific Style Tokens --- */
+    :root {
+      --color-primary: #2E5A44;
+      --color-primary-dark: #1E3D2E;
+      --color-primary-light: #EBF2EE;
+      --color-accent: #D47A3B;
+      --color-accent-hover: #BD6427;
+      --color-gold: #D4AF37;
+      --color-bg: #F8F9FA;
+      --color-white: #FFFFFF;
+      --color-text-dark: #2B1B10;
+      --color-text-muted: #6B5D55;
+      --color-border: #E8E2D9;
+      --color-success: #2E8B57;
+      --color-danger: #D32F2F;
+      --color-info: #1976D2;
+      
+      --shadow-sm: 0 4px 6px -1px rgba(0,0,0,0.05);
+      --shadow-md: 0 10px 15px -3px rgba(0,0,0,0.05);
+      --border-radius: 12px;
+      --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: var(--color-bg);
+      color: var(--color-text-dark);
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    /* --- Security Login Overlay --- */
+    .login-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(43, 27, 16, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 1;
+      visibility: visible;
+      transition: var(--transition);
+    }
+    .login-overlay.hide {
+      opacity: 0;
+      visibility: hidden;
+    }
+    .login-box {
+      background-color: var(--color-white);
+      border-radius: var(--border-radius);
+      padding: 40px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 20px 25px -5px rgba(0,0,0,0.3);
+      text-align: center;
+      border: 1px solid var(--color-border);
+    }
+    .login-logo {
+      width: 60px;
+      height: 60px;
+      background-color: var(--color-primary);
+      color: var(--color-white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.75rem;
+      font-weight: bold;
+      margin: 0 auto 16px auto;
+    }
+    .login-box h2 {
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+    }
+    .login-box p {
+      color: var(--color-text-muted);
+      font-size: 0.85rem;
+      margin-bottom: 24px;
+    }
+    .form-group {
+      margin-bottom: 16px;
+      text-align: left;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .form-control {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      outline: none;
+      font-size: 0.95rem;
+      transition: var(--transition);
+    }
+    .form-control:focus {
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 3px var(--color-primary-light);
+    }
+    .btn-login {
+      width: 100%;
+      background-color: var(--color-accent);
+      color: var(--color-white);
+      border: none;
+      padding: 14px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      margin-top: 12px;
+      transition: var(--transition);
+    }
+    .btn-login:hover {
+      background-color: var(--color-accent-hover);
+    }
+    .login-error {
+      color: var(--color-danger);
+      font-size: 0.85rem;
+      margin-top: 12px;
+      display: none;
+    }
+
+    /* --- Dashboard Shell Layout --- */
+    .dashboard-container {
+      display: flex;
+      min-height: 100vh;
+    }
+    
+    /* Sidebar Navigation */
+    aside {
+      width: 260px;
+      background-color: var(--color-primary-dark);
+      color: var(--color-white);
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      height: 100vh;
+      z-index: 100;
+    }
+    .aside-header {
+      padding: 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .aside-logo-icon {
+      width: 36px;
+      height: 36px;
+      background-color: var(--color-gold);
+      color: var(--color-primary-dark);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+    .aside-title h1 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    .aside-title span {
+      display: block;
+      font-size: 0.65rem;
+      color: var(--color-gold);
+      text-transform: uppercase;
+      margin-top: -2px;
+    }
+    .aside-menu {
+      list-style: none;
+      padding: 24px 16px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .aside-menu-item a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      border-radius: 8px;
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: var(--transition);
+    }
+    .aside-menu-item a:hover,
+    .aside-menu-item.active a {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: var(--color-white);
+    }
+    .aside-footer {
+      padding: 24px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .btn-logout {
+      background: none;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255, 255, 255, 0.8);
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: var(--transition);
+    }
+    .btn-logout:hover {
+      border-color: var(--color-danger);
+      color: var(--color-white);
+      background-color: rgba(211, 47, 47, 0.2);
+    }
+
+    /* Main Panel Content Area */
+    main {
+      flex-grow: 1;
+      margin-left: 260px;
+      padding: 40px;
+      background-color: var(--color-bg);
+      min-width: 0; /* Prevents flex items from overflowing */
+    }
+    .main-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 32px;
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 16px;
+    }
+    .main-header h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+    }
+    .main-header p {
+      color: var(--color-text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* --- Content Panes --- */
+    .dashboard-pane {
+      display: none;
+      animation: fadeIn 0.4s forwards;
+    }
+    .dashboard-pane.active {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* --- ANALYTICS VIEW --- */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+    .stat-card {
+      background-color: var(--color-white);
+      padding: 24px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--color-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .stat-info h3 {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      margin-bottom: 6px;
+      letter-spacing: 0.5px;
+    }
+    .stat-info p {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--color-primary);
+    }
+    .stat-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background-color: var(--color-primary-light);
+      color: var(--color-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .chart-section {
+      background-color: var(--color-white);
+      border-radius: var(--border-radius);
+      padding: 32px;
+      border: 1px solid var(--color-border);
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 32px;
+    }
+    .chart-section h3 {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      color: var(--color-text-dark);
+    }
+    /* Simulated Bar Chart Styling */
+    .bar-chart-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .bar-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .bar-label {
+      width: 140px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-align: right;
+    }
+    .bar-track {
+      flex-grow: 1;
+      height: 24px;
+      background-color: var(--color-bg);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      background-color: var(--color-primary);
+      border-radius: 12px;
+      transition: width 1s ease-out;
+      width: 0%; /* Initial width for transition */
+    }
+    .bar-val {
+      width: 80px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--color-text-dark);
+    }
+
+    /* --- COMMON DATA TABLES --- */
+    .table-container {
+      background-color: var(--color-white);
+      border-radius: var(--border-radius);
+      border: 1px solid var(--color-border);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+    .table-header-bar {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--color-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #FAF9F6;
+    }
+    .table-header-bar h3 {
+      font-size: 1.1rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    th, td {
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--color-border);
+      font-size: 0.9rem;
+    }
+    th {
+      font-weight: 600;
+      color: var(--color-text-muted);
+      background-color: #FAF9F6;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.5px;
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    tr:hover td {
+      background-color: rgba(46, 90, 68, 0.02);
+    }
+
+    /* --- ORDERS BOARD SPECIFICS --- */
+    .status-badge {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .status-pending { background-color: #FFE0B2; color: #E65100; }
+    .status-dispatched { background-color: #B3E5FC; color: #0277BD; }
+    .status-delivered { background-color: #C8E6C9; color: #2E7D32; }
+    .status-cancelled { background-color: #FFCDD2; color: #C62828; }
+    
+    .btn-status-action {
+      padding: 6px 12px;
+      border-radius: 4px;
+      border: 1px solid var(--color-border);
+      background-color: var(--color-white);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      outline: none;
+      transition: var(--transition);
+    }
+    .btn-status-action:hover {
+      border-color: var(--color-primary);
+      color: var(--color-primary);
+    }
+    .order-items-tooltip {
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+      margin-top: 4px;
+    }
+
+    /* --- PRODUCTS INVENTORY VIEW --- */
+    .inventory-layout {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 30px;
+      align-items: start;
+    }
+
+    /* Toggle Switch Switcher */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 44px;
+      height: 22px;
+    }
+    .switch input { 
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 22px;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+    input:checked + .slider {
+      background-color: var(--color-primary);
+    }
+    input:checked + .slider:before {
+      transform: translateX(22px);
+    }
+
+    /* Add Product Form Board */
+    .add-product-card {
+      background-color: var(--color-white);
+      border-radius: var(--border-radius);
+      border: 1px solid var(--color-border);
+      box-shadow: var(--shadow-sm);
+      padding: 24px;
+    }
+    .add-product-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .btn-submit-product {
+      width: 100%;
+      background-color: var(--color-primary);
+      color: var(--color-white);
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .btn-submit-product:hover {
+      background-color: var(--color-primary-dark);
+    }
+
+    /* --- Responsive Queries --- */
+    @media (max-width: 1024px) {
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+      .inventory-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- --- Admin Login Screen overlay --- -->
+  <div class="login-overlay" id="login-overlay">
+    <div class="login-box">
+      <div class="login-logo">KK</div>
+      <h2>Store Manager Panel</h2>
+      <p>Please enter credentials to access Khaliyar Khetihaar records.</p>
+      
+      <form id="admin-login-form" onsubmit="event.preventDefault(); handleLogin();">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" class="form-control" id="username" placeholder="e.g. admin" required autocomplete="username">
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" id="password" placeholder="••••••••" required autocomplete="current-password">
+        </div>
+        <button type="submit" class="btn-login">Sign In Securely <i data-lucide="unlock" style="width: 16px; height: 16px; vertical-align: middle;"></i></button>
+        <div class="login-error" id="login-error-msg">Incorrect credentials. Hint: admin / khetihaar2026</div>
+      </form>
+    </div>
+  </div>
+
+  <!-- --- Dashboard Main Layout Shell --- -->
+  <div class="dashboard-container">
+    
+    <!-- Sidebar Navigation -->
+    <aside>
+      <div class="aside-header">
+        <div class="aside-logo-icon">KK</div>
+        <div class="aside-title">
+          <h1>खलियार खेतिहर</h1>
+          <span>Management Center</span>
+        </div>
+      </div>
+      
+      <ul class="aside-menu">
+        <li class="aside-menu-item active" id="menu-analytics" data-target="pane-analytics">
+          <a href="#"><i data-lucide="line-chart"></i> Analytics Board</a>
+        </li>
+        <li class="aside-menu-item" id="menu-orders" data-target="pane-orders">
+          <a href="#"><i data-lucide="shopping-bag"></i> Customer Orders</a>
+        </li>
+        <li class="aside-menu-item" id="menu-inventory" data-target="pane-inventory">
+          <a href="#"><i data-lucide="package"></i> Inventory Manager</a>
+        </li>
+      </ul>
+      
+      <div class="aside-footer">
+        <button class="btn-logout" onclick="handleLogout()"><i data-lucide="log-out" style="width: 16px; height: 16px;"></i> Sign Out</button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main>
+      <div class="main-header">
+        <div>
+          <h2 id="main-pane-title">Analytics Dashboard</h2>
+          <p id="main-pane-subtitle">Overview of sales revenue and category performance cycles.</p>
+        </div>
+        <div style="font-size: 0.85rem; background-color: var(--color-primary-light); color: var(--color-primary); padding: 8px 16px; border-radius: 20px; font-weight: 600;">
+          Session active: Manager
+        </div>
+      </div>
+
+      <!-- Pane 1: Analytics Dashboard -->
+      <div class="dashboard-pane active" id="pane-analytics">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-info">
+              <h3>Gross Revenue</h3>
+              <p id="stat-revenue">₹0.00</p>
+            </div>
+            <div class="stat-icon"><i data-lucide="indian-rupee"></i></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-info">
+              <h3>Orders Volumes</h3>
+              <p id="stat-orders-count">0</p>
+            </div>
+            <div class="stat-icon"><i data-lucide="truck"></i></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-info">
+              <h3>Average Order Value</h3>
+              <p id="stat-average-order">₹0.00</p>
+            </div>
+            <div class="stat-icon"><i data-lucide="coins"></i></div>
+          </div>
+        </div>
+
+        <!-- Simulated Charts and Lists -->
+        <div class="chart-section">
+          <h3>Seasonal Sales Volume Percentage</h3>
+          <div class="bar-chart-container" id="bar-chart-holder">
+            <!-- Simulated charts populated by admin.js -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Pane 2: Customer Orders Manager -->
+      <div class="dashboard-pane" id="pane-orders">
+        <div class="table-container">
+          <div class="table-header-bar">
+            <h3>Active Orders</h3>
+            <div style="display: flex; gap: 10px;">
+              <select id="order-status-filter" style="padding: 6px 12px; border-radius: 4px; border: 1px solid var(--color-border); font-size:0.85rem; cursor:pointer;" aria-label="Filter orders by status">
+                <option value="ALL">All Orders</option>
+                <option value="PENDING">Pending Orders</option>
+                <option value="DISPATCHED">Dispatched Orders</option>
+                <option value="DELIVERED">Delivered Orders</option>
+                <option value="CANCELLED">Cancelled Orders</option>
+              </select>
+            </div>
+          </div>
+          <table id="orders-table">
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Date</th>
+                <th>Customer Contact</th>
+                <th>Billing Details</th>
+                <th>Total Value</th>
+                <th>Pay Mode</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="orders-tbody">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Pane 3: Inventory Catalog Manager -->
+      <div class="dashboard-pane" id="pane-inventory">
+        <div class="inventory-layout">
+          <!-- Products Table -->
+          <div class="table-container">
+            <div class="table-header-bar">
+              <h3>Store Products</h3>
+            </div>
+            <table id="products-table">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Category</th>
+                  <th>Price</th>
+                  <th>Origin</th>
+                  <th>Stock Status</th>
+                </tr>
+              </thead>
+              <tbody id="products-tbody">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Add Product Form -->
+          <div class="add-product-card">
+            <h3>Add New Farm Crop</h3>
+            <form id="add-product-form" onsubmit="event.preventDefault(); handleAddProduct();">
+              <div class="form-group">
+                <label for="new-title">Product Title</label>
+                <input type="text" class="form-control" id="new-title" placeholder="e.g. Digha Dudhiya Malda Mango" required>
+              </div>
+              <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+                <div class="form-group" style="margin-bottom:0;">
+                  <label for="new-category">Category</label>
+                  <select class="form-control" id="new-category" required>
+                    <option value="fruits">Fruits</option>
+                    <option value="grains">Grains & Flour</option>
+                    <option value="puja">Puja & Festival</option>
+                    <option value="heritage">GI Tagged Specials</option>
+                  </select>
+                </div>
+                <div class="form-group" style="margin-bottom:0;">
+                  <label for="new-origin">Origin Region</label>
+                  <input type="text" class="form-control" id="new-origin" placeholder="e.g. Patna, Bihar" required>
+                </div>
+              </div>
+              <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+                <div class="form-group" style="margin-bottom:0;">
+                  <label for="new-price">Price (₹)</label>
+                  <input type="number" class="form-control" id="new-price" placeholder="e.g. 150" required min="1">
+                </div>
+                <div class="form-group" style="margin-bottom:0;">
+                  <label for="new-unit">Unit Size</label>
+                  <input type="text" class="form-control" id="new-unit" placeholder="e.g. Per Kg" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="new-desc">Product Description</label>
+                <textarea class="form-control" id="new-desc" rows="3" placeholder="Describe the texture, nutritional values, packaging details..." required></textarea>
+              </div>
+              <div class="form-group">
+                <label for="new-heritage">Generational Story</label>
+                <textarea class="form-control" id="new-heritage" rows="2" placeholder="Farming methods, cultural significance, soil legacy..." required></textarea>
+              </div>
+              <div class="form-row" style="display: flex; gap: 16px; margin: 16px 0;">
+                <label style="display:flex; align-items:center; gap:8px; font-size:0.85rem; font-weight:600; cursor:pointer;">
+                  <input type="checkbox" id="new-is-organic" checked style="accent-color: var(--color-primary); width:16px; height:16px;"> Organic
+                </label>
+                <label style="display:flex; align-items:center; gap:8px; font-size:0.85rem; font-weight:600; cursor:pointer;">
+                  <input type="checkbox" id="new-is-gi" style="accent-color: var(--color-primary); width:16px; height:16px;"> GI Certified
+                </label>
+                <label style="display:flex; align-items:center; gap:8px; font-size:0.85rem; font-weight:600; cursor:pointer;">
+                  <input type="checkbox" id="new-is-seasonal" checked style="accent-color: var(--color-primary); width:16px; height:16px;"> Seasonal
+                </label>
+              </div>
+              <button type="submit" class="btn-submit-product">Publish to Catalog <i data-lucide="plus" style="width: 16px; height: 16px; vertical-align: middle;"></i></button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

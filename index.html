@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Aangan Bihar — Organic Farm Treasures & Bihari Specialties</title>
+  <meta name="description" content="Authentic organic produce, seasonal fruits, sacred festival items, and famous Bihari delicacies delivered straight from regional farmers to your doorstep.">
+  
+  <!-- Speed & Performance Preconnects -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://unpkg.com">
+
+  <!-- Open Graph & Social Media Previews -->
+  <meta property="og:title" content="Aangan Bihar — Farm Treasures & Regional Specialties">
+  <meta property="og:description" content="GI-tagged Shahi Litchi, Jardalu Mangoes, Mithila Makhana, Silao Khaja, Gaya Tilkut, and Chhath Puja Essentials.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/hero_bg.jpg">
+  
+  <!-- Twitter Card Data -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Aangan Bihar — Direct Farm & Cultural Portal">
+  <meta name="twitter:description" content="Buy authentic Bihar produce, sweets, and festival specials directly from verified producers.">
+  <meta name="twitter:image" content="assets/hero_bg.jpg">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Schema.org JSON-LD Microdata for Search Engines -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "GroceryStore",
+    "name": "Aangan Bihar",
+    "image": "assets/hero_bg.jpg",
+    "description": "Authentic organic farm produce, seasonal fruits, sacred festival boxes, and traditional Bihari delicacies.",
+    "priceRange": "₹80 - ₹750",
+    "address": {
+      "@type": "PostalAddress",
+      "addressRegion": "Bihar",
+      "addressCountry": "IN"
+    },
+    "makesOffer": [
+      { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Muzaffarpur Shahi Litchi" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Bhagalpur Jardalu Mango" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Mithila Jumbo Makhana" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Silao Khaja GI Sweet" } }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- --- Emerald Top Header Bar --- -->
+  <div class="top-header-bar">
+    <div class="container top-header-container">
+      <button class="btn-browse-categories" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">
+        <i data-lucide="grid"></i> Browse All Categories <i data-lucide="chevron-down" style="width:14px; height:14px;"></i>
+      </button>
+      <ul class="top-nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#shop">Shop Bounty</a></li>
+        <li><a href="#sweet-treasures">Sweet Treasures</a></li>
+        <li><a href="#seasonal-calendar">Seasonal Fruits</a></li>
+        <li><a href="#artisans">Farmers & Artisans</a></li>
+        <li><a href="#contact">Contact Support</a></li>
+      </ul>
+      <div class="top-header-right">
+        <span>⚡ Direct Farm Doorstep Express Delivery</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- --- Header / Navigation --- -->
+  <header id="header">
+    <div class="container nav-container">
+      <a href="#" class="logo"><img src="assets/logo.svg" alt="Aangan Bihar" class="logo-img"/></a>
+      
+      <ul class="nav-links">
+        <li><a href="#" class="active" id="nav-home">Home</a></li>
+        <li><a href="#shop" id="nav-shop">Shop Bounty</a></li>
+        <li><a href="#sweet-treasures" id="nav-sweets">Sweet Treasures</a></li>
+        <li><a href="#seasonal-calendar" id="nav-calendar">Seasonal Cycles</a></li>
+        <li><a href="#heritage" id="nav-heritage">Our Heritage</a></li>
+        <li><a href="#artisans" id="nav-artisans">Farmers & Artisans</a></li>
+        <li><a href="#contact" id="nav-contact">Contact Us</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="btn-track-nav" id="open-tracking-modal-btn">
+          <i data-lucide="truck" style="width: 16px; height: 16px;"></i> <span>Track Order</span>
+        </button>
+
+        <button class="nav-btn search-trigger" id="search-trigger-btn" aria-label="Search Catalog">
+          <i data-lucide="search"></i>
+        </button>
+        <button class="nav-btn cart-icon-btn" id="cart-drawer-btn" aria-label="Open Shopping Cart">
+          <i data-lucide="shopping-bag"></i>
+          <span class="cart-badge" id="cart-counter">0</span>
+        </button>
+        <button class="nav-btn mobile-menu-toggle" id="menu-toggle-btn" aria-label="Open Navigation Menu">
+          <i data-lucide="menu"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- --- Warm Sunshine Hero Showcase --- -->
+    <section class="sunshine-hero" id="home">
+      <div class="container sunshine-hero-container">
+        <div class="sunshine-hero-text">
+          <span class="hero-sub-tag">🌾 Since 2026 — Pure Organic Farm Harvest</span>
+          <h2 class="editorial-headline">Bihar's Golden Harvest & Organic Delicacies</h2>
+          <p class="sunshine-hero-desc">Authentic Shahi Litchi, Bhagalpur Jardalu Mangoes, Mithila Makhana, Silao Khaja, and Chhath Puja Essentials delivered straight from verified regional farmers to your home.</p>
+          <div class="hero-action-group">
+            <a href="#shop" class="btn btn-amber-pill">Shop Fresh Harvest <i data-lucide="arrow-right"></i></a>
+            <a href="#sweet-treasures" class="btn btn-amber-outline">Sweet Treasures</a>
+          </div>
+          <div class="sunshine-trust-row">
+            <span class="trust-pill"><i data-lucide="shield-check" style="width:14px; height:14px; color:#B45309;"></i> 100% GI Tagged</span>
+            <span class="trust-pill"><i data-lucide="truck" style="width:14px; height:14px; color:#B45309;"></i> Express Doorstep</span>
+            <span class="trust-pill"><i data-lucide="star" style="width:14px; height:14px; fill:#F59E0B; color:#F59E0B;"></i> 4.9 Star Rated (10k+ Families)</span>
+          </div>
+        </div>
+        <div class="sunshine-hero-visual">
+          <div class="fruit-bowl-image-wrapper">
+            <img src="assets/hero_fruit_bowl.jpg" alt="Fresh Organic Fruits of Bihar" class="hero-fruit-bowl-img">
+            <div class="floating-organic-badge">
+              <i data-lucide="leaf"></i> Direct From Farmer Co-ops
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Torn Paper Bottom Edge Divider -->
+      <div class="torn-paper-divider"></div>
+    </section>
+
+    <!-- --- Features / Value Bar --- -->
+    <section class="features-bar">
+      <div class="container">
+        <div class="features-grid">
+          <div class="feature-item">
+            <div class="feature-icon-wrapper">
+              <i data-lucide="sprout"></i>
+            </div>
+            <div class="feature-text">
+              <h4>100% Organic</h4>
+              <p>Chemical-free farm produce</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon-wrapper">
+              <i data-lucide="award"></i>
+            </div>
+            <div class="feature-text">
+              <h4>GI Tagged Specialties</h4>
+              <p>Authentic certified origins</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon-wrapper">
+              <i data-lucide="truck"></i>
+            </div>
+            <div class="feature-text">
+              <h4>Express Farm Delivery</h4>
+              <p>Freshly packed at harvest</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon-wrapper">
+              <i data-lucide="users"></i>
+            </div>
+            <div class="feature-text">
+              <h4>Farmer Cooperative</h4>
+              <p>Direct fair profits to farmers</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- --- Scrolling Marquee Banner --- -->
+    <div class="marquee-banner">
+      <div class="marquee-track">
+        <span>🥭 Jardalu Mango</span><span class="marquee-dot">•</span>
+        <span>🍈 Shahi Litchi</span><span class="marquee-dot">•</span>
+        <span>🌾 Katarni Rice</span><span class="marquee-dot">•</span>
+        <span>🫘 Mithila Makhana</span><span class="marquee-dot">•</span>
+        <span>🏺 Traditional Sattu</span><span class="marquee-dot">•</span>
+        <span>🪔 Puja Essentials</span><span class="marquee-dot">•</span>
+        <span>🥭 Jardalu Mango</span><span class="marquee-dot">•</span>
+        <span>🍈 Shahi Litchi</span><span class="marquee-dot">•</span>
+        <span>🌾 Katarni Rice</span><span class="marquee-dot">•</span>
+    </div>
+
+    <!-- --- Circular Categories Section --- -->
+    <section class="circular-categories-section section-padding">
+      <div class="container">
+        <div class="section-header center-header">
+          <span class="sub-tagline">Categories</span>
+          <h2>Featured <span>Categories</span></h2>
+        </div>
+        <div class="circular-categories-grid">
+          <div class="circle-cat-card" onclick="handleCategoryFilterSelect('seasonal')">
+            <div class="circle-cat-icon"><img src="assets/shahi_litchi.jpg" alt="Fresh Fruits"></div>
+            <h3>Fresh Fruits</h3>
+            <span>12 Products</span>
+          </div>
+          <div class="circle-cat-card" onclick="handleCategoryFilterSelect('famous')">
+            <div class="circle-cat-icon"><img src="assets/thekua.jpg" alt="Sweet Treasures"></div>
+            <h3>Sweet Treasures</h3>
+            <span>18 Products</span>
+          </div>
+          <div class="circle-cat-card" onclick="handleCategoryFilterSelect('puja')">
+            <div class="circle-cat-icon"><img src="assets/puja_box.jpg" alt="Puja Essentials"></div>
+            <h3>Puja Essentials</h3>
+            <span>10 Products</span>
+          </div>
+          <div class="circle-cat-card" onclick="handleCategoryFilterSelect('organic')">
+            <div class="circle-cat-icon"><img src="assets/katarni_rice.jpg" alt="Heritage Grains"></div>
+            <h3>Heritage Grains</h3>
+            <span>14 Products</span>
+          </div>
+          <div class="circle-cat-card" onclick="handleCategoryFilterSelect('organic')">
+            <div class="circle-cat-icon"><img src="assets/traditional_sattu.jpg" alt="Sattu & Spices"></div>
+            <h3>Sattu & Spices</h3>
+            <span>8 Products</span>
+          </div>
+          <div class="circle-cat-card" onclick="handleCategoryFilterSelect('organic')">
+            <div class="circle-cat-icon"><img src="assets/mithila_makhana.jpg" alt="Mithila Makhana"></div>
+            <h3>Mithila Makhana</h3>
+            <span>9 Products</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- --- Dual Promotional Banners Section --- -->
+    <section class="dual-promo-banners-section">
+      <div class="container dual-promo-grid">
+        <div class="promo-banner-card promo-card-mint">
+          <div class="promo-content">
+            <span class="promo-pill-badge yellow-pill">Flat 20% Discount</span>
+            <h2>Purely Fresh Organic Harvest</h2>
+            <p>Certified Shahi Litchi & Bhagalpur Jardalu Mangoes delivered directly from Gangetic orchards.</p>
+            <a href="#shop" class="btn btn-emerald-pill">Shop Now <i data-lucide="arrow-right"></i></a>
+          </div>
+          <div class="promo-image-wrap">
+            <img src="assets/jardalu_mango.jpg" alt="Fresh Organic Harvest">
+          </div>
+        </div>
+
+        <div class="promo-banner-card promo-card-yellow">
+          <div class="promo-content">
+            <span class="promo-pill-badge green-pill">Flat 25% Discount</span>
+            <h2>Festive Sweets & Pure Quality</h2>
+            <p>Freshly prepared Silao Khaja, Gaya Tilkut, Chhath Thekua & Sacred Puja boxes.</p>
+            <a href="#sweet-treasures" class="btn btn-emerald-pill">Explore Sweets <i data-lucide="arrow-right"></i></a>
+          </div>
+          <div class="promo-image-wrap">
+            <img src="assets/thekua.jpg" alt="Festive Sweets & Delicacies">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- --- Seasonal Calendar / Cycles Section --- -->
+    <section class="calendar-section section-padding reveal-on-scroll" id="seasonal-calendar">
+      <div class="container">
+        <div class="section-header">
+          <h2>Seasonal Harvest Cycle</h2>
+          <p>Nature has its own rhythm. Discover Bihar's rich farm cycles and know exactly when your favorite fruits and goods are freshly harvested.</p>
+        </div>
+
+        <div class="seasonal-calendar-widget">
+          <ul class="season-tabs">
+            <li><button class="season-tab-btn active" data-season="summer">Summer (Greens & Fruits)</button></li>
+            <li><button class="season-tab-btn" data-season="monsoon">Monsoon (Foxnuts & Grains)</button></li>
+            <li><button class="season-tab-btn" data-season="autumn">Autumn (Traditional Staples)</button></li>
+            <li><button class="season-tab-btn" data-season="winter">Winter & Festivals (Puja essentials)</button></li>
+          </ul>
+
+          <!-- Summer -->
+          <div class="season-content-pane active" id="season-summer">
+            <div class="season-info">
+              <span class="season-months">April - July</span>
+              <h3>The Golden Fruit Canopy</h3>
+              <p>Summer in Bihar is synonymous with rich aromas and juicy sweetness. Orchards across Bhagalpur and Muzaffarpur become heavy with GI-tagged treasures basking under the fierce Gangetic sun.</p>
+              <div class="season-items-list">
+                <div class="season-item-mini">
+                  <div class="season-item-dot"></div>
+                  <span class="season-item-title">Shahi Litchi (Muzaffarpur)</span>
+                </div>
+                <div class="season-item-mini">
+                  <div class="season-item-dot"></div>
+                  <span class="season-item-title">Jardalu Mango (Bhagalpur)</span>
+                </div>
+                <div class="season-item-mini">
+                  <div class="season-item-dot"></div>
+                  <span class="season-item-title">Dudhiya Malda Mango</span>
+                </div>
+                <div class="season-item-mini">
+                  <div class="season-item-dot"></div>
+                  <span class="season-item-title">Earthy Roasted Gram Sattu</span>
+                </div>
+              </div>
+            </div>
+            <div class="season-image-wrapper">
+              <span class="season-badge">Summer Bounty</span>
+              <img src="assets/jardalu_mango.jpg" alt="Bhagalpur Jardalu Mangoes">
+            </div>
+          </div>
+
+          <!-- Monsoon -->
+          <div class="season-content-pane" id="season-monsoon">
+            <div class="season-info">
+              <span class="season-months">August - September</span>
+              <h3>The Aquatic Marvels</h3>
+              <p>As rainwaters fill Mithila's deep ponds, local farmers begin the painstaking process of harvesting Makhana (foxnuts) from lotus lilies. It's a season of mineral-rich aquatic yields.</p>
+              <div class="season-items-list">
+                <div class="season-item-mini">
+                  <div class="season-item-dot"></div>
+                  <span class="season-item-title">Mithila Makhana (Phool Patasa)</span>
+                </div>
+                <div class="season-item-mini">
+                  <div class="season-item-dot"></div>
+                  <span class="season-item-title">Organic Jamun (Black Plum)</span>
+                </div>
+                <div class="season-item-mini">
+                  <div class="season-item-dot"></div>
+                  <span class="season-item-title">Raw Foxnut Seeds</span>
+                </div>
+                <div class="season-item-mini">
+                  <div class="season-item-dot"></div>
+                  <span class="season-item-title">Bhadai Rice Crops</span>
+                </div>
+              </div>
+            </div>
+            <div class="season-image-wrapper">
+              <span class="season-badge">Monsoon Harvest</span>
+              <img src="assets/mithila_makhana.jpg" alt="Mithila Makhana Harvesting">
+            </div>
+          </div>
+
+          <!-- Autumn -->
+          <div class="season-content-pane" id="season-autumn">
+            <div class="season-info">
+              <span class="season-months">October - November</span>
+              <h3>Aromatic Earth & Grains</h3>
+              <p>The wind turns cool and carry the sweet fragrance of ripening Katarni paddy fields in Bhagalpur. This is the time of harvesting traditional, fragrant grains and preparing staples.</p>
+              <div class="season-items-list">
+                <div class="season-item-mini">
+                  <div class="season-item-dot"></div>
+                  <span class="season-item-title">Aromatic Katarni Rice</span>
+                </div>
+                <div class="season-item-mini">
+                  <div class="season-item-dot"></div>
+                  <span class="season-item-title">Organic Sugarcane Bheli</span>
+                </div>
+                <div class="season-item-mini">
+                  <div class="season-item-dot"></div>
+                  <span class="season-item-title">Golden Lentils (Daal)</span>
+                </div>
+                <div class="season-item-mini">
+                  <div class="season-item-dot"></div>
+                  <span class="season-item-title">Traditional Sattu Grains</span>
+                </div>
+              </div>
+            </div>
+            <div class="season-image-wrapper">
+              <span class="season-badge">Autumn Fragrance</span>
+              <img src="assets/katarni_rice.jpg" alt="Aromatic Katarni Rice Grains">
+            </div>
+          </div>
+
+          <!-- Winter -->
+          <div class="season-content-pane" id="season-winter">
+            <div class="season-info">
+              <span class="season-months">December - March</span>
+              <h3>Festivals & Sacred Offerings</h3>
+              <p>As winter settles, Bihar welcomes Chhath Puja, Makar Sankranti, and cultural festivals. The soil brings forth sweet sugarcane, winter pulses, and ingredients for traditional holy offerings.</p>
+              <div class="season-items-list">
+                <div class="season-item-mini">
+                  <div class="season-item-dot"></div>
+                  <span class="season-item-title">Organic Chhath Puja Jaggery</span>
+                </div>
+                <div class="season-item-mini">
+                  <div class="season-item-dot"></div>
+                  <span class="season-item-title">Gaya's Famous Tilkut</span>
+                </div>
+                <div class="season-item-mini">
+                  <div class="season-item-dot"></div>
+                  <span class="season-item-title">Traditional Bamboo Puja Soop</span>
+                </div>
+                <div class="season-item-mini">
+                  <div class="season-item-dot"></div>
+                  <span class="season-item-title">Sacred Ganga Jal Box</span>
+                </div>
+              </div>
+            </div>
+            <div class="season-image-wrapper">
+              <span class="season-badge">Winter Devotion</span>
+              <div class="puja-image-fallback">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.1.38-1.99 1.02-2.69-.1-.25-.45-1.29.1-2.65 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.36.2 2.4.1 2.65.64.7 1.02 1.59 1.02 2.69 0 3.84-2.34 4.69-4.57 4.94.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/>
+                </svg>
+                <span>Holy Puja Box Setup</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- --- Shopping Grid Section --- -->
+    <section class="shop-section section-padding reveal-on-scroll" id="shop">
+      <div class="container">
+        <div class="section-header">
+          <h2>Shop Our Organic Bounty</h2>
+          <p>Harvested at peak perfection, packed traditionally, and shipped to preserve flavor. Order from our seasonal catalog.</p>
+        </div>
+
+        <div class="catalog-controls">
+          <div class="catalog-search-filter">
+            <div class="search-box-wrapper">
+              <i class="search-icon" data-lucide="search"></i>
+              <input type="text" class="search-input" id="catalog-search" placeholder="Search Litchi, Mango, Makhana, Khaja, Tilkut, Puja Box...">
+            </div>
+            <select class="sort-select" id="catalog-sort" aria-label="Sort products">
+              <option value="default">Default Sorting</option>
+              <option value="price-low">Price: Low to High</option>
+              <option value="price-high">Price: High to Low</option>
+              <option value="popular">Most Popular</option>
+            </select>
+          </div>
+
+          <div class="category-tabs">
+            <button class="category-btn active" data-category="all">All Specialties</button>
+            <button class="category-btn" data-category="organic">🌿 Organic Produce</button>
+            <button class="category-btn" data-category="seasonal">☀️ Seasonal Harvests</button>
+            <button class="category-btn" data-category="puja">🪔 Puja & Festivals</button>
+            <button class="category-btn" data-category="famous">🏆 Famous Delicacies</button>
+          </div>
+        </div>
+
+        <!-- Product Cards Grid -->
+        <div class="product-grid" id="product-grid">
+          <!-- Dynamic products injected here by app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- --- Our Heritage Section --- -->
+    <section class="heritage-section section-padding reveal-on-scroll" id="heritage">
+      <div class="container">
+        <div class="section-header">
+          <h2>Bihari Farm Heritage</h2>
+          <p>Every product tells a story of local mud, holy water, and generational knowledge. Learn about the legacy of our organic crops.</p>
+        </div>
+
+        <div class="heritage-grid">
+          <!-- Story 1: Shahi Litchi -->
+          <div class="heritage-card">
+            <div class="heritage-card-image">
+              <img src="assets/shahi_litchi.jpg" alt="Muzaffarpur Litchi Growers">
+            </div>
+            <div class="heritage-card-content">
+              <span class="heritage-card-tag">Muzaffarpur Legacy</span>
+              <h3>The Rose-Scented Shahi Litchi</h3>
+              <p>Muzaffarpur's soil is uniquely high in calcium, fed by Gangetic silt. This matches the climate perfectly to produce Shahi Litchi, known for its rose-like aroma, translucent flesh, and intense juiciness.</p>
+              <button class="btn-learn-more" data-story="litchi">
+                Read Story <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Story 2: Jardalu Mango -->
+          <div class="heritage-card">
+            <div class="heritage-card-image">
+              <img src="assets/jardalu_mango.jpg" alt="Bhagalpur Mango Orchards">
+            </div>
+            <div class="heritage-card-content">
+              <span class="heritage-card-tag">Bhagalpur Treasure</span>
+              <h3>The Golden Jardalu Mango</h3>
+              <p>A GI-tagged royal mango lineage. Cultivated in the fertile Bhagalpur floodplains, the Jardalu Mango is easily identified by its light yellow, soft skin and uniquely sweet, earthy scent that signals summer's arrival.</p>
+              <button class="btn-learn-more" data-story="mango">
+                Read Story <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Story 3: Makhana -->
+          <div class="heritage-card">
+            <div class="heritage-card-image">
+              <img src="assets/mithila_makhana.jpg" alt="Mithila Lotus Ponds">
+            </div>
+            <div class="heritage-card-content">
+              <span class="heritage-card-tag">Mithila Superfood</span>
+              <h3>Mithila Makhana: Water Lilies</h3>
+              <p>Grown in natural ponds of Mithila, Makhana harvesting is an artisanal, backbreaking process. Popped by hand over high flames, these white foxnuts are premium, highly nutritious superfoods rich in history.</p>
+              <button class="btn-learn-more" data-story="makhana">
+                Read Story <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- --- Bihar's Sweet Treasures Section --- -->
+    <section class="sweets-section section-padding reveal-on-scroll" id="sweet-treasures" style="background: linear-gradient(180deg, var(--color-bg) 0%, #FFF8F0 100%);">
+      <div class="container">
+        <div class="madhubani-pattern-bar" style="margin-bottom: 24px; border-radius: 4px;"></div>
+        <div class="section-header">
+          <h2><span class="madhubani-heading-wrap">Bihar's Sweet Treasures & Festive Prasad</span></h2>
+          <p>Handcrafted by master halwais using pure cow ghee, organic jaggery, and centuries-old regional recipes. Prepared fresh daily for festive offerings & doorstep delivery.</p>
+        </div>
+
+        <!-- Sweet Highlight Feature Cards Grid -->
+        <div class="sweets-highlight-grid">
+          <!-- Sweet 1: Thekua -->
+          <div class="sweet-highlight-card">
+            <div class="sweet-card-image-wrap">
+              <span class="sweet-badge-fresh"><span class="fresh-dot"></span> Prepared Fresh Today</span>
+              <img src="assets/thekua.jpg" alt="Authentic Chhath Prasad Thekua">
+            </div>
+            <div class="sweet-card-body">
+              <div class="sweet-card-meta">🪔 Chhath Sacred Prasad</div>
+              <h3>Authentic Chhath Prasad Thekua</h3>
+              <p class="sweet-card-desc">Whole wheat flour, pure desi cow ghee, organic jaggery & dry fruits. Hand-molded using carved wooden dies.</p>
+              <div class="sweet-card-footer">
+                <span class="sweet-price">₹240 <small>/ 500g</small></span>
+                <button class="btn btn-primary btn-sm" onclick="addToCart('chhath-thekua')">Add to Basket <i data-lucide="plus"></i></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sweet 2: Tilkut -->
+          <div class="sweet-highlight-card">
+            <div class="sweet-card-image-wrap">
+              <span class="sweet-badge-fresh"><span class="fresh-dot"></span> Winter Delicacy</span>
+              <img src="assets/gaya_tilkut.jpg" alt="Gaya Special Sesame Tilkut">
+            </div>
+            <div class="sweet-card-body">
+              <div class="sweet-card-meta">❄️ Gaya Specialty</div>
+              <h3>Gaya Special Sesame Tilkut</h3>
+              <p class="sweet-card-desc">White sesame seeds and organic jaggery syrup hand-pounded into crisp, multi-layered sheets that melt instantly.</p>
+              <div class="sweet-card-footer">
+                <span class="sweet-price">₹280 <small>/ 500g</small></span>
+                <button class="btn btn-primary btn-sm" onclick="addToCart('gaya-sesame-tilkut')">Add to Basket <i data-lucide="plus"></i></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sweet 3: Khaja -->
+          <div class="sweet-highlight-card">
+            <div class="sweet-card-image-wrap">
+              <span class="sweet-badge-fresh" style="background: var(--color-gold); color: #000;">🏷️ GI Certified</span>
+              <img src="assets/silao_khaja.jpg" alt="Famous Silao Khaja">
+            </div>
+            <div class="sweet-card-body">
+              <div class="sweet-card-meta">👑 Nalanda Heritage</div>
+              <h3>Famous Silao Khaja</h3>
+              <p class="sweet-card-desc">GI-certified 52-layered wafer-thin crispy sweet dipped in light cardamom syrup. Lord Buddha's favorite delight.</p>
+              <div class="sweet-card-footer">
+                <span class="sweet-price">₹220 <small>/ 500g</small></span>
+                <button class="btn btn-primary btn-sm" onclick="addToCart('silao-khaja')">Add to Basket <i data-lucide="plus"></i></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sweet 4: Anarsa -->
+          <div class="sweet-highlight-card">
+            <div class="sweet-card-image-wrap">
+              <span class="sweet-badge-fresh"><span class="fresh-dot"></span> Prepared Fresh Today</span>
+              <img src="assets/anarsa.jpg" alt="Traditional Sesame Anarsa">
+            </div>
+            <div class="sweet-card-body">
+              <div class="sweet-card-meta">🌸 Festive Special</div>
+              <h3>Traditional Sesame Anarsa</h3>
+              <p class="sweet-card-desc">Crisp, golden-brown rice flour and jaggery/khoya sweet crusted with white sesame seeds. Soft interior, crunchy outside.</p>
+              <div class="sweet-card-footer">
+                <span class="sweet-price">₹260 <small>/ 500g</small></span>
+                <button class="btn btn-primary btn-sm" onclick="addToCart('sesame-anarsa')">Add to Basket <i data-lucide="plus"></i></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sweet 5: Balushahi -->
+          <div class="sweet-highlight-card">
+            <div class="sweet-card-image-wrap">
+              <span class="sweet-badge-fresh"><span class="fresh-dot"></span> Desi Ghee Batch</span>
+              <img src="assets/balushahi.jpg" alt="Runnisaidpur Balushahi">
+            </div>
+            <div class="sweet-card-body">
+              <div class="sweet-card-meta">🍯 Sitamarhi Legacy</div>
+              <h3>Runnisaidpur Flaky Balushahi</h3>
+              <p class="sweet-card-desc">Melt-in-mouth golden balushahi with a flaky crust and rich saffron syrup-infused center, topped with silver varq.</p>
+              <div class="sweet-card-footer">
+                <span class="sweet-price">₹270 <small>/ 500g</small></span>
+                <button class="btn btn-primary btn-sm" onclick="addToCart('flaky-balushahi')">Add to Basket <i data-lucide="plus"></i></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sweet 6: Maner Ladoo -->
+          <div class="sweet-highlight-card">
+            <div class="sweet-card-image-wrap">
+              <span class="sweet-badge-fresh"><span class="fresh-dot"></span> Prepared Fresh Today</span>
+              <img src="assets/maner_ladoo.jpg" alt="Famous Maner ke Ladoo">
+            </div>
+            <div class="sweet-card-body">
+              <div class="sweet-card-meta">🏆 Patna Famous</div>
+              <h3>Famous Maner ke Ladoo</h3>
+              <p class="sweet-card-desc">Ultrafine gram flour boondi fried in pure cow ghee and infused with melon seeds, saffron, and cardamom.</p>
+              <div class="sweet-card-footer">
+                <span class="sweet-price">₹310 <small>/ 500g</small></span>
+                <button class="btn btn-primary btn-sm" onclick="addToCart('maner-ladoo')">Add to Basket <i data-lucide="plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- --- Customer Testimonials Section --- -->
+    <section class="testimonials-section section-padding reveal-on-scroll" id="testimonials">
+      <div class="container">
+        <div class="section-header">
+          <h2>What Our Customers Say</h2>
+          <p>Real reviews from families who trust Khaliyar Khetihaar for authentic Bihar produce.</p>
+        </div>
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">"The Jardalu mangoes were incredible! Just like the ones my grandmother used to get from Bhagalpur. Absolutely authentic and fresh."</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">PK</div>
+              <div><strong>Priya Kumari</strong><br><span>Delhi, NCR</span></div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">"Best makhana I've ever tasted. You can feel the difference when it's genuinely from Mithila. Will order every season!"</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">RS</div>
+              <div><strong>Rahul Sharma</strong><br><span>Bengaluru</span></div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">"The Chhath Puja box had everything perfectly packed. Jaggery, thekua ingredients, bamboo soop — nothing was missing. Felt like home."</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">AJ</div>
+              <div><strong>Anjali Jha</strong><br><span>Mumbai</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- --- Meet Farmers & Artisans Section --- -->
+    <section class="artisans-section section-padding reveal-on-scroll" id="artisans">
+      <div class="container">
+        <div class="madhubani-pattern-bar" style="margin-bottom: 24px; border-radius: 4px;"></div>
+        <div class="section-header">
+          <h2><span class="madhubani-heading-wrap">Meet Our Farmers & Artisans</span></h2>
+          <p>Every harvest and handicraft supports local families directly. 85%+ of your payment goes straight to regional producer accounts.</p>
+        </div>
+
+        <div class="artisans-grid">
+          <!-- Artisan 1 -->
+          <div class="artisan-card">
+            <div class="artisan-img-wrapper">
+              <span class="artisan-region-badge"><i data-lucide="map-pin" style="width: 14px; height: 14px;"></i> Muzaffarpur, Bihar</span>
+              <img src="assets/shahi_litchi.jpg" alt="Ramdhari Singh - Litchi Orchardist">
+            </div>
+            <div class="artisan-content">
+              <h3>Ramdhari Singh</h3>
+              <div class="artisan-role">Organic Litchi & Honey Producer</div>
+              <p class="artisan-bio">3rd generation orchardist growing GI-tagged Shahi Litchis without chemical pesticides, using traditional neem-leaf and bio-compost enrichment.</p>
+              <div class="artisan-impact-row">
+                <span class="impact-chip"><i data-lucide="check-circle" style="width: 12px; height: 12px;"></i> 85% Direct Profit</span>
+                <span class="impact-chip"><i data-lucide="leaf" style="width: 12px; height: 12px;"></i> Eco Jute Packing</span>
+                <span class="impact-chip"><i data-lucide="award" style="width: 12px; height: 12px;"></i> GI Certified</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Artisan 2 -->
+          <div class="artisan-card">
+            <div class="artisan-img-wrapper">
+              <span class="artisan-region-badge"><i data-lucide="map-pin" style="width: 14px; height: 14px;"></i> Mithila Region</span>
+              <img src="assets/mithila_makhana.jpg" alt="Sunita Devi - Mithila Makhana & Madhubani Artisan">
+            </div>
+            <div class="artisan-content">
+              <h3>Sunita Devi</h3>
+              <div class="artisan-role">Makhana Harvest & Madhubani Crafts</div>
+              <p class="artisan-bio">Leads a women's self-help cooperative harvesting natural lotus foxnuts from ponds and hand-painting Madhubani art packaging boxes.</p>
+              <div class="artisan-impact-row">
+                <span class="impact-chip"><i data-lucide="users" style="width: 12px; height: 12px;"></i> Women Co-op</span>
+                <span class="impact-chip"><i data-lucide="palette" style="width: 12px; height: 12px;"></i> Hand-Painted Motif</span>
+                <span class="impact-chip"><i data-lucide="heart" style="width: 12px; height: 12px;"></i> Fair Wage</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Artisan 3 -->
+          <div class="artisan-card">
+            <div class="artisan-img-wrapper">
+              <span class="artisan-region-badge"><i data-lucide="map-pin" style="width: 14px; height: 14px;"></i> Bhagalpur, Bihar</span>
+              <img src="assets/katarni_rice.jpg" alt="Bijay Kumar Mandal - Heritage Grain Farmer">
+            </div>
+            <div class="artisan-content">
+              <h3>Bijay Kumar Mandal</h3>
+              <div class="artisan-role">Katarni Paddy & Jardalu Cultodian</div>
+              <p class="artisan-bio">Preserving ancient aromatic Katarni rice seeds and tending flood-plain Jardalu mango trees harvested at peak solar ripeness.</p>
+              <div class="artisan-impact-row">
+                <span class="impact-chip"><i data-lucide="sprout" style="width: 12px; height: 12px;"></i> Seed Saver</span>
+                <span class="impact-chip"><i data-lucide="truck" style="width: 12px; height: 12px;"></i> Express Logistics</span>
+                <span class="impact-chip"><i data-lucide="shield-check" style="width: 12px; height: 12px;"></i> 100% Organic</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- --- Contact Form Section --- -->
+    <section class="contact-section section-padding reveal-on-scroll" id="contact">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="contact-info">
+            <h3>Get In Touch With The Fields</h3>
+            <p>Have questions about bulk orders for wedding events, sacred Chhath Puja boxes, or specific seasonal harvests? Contact our farmer cooperative team directly.</p>
+            
+            <div class="contact-details">
+              <div class="contact-detail-item">
+                <div class="contact-detail-icon"><i data-lucide="map-pin"></i></div>
+                <div class="contact-detail-text">
+                  <h4>Cooperative Office</h4>
+                  <p>Mithila-Bhagalpur Farmer Association, NH 31, Bhagalpur, Bihar, India</p>
+                </div>
+              </div>
+              <div class="contact-detail-item">
+                <div class="contact-detail-icon"><i data-lucide="phone"></i></div>
+                <div class="contact-detail-text">
+                  <h4>Call / WhatsApp</h4>
+                  <p>+91 94312 XXXXX / +91 62015 XXXXX</p>
+                </div>
+              </div>
+              <div class="contact-detail-item">
+                <div class="contact-detail-icon"><i data-lucide="mail"></i></div>
+                <div class="contact-detail-text">
+                  <h4>Email</h4>
+                  <p>contact@khaliyarkhetihaar.com</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-form-wrapper">
+            <form class="contact-form" id="contact-form" onsubmit="event.preventDefault(); alert('Thank you for contacting us! We will get back to you within 24 hours.'); this.reset();">
+              <h3>Send An Inquiry</h3>
+              <div class="form-group">
+                <label for="contact-name">Your Name</label>
+                <input type="text" class="form-control" id="contact-name" placeholder="Enter your full name" required>
+              </div>
+              <div class="form-group">
+                <label for="contact-email">Email Address</label>
+                <input type="email" class="form-control" id="contact-email" placeholder="name@example.com" required>
+              </div>
+              <div class="form-group">
+                <label for="contact-subject">Inquiry Subject</label>
+                <select class="form-control" id="contact-subject">
+                  <option>General Farm Inquiry</option>
+                  <option>Bulk Mango/Litchi Ordering</option>
+                  <option>Chhath Puja Box Deliveries</option>
+                  <option>Become a Farm Partner</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="contact-message">Your Message</label>
+                <textarea class="form-control" id="contact-message" rows="4" placeholder="Tell us what you need..." required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message <i data-lucide="send"></i></button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- --- Footer --- -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <h3>खलियार खेतिहर</h3>
+          <p>Honoring generations of Bihari agriculture. We provide 100% organic, seasonal harvests, GI-tagged native produce, and spiritual festival essentials directly to families nationwide.</p>
+          <div class="footer-social-links">
+            <a href="#" class="social-link" aria-label="Facebook" data-coming-soon="Follow us on Facebook — page coming soon!"><i data-lucide="facebook"></i></a>
+            <a href="#" class="social-link" aria-label="Instagram" data-coming-soon="Follow us on Instagram — page coming soon!"><i data-lucide="instagram"></i></a>
+            <a href="#" class="social-link" aria-label="Twitter" data-coming-soon="Follow us on Twitter/X — page coming soon!"><i data-lucide="twitter"></i></a>
+            <a href="#" class="social-link" aria-label="Youtube" data-coming-soon="Subscribe to our YouTube channel — coming soon!"><i data-lucide="youtube"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-links-col">
+          <h4>Farm Products</h4>
+          <ul class="footer-links-list">
+            <li><a href="#shop">Shahi Litchi</a></li>
+            <li><a href="#shop">Jardalu Mango</a></li>
+            <li><a href="#shop">Mithila Makhana</a></li>
+            <li><a href="#shop">Gram Sattu</a></li>
+            <li><a href="#shop">Katarni Rice</a></li>
+            <li><a href="#shop">Puja Essentials</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-col">
+          <h4>Our Legacy</h4>
+          <ul class="footer-links-list">
+            <li><a href="#heritage">The Soil of Muzaffarpur</a></li>
+            <li><a href="#heritage">Bhagalpur Farmer Network</a></li>
+            <li><a href="#heritage">Mithila Cooperative</a></li>
+            <li><a href="#seasonal-calendar">Seasonal Harvest Calendar</a></li>
+            <li><a href="#heritage">Organic Certifications</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-col">
+          <h4>Customer Service</h4>
+          <ul class="footer-links-list">
+            <li><a href="#contact">Contact Support</a></li>
+            <li><a href="#contact">Bulk Orders & Catering</a></li>
+            <li><a href="javascript:void(0)" onclick="openTrackingModal()">Shipping & Harvest Tracking</a></li>
+            <li><a href="delivery.html">Refund Policy</a></li>
+            <li><a href="delivery.html">Delivery FAQs</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Khaliyar Khetihaar Cooperative. All Rights Reserved. Built with Organic Love.</p>
+        <div class="footer-bottom-links">
+          <a href="delivery.html">Privacy Policy</a>
+          <a href="delivery.html">Terms of Service</a>
+          <a href="delivery.html">Shipping Guidelines</a>
+          <a href="admin.html" style="opacity: 0.5; font-weight: 600;">Admin Dashboard</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- --- Shopping Cart Drawer --- -->
+  <div class="cart-overlay" id="cart-overlay">
+    <div class="cart-drawer">
+      <div class="cart-header">
+        <h3><i data-lucide="shopping-bag" style="color: var(--color-primary);"></i> Shopping Cart</h3>
+        <button class="btn-close-cart" id="close-cart-btn" aria-label="Close Cart">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+
+      <div class="cart-items-container" id="cart-items-wrapper">
+        <!-- Rendered dynamically by app.js -->
+        <div class="cart-empty-state" id="cart-empty-state">
+          <i data-lucide="shopping-cart" style="width: 48px; height: 48px;"></i>
+          <p>Your basket is currently empty.</p>
+          <a href="#shop" class="btn btn-primary" style="margin-top: 16px;" onclick="document.getElementById('cart-overlay').classList.remove('open');">Browse Harvest</a>
+        </div>
+      </div>
+
+      <div class="cart-summary">
+        <div class="coupon-wrapper">
+          <input type="text" class="coupon-input" id="coupon-code-input" placeholder="Promo code (e.g. BIHAR10)">
+          <button class="btn-coupon-apply" id="apply-coupon-btn">Apply</button>
+        </div>
+        <div class="coupon-status" id="coupon-msg">Coupon applied successfully!</div>
+
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span id="cart-subtotal">₹0.00</span>
+        </div>
+        <div class="summary-row" id="discount-row" style="display: none;">
+          <span>Discount (Coupon)</span>
+          <span class="discount-amount" id="cart-discount">-₹0.00</span>
+        </div>
+        <div class="summary-row">
+          <span>Delivery Charge</span>
+          <span id="cart-shipping">₹0.00</span>
+        </div>
+        <div class="summary-row total">
+          <span>Grand Total</span>
+          <span id="cart-grandtotal">₹0.00</span>
+        </div>
+
+        <button class="btn btn-primary btn-checkout" id="checkout-trigger-btn">Proceed to Checkout <i data-lucide="credit-card"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- --- Product Detail Modal --- -->
+  <div class="modal-overlay" id="product-modal">
+    <div class="modal-container">
+      <button class="btn-close-modal" id="close-product-modal-btn" aria-label="Close details">
+        <i data-lucide="x"></i>
+      </button>
+      <div class="product-modal-grid" id="product-modal-grid-content">
+        <!-- Injected dynamically by app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- --- Heritage Story Modal --- -->
+  <div class="modal-overlay" id="story-modal">
+    <div class="modal-container">
+      <button class="btn-close-modal" id="close-story-modal-btn" aria-label="Close story">
+        <i data-lucide="x"></i>
+      </button>
+      <div class="story-modal-content" id="story-modal-inner-content">
+        <!-- Injected dynamically by app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- --- Checkout Wizard Modal --- -->
+  <div class="modal-overlay" id="checkout-modal">
+    <div class="modal-container checkout-modal">
+      <button class="btn-close-modal" id="close-checkout-modal-btn" aria-label="Close checkout">
+        <i data-lucide="x"></i>
+      </button>
+      <div class="checkout-content">
+        <h3>Secure Checkout</h3>
+        
+        <div class="checkout-steps">
+          <div class="step-indicator active" data-step="1">1</div>
+          <div class="step-indicator" data-step="2">2</div>
+          <div class="step-indicator" data-step="3">3</div>
+        </div>
+
+        <form id="checkout-form" onsubmit="event.preventDefault();">
+          <!-- Step 1: Shipping Details -->
+          <div class="checkout-pane active" id="checkout-step-1">
+            <div class="form-group">
+              <label for="shipping-name">Full Name</label>
+              <input type="text" class="form-control" id="shipping-name" placeholder="John Doe" required>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="shipping-phone">Phone Number</label>
+                <input type="tel" class="form-control" id="shipping-phone" placeholder="9876543210" required>
+              </div>
+              <div class="form-group">
+                <label for="shipping-pincode">Pincode</label>
+                <input type="text" class="form-control" id="shipping-pincode" placeholder="800001 (Patna)" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="shipping-address">Delivery Address</label>
+              <textarea class="form-control" id="shipping-address" rows="2" placeholder="Apartment, Street address, Village, City, Bihar" required></textarea>
+            </div>
+
+            <!-- Delivery Logistics Tier Selector -->
+            <div class="form-group" style="margin-top: 16px;">
+              <label><i data-lucide="truck" style="width: 16px; height: 16px; vertical-align: text-top; color: var(--color-primary);"></i> Select Regional Logistics & Delivery Speed</label>
+              <div class="delivery-options-grid">
+                <div class="delivery-tier-card selected" id="tier-card-standard" onclick="selectDeliveryTier('standard')">
+                  <input type="radio" name="delivery-tier" value="standard" checked>
+                  <div class="delivery-tier-title">🚚 Standard Delivery</div>
+                  <div class="delivery-tier-time">3 - 5 Business Days</div>
+                  <div class="delivery-tier-partner">India Post Rural & Courier</div>
+                  <div class="delivery-tier-price">₹40.00 (Free > ₹499)</div>
+                </div>
+
+                <div class="delivery-tier-card" id="tier-card-express" onclick="selectDeliveryTier('express')">
+                  <input type="radio" name="delivery-tier" value="express">
+                  <div class="delivery-tier-title">⚡ Bihar Express</div>
+                  <div class="delivery-tier-time">24 - 48 Hours</div>
+                  <div class="delivery-tier-partner">Bihar Krishi Cold-Express</div>
+                  <div class="delivery-tier-price">₹90.00</div>
+                </div>
+
+                <div class="delivery-tier-card" id="tier-card-festival" onclick="selectDeliveryTier('festival')">
+                  <input type="radio" name="delivery-tier" value="festival">
+                  <div class="delivery-tier-title">🎁 Festival Freight</div>
+                  <div class="delivery-tier-time">Scheduled Date</div>
+                  <div class="delivery-tier-partner">Protected Eco-Bamboocrate</div>
+                  <div class="delivery-tier-price">₹150.00</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2: Payment Simulator -->
+          <div class="checkout-pane" id="checkout-step-2">
+            <div class="checkout-order-summary">
+              <h4>Order Breakdown</h4>
+              <div id="checkout-order-breakdown">
+                <!-- Injected dynamically -->
+              </div>
+              <div class="checkout-summary-item" style="border-top: 1px solid var(--color-border); margin-top: 10px; padding-top: 10px;">
+                <span>Total amount to pay</span>
+                <span id="checkout-total-to-pay" style="font-weight: 700; color: var(--color-primary); font-size: 1.1rem;">₹0.00</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Select Payment Method</label>
+              <div class="payment-options">
+                <label class="payment-option-label">
+                  <input type="radio" name="payment-method" value="upi" checked>
+                  <span>Instant UPI Transfer (Paytm / GPay / PhonePe)</span>
+                </label>
+                
+                <!-- UPI Details Pane -->
+                <div class="payment-details-pane active" id="pay-details-upi">
+                  <div class="upi-qr-mockup">
+                    <div class="upi-qr-box"></div>
+                    <span style="font-size: 0.75rem; font-weight: 600; color: var(--color-text-muted);">Order Scan-Pay QR Code</span>
+                  </div>
+                  <p style="font-size: 0.8rem; text-align: center; color: var(--color-text-dark); margin-top: 8px;">
+                    Scan above using BHIM, Paytm, GPay, or PhonePe. Pay exact total amount of <strong>₹<span id="upi-amount-span">0.00</span></strong> to merchant ID:<br>
+                    <strong style="color: var(--color-accent); font-family: monospace;">khaliyar.coop@oksbi</strong>
+                  </p>
+                </div>
+
+                <label class="payment-option-label">
+                  <input type="radio" name="payment-method" value="cod">
+                  <span>Cash on Delivery (COD)</span>
+                </label>
+
+                <!-- COD Details Pane -->
+                <div class="payment-details-pane" id="pay-details-cod">
+                  <p style="font-size: 0.85rem; color: var(--color-text-muted); display: flex; align-items: flex-start; gap: 10px; text-align: left;">
+                    <i data-lucide="hand-coins" style="color: var(--color-accent); flex-shrink: 0; width: 20px; height: 20px;"></i>
+                    <span>No upfront online payment required. Pay in cash or hand over your UPI code to our farm executive at your doorstep when products are successfully delivered.</span>
+                  </p>
+                </div>
+
+                <label class="payment-option-label">
+                  <input type="radio" name="payment-method" value="card">
+                  <span>Credit / Debit Card</span>
+                </label>
+
+                <!-- Card Details Pane -->
+                <div class="payment-details-pane" id="pay-details-card">
+                  <div class="form-group" style="margin-bottom: 12px; text-align: left;">
+                    <label for="card-holder">Cardholder Name</label>
+                    <input type="text" class="form-control" id="card-holder" placeholder="Enter name on card" style="padding: 10px;">
+                  </div>
+                  <div class="form-group" style="margin-bottom: 12px; text-align: left;">
+                    <label for="card-number">Card Number</label>
+                    <input type="text" class="form-control" id="card-number" placeholder="4532 8901 2345 6789" style="padding: 10px;">
+                  </div>
+                  <div class="form-row" style="text-align: left;">
+                    <div class="form-group" style="margin-bottom: 0;">
+                      <label for="card-expiry">Expiry Date</label>
+                      <input type="text" class="form-control" id="card-expiry" placeholder="MM/YY" style="padding: 10px;">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0;">
+                      <label for="card-cvv">CVV</label>
+                      <input type="password" class="form-control" id="card-cvv" placeholder="•••" style="padding: 10px;" maxlength="3">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3: Success Screen -->
+          <div class="checkout-pane" id="checkout-step-3">
+            <div class="success-pane">
+              <div class="success-icon-wrapper">
+                <i data-lucide="check-circle-2"></i>
+              </div>
+              <h4>Order Placed Successfully!</h4>
+              <p>Your order is harvested, packed, and being readied for transit.</p>
+              <div class="success-order-id" id="success-order-id">KK-XXXX-XXXX</div>
+              <p style="font-size: 0.9rem; color: var(--color-text-muted);">A copy of the invoice and dispatch details has been sent to your details. Thank you for supporting regional farming!</p>
+            </div>
+          </div>
+
+          <!-- Navigation Buttons -->
+          <div class="checkout-navigation-buttons" id="checkout-nav-btns">
+            <button type="button" class="btn btn-secondary" id="checkout-back-btn" style="visibility: hidden;">Back</button>
+            <button type="button" class="btn btn-primary" id="checkout-next-btn">Next Step <i data-lucide="arrow-right"></i></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- --- Toast Notification Container --- -->
+  <div id="toast-container"></div>
+
+  <!-- --- Real-Time Order Tracking Modal --- -->
+  <div class="modal-overlay" id="tracking-modal">
+    <div class="modal-container" style="max-width: 680px;">
+      <button class="btn-close-modal" id="close-tracking-modal-btn" aria-label="Close tracking">
+        <i data-lucide="x"></i>
+      </button>
+      <div class="tracking-content" style="padding: 10px;">
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+          <div style="width: 36px; height: 36px; border-radius: 50%; background: var(--color-primary-light); color: var(--color-primary); display: flex; align-items: center; justify-content: center;">
+            <i data-lucide="package-search"></i>
+          </div>
+          <div>
+            <h3 style="font-size: 1.3rem; margin: 0;">Bihar Delivery Tracking Portal</h3>
+            <span style="font-size: 0.8rem; color: var(--color-text-muted);">Real-time status for farm-to-doorstep shipments</span>
+          </div>
+        </div>
+
+        <div class="tracking-search-box" style="margin-top: 16px;">
+          <input type="text" class="tracking-input" id="tracking-id-input" placeholder="Enter Order ID (e.g., KK-8924-9102)">
+          <button class="btn btn-primary" id="track-order-submit-btn">Track <i data-lucide="search"></i></button>
+        </div>
+
+        <div id="tracking-result-area">
+          <div class="tracking-timeline-container">
+            <div class="tracking-order-meta">
+              <div>
+                <h4 id="track-meta-id">Order #KK-8924-9102</h4>
+                <span>Item: Muzaffarpur Shahi Litchi Box + Mithila Makhana</span>
+              </div>
+              <div style="text-align: right;">
+                <span style="display: block; font-weight: 700; color: var(--color-success);" id="track-meta-status">Dispatched</span>
+                <span id="track-meta-date">Est. Delivery: Tomorrow</span>
+              </div>
+            </div>
+
+            <!-- Stepper Timeline -->
+            <div class="tracking-stepper">
+              <div class="tracking-progress-line" id="track-progress-line" style="width: 66%;"></div>
+
+              <div class="track-step-node completed">
+                <div class="track-node-icon"><i data-lucide="check"></i></div>
+                <span class="track-node-label">Placed</span>
+                <span class="track-node-sub">Confirmed</span>
+              </div>
+
+              <div class="track-step-node completed">
+                <div class="track-node-icon"><i data-lucide="package"></i></div>
+                <span class="track-node-label">Packed</span>
+                <span class="track-node-sub">Artisan Jute</span>
+              </div>
+
+              <div class="track-step-node active">
+                <div class="track-node-icon"><i data-lucide="truck"></i></div>
+                <span class="track-node-label">In Transit</span>
+                <span class="track-node-sub">Dispatched</span>
+              </div>
+
+              <div class="track-step-node">
+                <div class="track-node-icon"><i data-lucide="home"></i></div>
+                <span class="track-node-label">Delivered</span>
+                <span class="track-node-sub">Doorstep</span>
+              </div>
+            </div>
+
+            <div class="logistics-partner-badge">
+              <i data-lucide="shield-check"></i>
+              <div class="logistics-partner-info">
+                <h5>Handled by: <strong id="track-partner-name">Bihar Krishi Cold-Express Courier</strong></h5>
+                <p id="track-partner-details">Live location: Patna Hub ➔ Interstate Dispatch. Verified eco-packaging code: <strong>ECO-BH-992</strong>.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- --- Mobile Bottom Navigation Bar --- -->
+  <nav class="mobile-bottom-bar" aria-label="Mobile Navigation">
+    <a href="#home" class="mobile-nav-item active">
+      <i data-lucide="home"></i>
+      <span>Home</span>
+    </a>
+    <a href="#shop" class="mobile-nav-item">
+      <i data-lucide="shopping-bag"></i>
+      <span>Shop</span>
+    </a>
+    <button class="mobile-nav-item" onclick="openTrackingModal()">
+      <i data-lucide="truck"></i>
+      <span>Track</span>
+    </button>
+    <button class="mobile-nav-item" onclick="openCartDrawer()">
+      <i data-lucide="shopping-cart"></i>
+      <span>Basket</span>
+    </button>
+  </nav>
+
+  <script src="app.js"></script>
+</body>
+</html>
