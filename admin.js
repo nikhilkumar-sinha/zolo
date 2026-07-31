@@ -147,7 +147,7 @@ function renderAnalytics() {
   }
 
   // Calculate Category demand stats
-  const catSales = { organic: 0, seasonal: 0, puja: 0, famous: 0 };
+  const catSales = { fruits: 0, makhana: 0, grains: 0, sweets: 0, puja: 0, crafts: 0 };
   let grandTotalUnits = 0;
 
   activeOrders.forEach(order => {
@@ -157,7 +157,7 @@ function renderAnalytics() {
       if (prod) {
         const categories = JSON.parse(localStorage.getItem('kk_categories')) || [];
         const cat = categories.find(c => c.id === prod.category_id);
-        const catSlug = cat ? cat.slug : 'organic';
+        const catSlug = cat ? cat.slug : 'fruits';
         if (catSales[catSlug] !== undefined) {
           catSales[catSlug] += item.quantity;
           grandTotalUnits += item.quantity;
@@ -170,10 +170,12 @@ function renderAnalytics() {
   chartHolder.innerHTML = '';
 
   const categoriesText = {
-    organic: 'Organic Produce',
-    seasonal: 'Seasonal Harvests',
-    puja: 'Puja Essentials',
-    famous: 'Famous Delicacies'
+    fruits: 'Orchard Fruits',
+    makhana: 'Mithila Makhana',
+    grains: 'Heritage Grains',
+    sweets: 'Sweets & Delicacies',
+    puja: 'Puja Packages',
+    crafts: 'Handlooms & Crafts'
   };
 
   Object.keys(catSales).forEach(cat => {

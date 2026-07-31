@@ -132,3 +132,13 @@ CREATE INDEX idx_products_slug ON `products` (`slug`);
 CREATE INDEX idx_product_inventory_sku ON `product_inventory` (`sku`);
 CREATE INDEX idx_product_variants_sku ON `product_variants` (`sku`);
 CREATE INDEX idx_product_tags_tag ON `product_tags` (`tag`);
+
+-- DEFAULT CATEGORIES SEED DATA
+INSERT INTO `categories` (`id`, `category_name`, `slug`, `description`, `status`) VALUES
+(1, 'Orchard Fruits', 'fruits', 'Fresh orchard fruits harvested at solar peaks', 1),
+(2, 'Mithila Makhana', 'makhana', 'Certified organic foxnuts and superfoods', 1),
+(3, 'Heritage Grains', 'grains', 'Traditional grains, staples, and slow-ground flours', 1),
+(4, 'Sweets & Delicacies', 'sweets', 'Centuries-old regional sweets from master halwais', 1),
+(5, 'Puja Packages', 'puja', 'Sacred offerings and ritual packages', 1),
+(6, 'Handlooms & Crafts', 'crafts', 'GI-tagged traditional paintings and textiles', 1)
+ON DUPLICATE KEY UPDATE `category_name`=VALUES(`category_name`), `slug`=VALUES(`slug`), `description`=VALUES(`description`);
