@@ -421,17 +421,186 @@ const DEFAULT_PRODUCTS = [
 
 // --- Database Seeding ---
 function initializeLocalStorageDB() {
-  // Always update product seed database to ensure high-res asset photos load
-  localStorage.setItem('kk_products', JSON.stringify(DEFAULT_PRODUCTS));
+  // 1. Categories Table
+  if (!localStorage.getItem('kk_categories')) {
+    const categories = [
+      { id: 1, category_name: 'Organic Produce', slug: 'organic', description: 'Certified chemical-free native crops', status: true },
+      { id: 2, category_name: 'Seasonal Harvests', slug: 'seasonal', description: 'Fresh orchard fruits harvested at solar peaks', status: true },
+      { id: 3, category_name: 'Puja & Festivals', slug: 'puja', description: 'Sacred offerings and handwoven accessories', status: true },
+      { id: 4, category_name: 'Famous Delicacies', slug: 'famous', description: 'Centuries-old regional sweets from master halwais', status: true }
+    ];
+    localStorage.setItem('kk_categories', JSON.stringify(categories));
+  }
+
+  // 2. Products Table and related normalized child tables
+  if (!localStorage.getItem('kk_products')) {
+    const products = [];
+    const images = [];
+    const inventory = [];
+    const attributes = [];
+    const variants = [];
+    const tags = [];
+    const seasonal = [];
+    const seo = [];
+
+    // Helper to generate SKU based on naming conventions
+    function generateSKU(prodId, title) {
+      if (prodId.includes('litchi')) return 'USE-LIT-001';
+      if (prodId.includes('mango')) return 'USE-MNG-001';
+      if (prodId.includes('makhana')) return 'USE-MAK-001';
+      if (prodId.includes('sattu')) return 'USE-SAT-001';
+      if (prodId.includes('rice')) return 'USE-RIC-001';
+      if (prodId.includes('jamun')) return 'USE-JAM-001';
+      if (prodId.includes('tilkut')) return 'USE-TIL-001';
+      if (prodId.includes('khaja')) return 'USE-KHA-001';
+      if (prodId.includes('ladoo')) return 'USE-LAD-001';
+      if (prodId.includes('thekua')) return 'USE-THE-001';
+      if (prodId.includes('turmeric')) return 'USE-TUR-001';
+      
+      const words = title.toUpperCase().replace(/[^A-Z ]/g, '').split(' ');
+      const prefix = words.length > 1 ? (words[0].substring(0, 1) + words[1].substring(0, 2)) : words[0].substring(0, 3);
+      return `USE-${prefix.padEnd(3, 'X')}-001`;
+    }
+
+    let catIdMap = { 'organic': 1, 'seasonal': 2, 'puja': 3, 'famous': 4 };
+
+    DEFAULT_PRODUCTS.forEach((p, index) => {
+      const dbId = index + 1;
+      const sku = generateSKU(p.id, p.title);
+      const catId = catIdMap[p.category] || 1;
+
+      // Core product record
+      products.push({
+        id: dbId,
+        sku: sku,
+        product_title: p.title,
+        slug: p.id,
+        short_description: p.description,
+        full_description: p.description + " Hand-packed with care by our farmer cooperatives in Bihar.",
+        category_id: catId,
+        origin_region: p.origin || 'Bihar, India',
+        unit: p.unit.split(' ')[0] || 'Pack',
+        package_size: p.unit || 'Standard Package',
+        price: p.price,
+        sale_price: p.price - 20 > 0 ? p.price - 20 : p.price,
+        cost_price: Math.round(p.price * 0.6),
+        tax: 5.00,
+        brand: 'UseMadi',
+        featured: p.popularity > 90,
+        organic: p.isOrganic || false,
+        gi_tagged: p.isGI || false,
+        seasonal: p.isSeasonal || false,
+        harvest_season: p.season || 'Winter',
+        shelf_life: '15 Days',
+        weight: 1.00,
+        image: p.image || '',
+        status: 'Active',
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString()
+      });
+
+      // Images
+      images.push({
+        id: dbId,
+        product_id: dbId,
+        image_url: p.image || '',
+        alt_text: p.title,
+        sort_order: 1
+      });
+
+      // Inventory
+      inventory.push({
+        id: dbId,
+        product_id: dbId,
+        sku: sku,
+        stock_quantity: p.inStock ? 120 : 0,
+        reserved_stock: 0,
+        minimum_stock: 15,
+        maximum_stock: 1000,
+        stock_status: p.inStock ? 'In Stock' : 'Out of Stock',
+        availability: p.inStock,
+        warehouse: 'Patna Main Warehouse',
+        updated_at: new Date().toISOString()
+      });
+
+      // Attributes
+      attributes.push({ id: attributes.length + 1, product_id: dbId, attribute_name: 'Organic', attribute_value: p.isOrganic ? 'Yes' : 'No' });
+      attributes.push({ id: attributes.length + 1, product_id: dbId, attribute_name: 'GI Tagged', attribute_value: p.isGI ? 'Yes' : 'No' });
+      attributes.push({ id: attributes.length + 1, product_id: dbId, attribute_name: 'Seasonal', attribute_value: p.isSeasonal ? 'Yes' : 'No' });
+
+      // Variants
+      variants.push({ id: variants.length + 1, product_id: dbId, sku: sku + '-500', variant_name: '500g Pack', weight: '500g', price: p.price, stock: 60 });
+      variants.push({ id: variants.length + 1, product_id: dbId, sku: sku + '-1000', variant_name: '1 Kg Pack', weight: '1 Kg', price: p.price * 1.8, stock: 60 });
+
+      // Tags
+      if (p.isOrganic) tags.push({ id: tags.length + 1, product_id: dbId, tag: 'Organic' });
+      if (p.isGI) tags.push({ id: tags.length + 1, product_id: dbId, tag: 'GI Tagged' });
+      if (p.isSeasonal) tags.push({ id: tags.length + 1, product_id: dbId, tag: p.season || 'Summer' });
+
+      // Seasonal Availability
+      seasonal.push({
+        id: dbId,
+        product_id: dbId,
+        available_from: '2026-04-01',
+        available_to: '2026-11-30',
+        season: p.season || 'Summer',
+        preorder_allowed: true
+      });
+
+      // SEO
+      seo.push({
+        id: dbId,
+        product_id: dbId,
+        meta_title: `${p.title} - Authentic Bihari Produce`,
+        meta_description: p.description,
+        meta_keywords: `${p.title}, Bihar organic, GI tagged, ${p.origin}`,
+        canonical_url: `https://usemadi.com/products/${p.id}`
+      });
+    });
+
+    localStorage.setItem('kk_products', JSON.stringify(products));
+    localStorage.setItem('kk_product_images', JSON.stringify(images));
+    localStorage.setItem('kk_product_inventory', JSON.stringify(inventory));
+    localStorage.setItem('kk_product_attributes', JSON.stringify(attributes));
+    localStorage.setItem('kk_product_variants', JSON.stringify(variants));
+    localStorage.setItem('kk_product_tags', JSON.stringify(tags));
+    localStorage.setItem('kk_seasonal_availability', JSON.stringify(seasonal));
+    localStorage.setItem('kk_product_seo', JSON.stringify(seo));
+  }
+
   if (!localStorage.getItem('kk_orders')) {
     localStorage.setItem('kk_orders', JSON.stringify([]));
   }
 }
 initializeLocalStorageDB();
 
-// Pull live state from LocalStorage
+// Pull live state from LocalStorage with relational mapping joins
 function getProductsFromDB() {
-  return JSON.parse(localStorage.getItem('kk_products')) || DEFAULT_PRODUCTS;
+  const products = JSON.parse(localStorage.getItem('kk_products')) || [];
+  const inventory = JSON.parse(localStorage.getItem('kk_product_inventory')) || [];
+  const categories = JSON.parse(localStorage.getItem('kk_categories')) || [];
+
+  return products.map(p => {
+    const inv = inventory.find(i => i.product_id === p.id) || {};
+    const cat = categories.find(c => c.id === p.category_id) || {};
+    return {
+      id: p.slug,
+      title: p.product_title,
+      category: cat.slug || 'organic',
+      isGI: p.gi_tagged,
+      isOrganic: p.organic,
+      isSeasonal: p.seasonal,
+      season: p.harvest_season || 'winter',
+      price: p.price,
+      unit: p.package_size || 'Standard Unit',
+      image: p.image,
+      origin: p.origin_region,
+      popularity: p.featured ? 95 : 80,
+      inStock: inv.stock_quantity > 0,
+      description: p.short_description,
+      heritageStory: p.full_description
+    };
+  });
 }
 
 // --- Heritage Stories Database ---
