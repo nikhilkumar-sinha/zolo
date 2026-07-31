@@ -1,5 +1,5 @@
 /*
-   Khaliyar Khetihaar (खलियार खेतिहर) - Admin Dashboard Controller
+   ZOLONOW - Admin Dashboard Controller
    Author: Antigravity Code Assistant
    Features: Admin Authentication, Normalized Table Operations, Relational CRUD, Auto-SKUs, CSV Export
 */
