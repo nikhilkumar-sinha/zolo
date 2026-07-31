@@ -190,6 +190,16 @@ header.scrolled {
   gap: 10px;
 }
 
+.logo-img {
+  height: 48px;
+  display: block;
+  transition: var(--transition-fast);
+}
+
+.logo-img:hover {
+  transform: scale(1.02);
+}
+
 .logo-icon {
   width: 44px;
   height: 44px;
