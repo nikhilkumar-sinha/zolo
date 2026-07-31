@@ -399,12 +399,12 @@ const DEFAULT_PRODUCTS = [
   }
 ];
 
-// --- Database Seeding ---
+/// --- Database Seeding ---
 function initializeLocalStorageDB() {
-  // Safe version/cleanup wipe check to reload seed on taxonomy change
+  // Safe version/cleanup wipe check to reload seed on taxonomy change to nested categories
   if (localStorage.getItem('kk_categories')) {
     const existing = JSON.parse(localStorage.getItem('kk_categories'));
-    if (existing.length < 5 || !existing.find(c => c.slug === 'crafts')) {
+    if (existing.length < 10 || !existing.find(c => c.slug === 'fruits-fresh-produce')) {
       localStorage.removeItem('kk_products');
       localStorage.removeItem('kk_categories');
       localStorage.removeItem('kk_product_images');
@@ -420,12 +420,33 @@ function initializeLocalStorageDB() {
   // 1. Categories Table
   if (!localStorage.getItem('kk_categories')) {
     const categories = [
-      { id: 1, category_name: 'Orchard Fruits', slug: 'fruits', description: 'Fresh orchard fruits harvested at solar peaks', status: true },
-      { id: 2, category_name: 'Mithila Makhana', slug: 'makhana', description: 'Certified organic foxnuts and superfoods', status: true },
-      { id: 3, category_name: 'Heritage Grains', slug: 'grains', description: 'Traditional grains, staples, and slow-ground flours', status: true },
-      { id: 4, category_name: 'Sweets & Delicacies', slug: 'sweets', description: 'Centuries-old regional sweets from master halwais', status: true },
-      { id: 5, category_name: 'Puja Packages', slug: 'puja', description: 'Sacred offerings and ritual packages', status: true },
-      { id: 6, category_name: 'Handlooms & Crafts', slug: 'crafts', description: 'GI-tagged traditional paintings and textiles', status: true }
+      // Parent categories (id 1 to 5)
+      { id: 1, category_name: 'Fruits & Fresh Produce', slug: 'fruits-fresh-produce', parent_id: null, status: true },
+      { id: 2, category_name: 'Staples & Grains', slug: 'staples-grains', parent_id: null, status: true },
+      { id: 3, category_name: 'Superfoods & Snacks', slug: 'superfoods-snacks', parent_id: null, status: true },
+      { id: 4, category_name: 'Handlooms & Handicrafts', slug: 'handlooms-handicrafts', parent_id: null, status: true },
+      { id: 5, category_name: 'Puja Essentials & Kits', slug: 'puja-essentials-kits', parent_id: null, status: true },
+      
+      // Subcategories (id 6 to 26)
+      { id: 6, category_name: 'Shahi Litchi', slug: 'shahi-litchi', parent_id: 1, status: true },
+      { id: 7, category_name: 'Jardalu Mango', slug: 'jardalu-mango', parent_id: 1, status: true },
+      { id: 8, category_name: 'Katarni Rice', slug: 'katarni-rice', parent_id: 2, status: true },
+      { id: 9, category_name: 'Bhagalpuri Rice', slug: 'bhagalpuri-rice', parent_id: 2, status: true },
+      { id: 10, category_name: 'Chana Ka Sattu', slug: 'chana-ka-sattu', parent_id: 2, status: true },
+      { id: 11, category_name: 'Chura / Poha', slug: 'chura-poha', parent_id: 2, status: true },
+      { id: 12, category_name: 'Mithila Makhana', slug: 'mithila-makhana', parent_id: 3, status: true },
+      { id: 13, category_name: 'Bhuna Makhana', slug: 'bhuna-makhana', parent_id: 3, status: true },
+      { id: 14, category_name: 'Silao Khaja', slug: 'silao-khaja', parent_id: 3, status: true },
+      { id: 15, category_name: 'Tilkut', slug: 'tilkut', parent_id: 3, status: true },
+      { id: 16, category_name: 'Thekua', slug: 'thekua', parent_id: 3, status: true },
+      { id: 17, category_name: 'Jaggery', slug: 'jaggery', parent_id: 3, status: true },
+      { id: 18, category_name: 'Traditional Sweets', slug: 'traditional-sweets', parent_id: 3, status: true },
+      { id: 19, category_name: 'Madhubani Paintings', slug: 'madhubani-paintings', parent_id: 4, status: true },
+      { id: 20, category_name: 'Bhagalpuri Silk', slug: 'bhagalpuri-silk', parent_id: 4, status: true },
+      { id: 21, category_name: 'Sikki Grass Craft', slug: 'sikki-grass-craft', parent_id: 4, status: true },
+      { id: 22, category_name: 'Diwali Puja Kit', slug: 'diwali-puja-kit', parent_id: 5, status: true },
+      { id: 23, category_name: 'Durga Puja Kit', slug: 'durga-puja-kit', parent_id: 5, status: true },
+      { id: 24, category_name: 'Satyanarayan Puja Kit', slug: 'satyanarayan-puja-kit', parent_id: 5, status: true }
     ];
     localStorage.setItem('kk_categories', JSON.stringify(categories));
   }
@@ -460,12 +481,35 @@ function initializeLocalStorageDB() {
       return `USE-${prefix.padEnd(3, 'X')}-001`;
     }
 
-    let catIdMap = { 'fruits': 1, 'makhana': 2, 'grains': 3, 'sweets': 4, 'puja': 5, 'crafts': 6 };
+    // Map product unique slug to subcategory ID
+    const catSlugToSubcatId = {
+      'shahi-litchi': 6,
+      'jardalu-mango': 7,
+      'organic-jamun': 1,
+      'mithila-makhana': 12,
+      'bhuna-makhana': 13,
+      'makhana-kheer-kit': 18,
+      'katarni-rice': 8,
+      'bhagalpuri-rice': 9,
+      'chana-sattu': 10,
+      'chura-poha': 11,
+      'silao-khaja': 14,
+      'gaya-sesame-tilkut': 15,
+      'chhath-thekua': 16,
+      'sesame-anarsa': 18,
+      'organic-jaggery': 17,
+      'diwali-puja-package': 22,
+      'durgapuja-package': 23,
+      'satyanarayan-puja-package': 24,
+      'madhubani-paintings': 19,
+      'bhagalpuri-silk': 20,
+      'sikki-grass-craft': 21
+    };
 
     DEFAULT_PRODUCTS.forEach((p, index) => {
       const dbId = index + 1;
       const sku = generateSKU(p.id, p.title);
-      const catId = catIdMap[p.category] || 1;
+      const catId = catSlugToSubcatId[p.id] || 1;
 
       // Core product record
       products.push({
@@ -483,7 +527,7 @@ function initializeLocalStorageDB() {
         sale_price: p.price - 20 > 0 ? p.price - 20 : p.price,
         cost_price: Math.round(p.price * 0.6),
         tax: 5.00,
-        brand: 'UseMadi',
+        brand: 'ZOLONOW',
         featured: p.popularity > 90,
         organic: p.isOrganic || false,
         gi_tagged: p.isGI || false,
@@ -572,7 +616,7 @@ function initializeLocalStorageDB() {
 }
 initializeLocalStorageDB();
 
-// Pull live state from LocalStorage with relational mapping joins
+// Pull live state from LocalStorage with relational mapping joins and dynamic parent slug resolver
 function getProductsFromDB() {
   const products = JSON.parse(localStorage.getItem('kk_products')) || [];
   const inventory = JSON.parse(localStorage.getItem('kk_product_inventory')) || [];
@@ -581,10 +625,20 @@ function getProductsFromDB() {
   return products.map(p => {
     const inv = inventory.find(i => i.product_id === p.id) || {};
     const cat = categories.find(c => c.id === p.category_id) || {};
+    
+    // Find parent category slug for storefront tab categories compatibility
+    let parentSlug = cat.slug;
+    if (cat.parent_id !== null) {
+      const parent = categories.find(c => c.id === cat.parent_id);
+      if (parent) {
+        parentSlug = parent.slug;
+      }
+    }
+
     return {
       id: p.slug,
       title: p.product_title,
-      category: cat.slug || 'organic',
+      category: parentSlug || 'fruits-fresh-produce',
       isGI: p.gi_tagged,
       isOrganic: p.organic,
       isSeasonal: p.seasonal,

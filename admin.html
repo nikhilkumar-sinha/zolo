@@ -864,6 +864,13 @@
                 <input type="text" class="form-control" id="new-cat-name" placeholder="e.g. Organic Fruit" required>
               </div>
               <div class="form-group">
+                <label for="new-cat-parent">Parent Category (Optional)</label>
+                <select class="form-control" id="new-cat-parent">
+                  <option value="">None (Top-Level Category)</option>
+                  <!-- Populated dynamically -->
+                </select>
+              </div>
+              <div class="form-group">
                 <label for="new-cat-desc">Description</label>
                 <textarea class="form-control" id="new-cat-desc" rows="3" placeholder="Category highlights..." required></textarea>
               </div>

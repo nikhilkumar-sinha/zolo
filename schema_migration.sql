@@ -10,11 +10,13 @@ CREATE TABLE IF NOT EXISTS `categories` (
     `id` BIGINT AUTO_INCREMENT PRIMARY KEY,
     `category_name` VARCHAR(100) NOT NULL,
     `slug` VARCHAR(100) NOT NULL UNIQUE,
+    `parent_id` BIGINT DEFAULT NULL,
     `description` TEXT,
     `image` VARCHAR(255),
     `status` BOOLEAN DEFAULT TRUE,
     `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (`parent_id`) REFERENCES `categories` (`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- 2. Products Table
@@ -134,11 +136,43 @@ CREATE INDEX idx_product_variants_sku ON `product_variants` (`sku`);
 CREATE INDEX idx_product_tags_tag ON `product_tags` (`tag`);
 
 -- DEFAULT CATEGORIES SEED DATA
-INSERT INTO `categories` (`id`, `category_name`, `slug`, `description`, `status`) VALUES
-(1, 'Orchard Fruits', 'fruits', 'Fresh orchard fruits harvested at solar peaks', 1),
-(2, 'Mithila Makhana', 'makhana', 'Certified organic foxnuts and superfoods', 1),
-(3, 'Heritage Grains', 'grains', 'Traditional grains, staples, and slow-ground flours', 1),
-(4, 'Sweets & Delicacies', 'sweets', 'Centuries-old regional sweets from master halwais', 1),
-(5, 'Puja Packages', 'puja', 'Sacred offerings and ritual packages', 1),
-(6, 'Handlooms & Crafts', 'crafts', 'GI-tagged traditional paintings and textiles', 1)
-ON DUPLICATE KEY UPDATE `category_name`=VALUES(`category_name`), `slug`=VALUES(`slug`), `description`=VALUES(`description`);
+-- Insert Parent Categories
+INSERT INTO categories (id, category_name, slug, parent_id, status) VALUES
+(1, 'Fruits & Fresh Produce', 'fruits-fresh-produce', NULL, TRUE),
+(2, 'Staples & Grains', 'staples-grains', NULL, TRUE),
+(3, 'Superfoods & Snacks', 'superfoods-snacks', NULL, TRUE),
+(4, 'Handlooms & Handicrafts', 'handlooms-handicrafts', NULL, TRUE),
+(5, 'Puja Essentials & Kits', 'puja-essentials-kits', NULL, TRUE)
+ON DUPLICATE KEY UPDATE category_name=VALUES(category_name), slug=VALUES(slug), parent_id=VALUES(parent_id);
+
+-- Insert Subcategories (IDs 6 to 26 mapping to parent_id)
+INSERT INTO categories (id, category_name, slug, parent_id, status) VALUES
+-- Fruits Subcategories
+(6, 'Shahi Litchi', 'shahi-litchi', 1, TRUE),
+(7, 'Jardalu Mango', 'jardalu-mango', 1, TRUE),
+
+-- Staples Subcategories
+(8, 'Katarni Rice', 'katarni-rice', 2, TRUE),
+(9, 'Bhagalpuri Rice', 'bhagalpuri-rice', 2, TRUE),
+(10, 'Chana Ka Sattu', 'chana-ka-sattu', 2, TRUE),
+(11, 'Chura / Poha', 'chura-poha', 2, TRUE),
+
+-- Superfoods & Sweets Subcategories
+(12, 'Mithila Makhana', 'mithila-makhana', 3, TRUE),
+(13, 'Bhuna Makhana', 'bhuna-makhana', 3, TRUE),
+(14, 'Silao Khaja', 'silao-khaja', 3, TRUE),
+(15, 'Tilkut', 'tilkut', 3, TRUE),
+(16, 'Thekua', 'thekua', 3, TRUE),
+(17, 'Jaggery', 'jaggery', 3, TRUE),
+(18, 'Traditional Sweets', 'traditional-sweets', 3, TRUE),
+
+-- Handicrafts Subcategories
+(19, 'Madhubani Paintings', 'madhubani-paintings', 4, TRUE),
+(20, 'Bhagalpuri Silk', 'bhagalpuri-silk', 4, TRUE),
+(21, 'Sikki Grass Craft', 'sikki-grass-craft', 4, TRUE),
+
+-- Puja Kits Subcategories
+(22, 'Diwali Puja Kit', 'diwali-puja-kit', 5, TRUE),
+(23, 'Durga Puja Kit', 'durga-puja-kit', 5, TRUE),
+(24, 'Satyanarayan Puja Kit', 'satyanarayan-puja-kit', 5, TRUE)
+ON DUPLICATE KEY UPDATE category_name=VALUES(category_name), slug=VALUES(slug), parent_id=VALUES(parent_id);

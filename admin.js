@@ -310,11 +310,23 @@ function renderCategories() {
 
   categories.forEach(c => {
     const row = document.createElement('tr');
+    
+    // Find parent category name
+    let parentText = '—';
+    if (c.parent_id !== null) {
+      const parent = categories.find(x => x.id === c.parent_id);
+      if (parent) {
+        parentText = `<span style="font-size:0.75rem; background-color:var(--color-primary-light); color:var(--color-primary-dark); padding:2px 6px; border-radius:4px; font-weight:700;">Sub: ${parent.category_name}</span>`;
+      }
+    } else {
+      parentText = `<span style="font-size:0.75rem; background-color:#E2E8F0; color:#475569; padding:2px 6px; border-radius:4px; font-weight:700;">Parent Category</span>`;
+    }
+
     row.innerHTML = `
       <td>${c.id}</td>
-      <td><strong>${c.category_name}</strong></td>
+      <td><strong>${c.category_name}</strong><br>${parentText}</td>
       <td><code>${c.slug}</code></td>
-      <td style="font-size:0.85rem; color:var(--color-text-muted);">${c.description}</td>
+      <td style="font-size:0.85rem; color:var(--color-text-muted);">${c.description || 'No description.'}</td>
       <td><span class="status-badge status-delivered">${c.status ? 'Active' : 'Inactive'}</span></td>
     `;
     tbody.appendChild(row);
@@ -324,17 +336,20 @@ function renderCategories() {
 function handleAddCategory() {
   const name = document.getElementById('new-cat-name').value.trim();
   const desc = document.getElementById('new-cat-desc').value.trim();
+  const parentVal = document.getElementById('new-cat-parent').value;
   
   if (!name || !desc) return;
   
   const categories = JSON.parse(localStorage.getItem('kk_categories')) || [];
   const nextId = categories.length > 0 ? Math.max(...categories.map(c => c.id)) + 1 : 1;
   const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+  const parentId = parentVal ? parseInt(parentVal) : null;
 
   categories.push({
     id: nextId,
     category_name: name,
     slug: slug,
+    parent_id: parentId,
     description: desc,
     status: true
   });
@@ -348,14 +363,41 @@ function handleAddCategory() {
 
 function populateCategoriesSelector() {
   const categories = JSON.parse(localStorage.getItem('kk_categories')) || [];
+  
+  // 1. Populate Product Modal Category select
   const select = document.getElementById('form-category');
   if (select) {
     select.innerHTML = '';
-    categories.forEach(c => {
+    
+    // Find parent categories
+    const parents = categories.filter(c => c.parent_id === null);
+    parents.forEach(p => {
+      const group = document.createElement('optgroup');
+      group.label = p.category_name;
+      
+      // Find subcategories for this parent
+      const subs = categories.filter(c => c.parent_id === p.id);
+      subs.forEach(s => {
+        const opt = document.createElement('option');
+        opt.value = s.id;
+        opt.textContent = s.category_name;
+        group.appendChild(opt);
+      });
+      
+      select.appendChild(group);
+    });
+  }
+
+  // 2. Populate "Parent Category" select inside the Category Creator
+  const parentSelect = document.getElementById('new-cat-parent');
+  if (parentSelect) {
+    parentSelect.innerHTML = '<option value="">None (Top-Level Category)</option>';
+    const parentsOnly = categories.filter(c => c.parent_id === null);
+    parentsOnly.forEach(p => {
       const opt = document.createElement('option');
-      opt.value = c.id;
-      opt.textContent = c.category_name;
-      select.appendChild(opt);
+      opt.value = p.id;
+      opt.textContent = p.category_name;
+      parentSelect.appendChild(opt);
     });
   }
 }
