@@ -6,396 +6,154 @@
 
 // --- DEFAULT PRODUCT SEED DATABASE ---
 const DEFAULT_PRODUCTS = [
-  // 1. Orchard Fruits
+  // 1. Makeup
   {
-    id: 'shahi-litchi',
-    title: 'Certified Shahi Litchi',
-    category: 'fruits',
-    isGI: true,
-    isOrganic: true,
-    isSeasonal: true,
+    id: 'flawless-foundation',
+    title: 'Flawless Liquid Foundation',
+    category: 'makeup',
+    isGI: false,
+    isOrganic: false,
+    isSeasonal: false,
     isFamous: true,
-    season: 'summer',
-    price: 240,
-    unit: 'Per Kg (approx. 40-45 units)',
-    image: 'assets/shahi_litchi.jpg',
-    origin: 'Muzaffarpur, Bihar',
+    season: 'all',
+    price: 10,
+    unit: 'Bottle of 30ml',
+    image: 'assets/flawless_foundation.jpg',
+    origin: 'Premium Labs',
     popularity: 98,
     inStock: true,
-    description: 'Muzaffarpur\'s famous GI-tagged Shahi Litchi is legendary for its bright rose-pink outer shell, heavy perfume, and exceptionally sweet, translucent pulp.',
-    heritageStory: 'Cultivated in the calcareous soil of Muzaffarpur fed by the Gandak River basin. The high calcium content of the land gives these litchis their signature rosy skin and unparalleled sweetness.'
+    description: 'Cosmetic formulation engineered for a spotless, seamless, high-definition makeup base.',
+    heritageStory: 'Advanced long-wear formula that matches skin tones naturally, perfect for premium cosmetics collections.'
   },
   {
-    id: 'jardalu-mango',
-    title: 'Bhagalpur Jardalu Mango',
-    category: 'fruits',
-    isGI: true,
-    isOrganic: true,
-    isSeasonal: true,
-    isFamous: true,
-    season: 'summer',
-    price: 190,
-    unit: 'Per Kg (approx. 4-5 units)',
-    image: 'assets/jardalu_mango.jpg',
-    origin: 'Bhagalpur, Bihar',
-    popularity: 95,
-    inStock: true,
-    description: 'Famed for its unique sweet aroma and bright lemon-yellow skin, the Bhagalpur Jardalu Mango is a certified GI treasure with thin skin and fiberless saffron pulp.',
-    heritageStory: 'Originally brought to Bhagalpur by the royals of Aliganj. Generations of farmers have preserved the graftings nourished by the alluvial silts of the Ganges.'
-  },
-  {
-    id: 'organic-jamun',
-    title: 'Wild Organic Jamun (Black Plum)',
-    category: 'fruits',
+    id: 'premium-foundation',
+    title: 'Premium Matte Foundation',
+    category: 'makeup',
     isGI: false,
     isOrganic: true,
-    isSeasonal: true,
+    isSeasonal: false,
+    isFamous: true,
+    season: 'all',
+    price: 15,
+    unit: 'Bottle of 30ml',
+    image: 'assets/premium_foundation.jpg',
+    origin: 'Luxury Cosmetics Corp',
+    popularity: 95,
+    inStock: true,
+    description: 'Luxury full-coverage liquid foundation with gold accents, designed for a radiant finish.',
+    heritageStory: 'Infused with skin-nourishing minerals and gold shimmer extract to keep your skin breathing all day.'
+  },
+  {
+    id: 'active-foundation',
+    title: 'Active Wear Foundation',
+    category: 'makeup',
+    isGI: false,
+    isOrganic: false,
+    isSeasonal: false,
     isFamous: false,
-    season: 'monsoon',
-    price: 180,
-    unit: 'Pack of 500g',
-    image: '',
-    origin: 'Muzaffarpur & Champaran',
+    season: 'all',
+    price: 12,
+    unit: 'Bottle of 30ml',
+    image: 'assets/active_foundation.jpg',
+    origin: 'Performance Beauty',
     popularity: 85,
     inStock: true,
-    description: 'Hand-picked wild monsoon Jamun. Deep purple, tangy-sweet, and renowned for its natural blood-sugar regulating and digestive health benefits.',
-    heritageStory: 'Harvested from wild heritage trees in forest belts. Packed in eco-bamboo baskets to keep the tender fruit intact.'
+    description: 'Sweat-resistant, long-wear lightweight liquid foundation matching modern active lifestyles.',
+    heritageStory: 'Specially formulated to withstand moisture, high temperatures, and active schedules without smudge.'
   },
-
-  // 2. Mithila Makhana
   {
-    id: 'mithila-makhana',
-    title: 'Premium Mithila Makhana',
-    category: 'makhana',
-    isGI: true,
+    id: 'liquid-lip-gloss',
+    title: 'Liquid Lip Gloss',
+    category: 'makeup',
+    isGI: false,
     isOrganic: true,
     isSeasonal: false,
     isFamous: true,
-    season: 'monsoon',
-    price: 380,
-    unit: 'Pack of 500g (Jumbo Size)',
-    image: 'assets/mithila_makhana.jpg',
-    origin: 'Mithila Region, Bihar',
+    season: 'all',
+    price: 16,
+    unit: 'Tube of 10ml',
+    image: 'assets/liquid_lip_gloss.jpg',
+    origin: 'Rose Beauty Lab',
     popularity: 94,
     inStock: true,
-    description: 'GI-tagged Mithila Makhana (Phool Patasa) are high-grade popped foxnuts harvested from freshwater lotus ponds. Protein-rich, gluten-free superfood.',
-    heritageStory: 'Farmers dive under water in Mithila ponds to extract seeds which are hand-roasted and popped over iron woks using heavy mallets.'
+    description: 'Glossy lip treatment that provides high shine and long-lasting volume hydration.',
+    heritageStory: 'Crafted with essential organic oils, rose pigments, and natural shine extracts for plump lips.'
   },
+
+  // 2. Skin Care
   {
-    id: 'bhuna-makhana',
-    title: 'Bhuna Makhana (Roasted Foxnuts)',
-    category: 'makhana',
-    isGI: true,
+    id: 'hydrating-moisturizer',
+    title: 'Hydrating Face Moisturizer',
+    category: 'skin-care',
+    isGI: false,
     isOrganic: true,
     isSeasonal: false,
     isFamous: true,
-    season: 'monsoon',
-    price: 150,
-    unit: 'Pack of 200g',
-    image: 'assets/mithila_makhana.jpg',
-    origin: 'Mithila Region, Bihar',
+    season: 'all',
+    price: 18,
+    unit: 'Jar of 50g',
+    image: 'assets/hydrating_moisturizer.jpg',
+    origin: 'Nourish Organics',
     popularity: 90,
     inStock: true,
-    description: 'Lightly roasted, crispy Mithila Makhana seasoned with pink salt, pepper, and organic turmeric. A premium, guilt-free healthy snack.',
-    heritageStory: 'Freshly harvested makhana roasted in slow sand pans to achieve the ultimate crunch without losing nutritional values.'
+    description: 'Ultra-hydrating face moisturizer cream jar with soft white cream to lock in healthy skin glow.',
+    heritageStory: 'Nourishing botanical butter blend that locks in hydration for up to 48 hours without greasiness.'
   },
   {
-    id: 'makhana-kheer-kit',
-    title: 'Mithila Makhana Kheer Mix',
-    category: 'makhana',
-    isGI: true,
+    id: 'advanced-serum',
+    title: 'Advanced Spotless Serum',
+    category: 'skin-care',
+    isGI: false,
     isOrganic: true,
     isSeasonal: false,
     isFamous: true,
-    season: 'monsoon',
-    price: 250,
-    unit: 'Pack of 300g (Ready Pudding Mix)',
-    image: 'assets/mithila_makhana.jpg',
-    origin: 'Darbhanga, Mithila',
+    season: 'all',
+    price: 24,
+    unit: 'Dropper of 15ml',
+    image: 'assets/advanced_serum.jpg',
+    origin: 'Dermal Care Lab',
     popularity: 93,
     inStock: true,
-    description: 'Gourmet pudding kit containing pre-roasted GI Mithila Makhana, saffron strands, green cardamom powder, cashew nuts, and raisins.',
-    heritageStory: 'Makhana Kheer is the traditional festive dessert served across Mithila during Kojagara and auspicious family celebrations.'
+    description: 'Advanced spotless skin-care serum with glass dropper bottle for targeted application.',
+    heritageStory: 'Fortified with natural vitamin complexes, active peptides, and chamomile rose extracts to clarify skin.'
   },
-
-  // 3. Grains & Flours
   {
-    id: 'katarni-rice',
-    title: 'Fragrant Katarni Rice',
-    category: 'grains',
-    isGI: true,
+    id: 'gentle-cleanser',
+    title: 'Gentle Cleansing Wash',
+    category: 'skin-care',
+    isGI: false,
     isOrganic: true,
     isSeasonal: false,
     isFamous: true,
-    season: 'autumn',
-    price: 130,
-    unit: 'Pack of 1 Kg',
-    image: 'assets/katarni_rice.jpg',
-    origin: 'Jagdishpur, Bhagalpur',
+    season: 'all',
+    price: 14,
+    unit: 'Tube of 150ml',
+    image: 'assets/flawless_foundation.jpg',
+    origin: 'Clean Skin Labs',
     popularity: 88,
     inStock: true,
-    description: 'Slender-grained, aromatic GI Katarni Rice famous for its unique texture, natural fragrance, and light digestibility. Ideal for Chura and Kheer.',
-    heritageStory: 'Katarni Rice has a certified GI tag. The unique microclimate of Jagdishpur gives this rice its signature aroma.'
-  },
-  {
-    id: 'bhagalpuri-rice',
-    title: 'Bhagalpuri Rice',
-    category: 'grains',
-    isGI: false,
-    isOrganic: true,
-    isSeasonal: false,
-    isFamous: true,
-    season: 'autumn',
-    price: 110,
-    unit: 'Pack of 1 Kg',
-    image: 'assets/katarni_rice.jpg',
-    origin: 'Bhagalpur, Bihar',
-    popularity: 87,
-    inStock: true,
-    description: 'Premium organic white grain rice sourced directly from cooperative farmers in the Bhagalpur floodplains. Daily staple grain.',
-    heritageStory: 'Grown on fertile Gangetic plain lands using eco-compost fertilizers and harvested at maximum maturity.'
-  },
-  {
-    id: 'chana-sattu',
-    title: 'Chana ka Sattu (Gram Sattu)',
-    category: 'grains',
-    isGI: false,
-    isOrganic: true,
-    isSeasonal: false,
-    isFamous: true,
-    season: 'summer',
-    price: 90,
-    unit: 'Pack of 1 Kg',
-    image: 'assets/traditional_sattu.jpg',
-    origin: 'Buxar, Bihar',
-    popularity: 90,
-    inStock: true,
-    description: 'Traditional Bihari Sattu made from dry-roasted black chana ground in slow stone mills (jaanta). High in plant protein and cooling digestive properties.',
-    heritageStory: 'Sattu is Bihar\'s ancient peasant superfood. Stone grinding preserves the essential roasted aroma and digestive fiber.'
-  },
-  {
-    id: 'chura-poha',
-    title: 'Chura / Poha / Avlaki',
-    category: 'grains',
-    isGI: false,
-    isOrganic: true,
-    isSeasonal: false,
-    isFamous: true,
-    season: 'autumn',
-    price: 80,
-    unit: 'Pack of 500g',
-    image: 'assets/katarni_rice.jpg',
-    origin: 'Mithila Region, Bihar',
-    popularity: 89,
-    inStock: true,
-    description: 'Crisp, flattened rice flakes prepared from premium aromatic Katarni paddy. Perfect for traditional Dahi-Chura breakfast offerings.',
-    heritageStory: 'The Katarni paddy is soaked, roasted briefly, and beaten in traditional wooden mills to produce these highly aromatic flakes.'
+    description: 'Gentle, skin-balancing cleansing wash for all skin types, free from sulfates and parabens.',
+    heritageStory: 'Crafted from soothing tea-tree extract and lavender water, maintaining natural pH levels.'
   },
 
-  // 4. Sweets & Delicacies
+  // 3. Fragrance
   {
-    id: 'silao-khaja',
-    title: 'Famous Silao Khaja (GI Tagged)',
-    category: 'sweets',
-    isGI: true,
+    id: 'luxury-perfume',
+    title: 'Luxury Gold Perfume',
+    category: 'fragrance',
+    isGI: false,
     isOrganic: false,
     isSeasonal: false,
     isFamous: true,
-    season: 'winter',
-    price: 220,
-    unit: 'Pack of 500g (12 Pieces)',
-    image: 'assets/silao_khaja.jpg',
-    origin: 'Silao, Nalanda',
+    season: 'all',
+    price: 45,
+    unit: 'Bottle of 50ml',
+    image: 'assets/luxury_perfume.jpg',
+    origin: 'Grasse Distilleries',
     popularity: 97,
     inStock: true,
-    description: 'GI-certified 52-layered wafer-thin crispy sweet from Silao. Delicately fried in desi ghee and dipped in light cardamom sugar syrup.',
-    heritageStory: 'Legend says Lord Buddha and King Bimbisara enjoyed Silao Khaja. The unique water of Silao gives its dough an unmatched multi-layered crunch.'
-  },
-  {
-    id: 'gaya-sesame-tilkut',
-    title: 'Gaya Special Sesame Tilkut',
-    category: 'sweets',
-    isGI: false,
-    isOrganic: true,
-    isSeasonal: true,
-    isFamous: true,
-    season: 'winter',
-    price: 280,
-    unit: 'Pack of 500g',
-    image: 'assets/gaya_tilkut.jpg',
-    origin: 'Ramana Road, Gaya',
-    popularity: 95,
-    inStock: true,
-    description: 'The world-famous winter sweet of Gaya. White sesame seeds and organic jaggery syrup pounded by hand into multi-layered crispy sheets that melt instantly.',
-    heritageStory: 'Pounded using heavy iron hammers in the historic lanes of Gaya. Famous across India during Makar Sankranti.'
-  },
-  {
-    id: 'chhath-thekua',
-    title: 'Authentic Chhath Prasad Thekua',
-    category: 'sweets',
-    isGI: false,
-    isOrganic: true,
-    isSeasonal: true,
-    isFamous: true,
-    isFreshToday: true,
-    season: 'winter',
-    price: 240,
-    unit: 'Pack of 500g (Approx 16-18 pcs)',
-    image: 'assets/thekua.jpg',
-    origin: 'Patna & Gaya, Bihar',
-    popularity: 99,
-    inStock: true,
-    description: 'Sacred Bihari festive delicacy made with whole wheat flour, pure desi cow ghee, organic jaggery, cardamom, and dry fruits. Hand-molded using carved wooden dies.',
-    heritageStory: 'The primary sacred offering during Chhath Puja. Slow-cooked over open wood fires to achieve a crispy, rich crust and long shelf life.'
-  },
-  {
-    id: 'sesame-anarsa',
-    title: 'Traditional Sesame Anarsa',
-    category: 'sweets',
-    isGI: false,
-    isOrganic: true,
-    isSeasonal: true,
-    isFamous: true,
-    isFreshToday: true,
-    season: 'autumn',
-    price: 260,
-    unit: 'Pack of 500g',
-    image: 'assets/anarsa.jpg',
-    origin: 'Gaya & Mithila',
-    popularity: 96,
-    inStock: true,
-    description: 'Crisp, golden-brown rice flour and jaggery/khoya sweet crusted with white sesame seeds. Soft and chewy on the inside, wonderfully crunchy outside.',
-    heritageStory: 'A festival staple prepared during Diwali, Teej, and weddings. Soaked rice is coarsely ground, fermented with jaggery, and fried in pure ghee.'
-  },
-  {
-    id: 'organic-jaggery',
-    title: 'Organic Jaggery (Bheli)',
-    category: 'sweets',
-    isGI: false,
-    isOrganic: true,
-    isSeasonal: false,
-    isFamous: true,
-    season: 'winter',
-    price: 120,
-    unit: 'Pack of 1 Kg',
-    image: 'assets/puja_box.jpg',
-    origin: 'Patna Region, Bihar',
-    popularity: 94,
-    inStock: true,
-    description: 'Pure, organic unrefined sugarcane jaggery (Gur/Bheli) made without chemical clarifiers. Dark, rich in iron, and naturally sweet.',
-    heritageStory: 'Hand-pressed by cooperative farming groups using pure sugarcane juice boiled in large open iron pans.'
-  },
-
-  // 5. Sacred Puja Packages
-  {
-    id: 'diwali-puja-package',
-    title: 'Diwali Sacred Puja Package',
-    category: 'puja',
-    isGI: false,
-    isOrganic: true,
-    isSeasonal: true,
-    isFamous: true,
-    season: 'winter',
-    price: 450,
-    unit: 'Complete Kit (12 items)',
-    image: 'assets/puja_box.jpg',
-    origin: 'Gaya & Patna, Bihar',
-    popularity: 98,
-    inStock: true,
-    description: 'Special Diwali kit: Terracotta diyas, sacred Gangajal, yellow cowries, lotus seeds, pure cow ghee wicks, raw honey, and natural incense.',
-    heritageStory: 'Assembled by priest cooperatives under strict rules of purification for home prosperity rituals.'
-  },
-  {
-    id: 'durgapuja-package',
-    title: 'Durga Puja Sacred Package',
-    category: 'puja',
-    isGI: false,
-    isOrganic: true,
-    isSeasonal: true,
-    isFamous: true,
-    season: 'autumn',
-    price: 550,
-    unit: 'Complete Kit (15 items)',
-    image: 'assets/puja_box.jpg',
-    origin: 'Mithila Region, Bihar',
-    popularity: 97,
-    inStock: true,
-    description: 'Comprehensive Durga Puja items: Sandalwood paste, red chunri, barley seeds, sacred soil, dry fruits, copper kalash, and dhoop sticks.',
-    heritageStory: 'Selected to match Mithila traditional rites for Navratri and Durga invocation.'
-  },
-  {
-    id: 'satyanarayan-puja-package',
-    title: 'Satyanarayan Bhagwan Puja Package',
-    category: 'puja',
-    isGI: false,
-    isOrganic: true,
-    isSeasonal: false,
-    isFamous: true,
-    season: 'winter',
-    price: 380,
-    unit: 'Complete Kit (10 items)',
-    image: 'assets/puja_box.jpg',
-    origin: 'Gaya Shrine Co-op',
-    popularity: 95,
-    inStock: true,
-    description: 'Sacred kit for Satyanarayan Vrat: Panchamrit honey, tulsi seeds, janeyu thread, red-yellow mauli, camphor, and ritual story book.',
-    heritageStory: 'Directly sourced from Gaya weavers and organic farms for family peace and vow fulfillment.'
-  },
-
-  // 6. Bihari Handlooms & Crafts
-  {
-    id: 'madhubani-paintings',
-    title: 'Madhubani Paintings (GI Tagged)',
-    category: 'crafts',
-    isGI: true,
-    isOrganic: false,
-    isSeasonal: false,
-    isFamous: true,
-    season: 'winter',
-    price: 650,
-    unit: 'Handmade Canvas (A4 Size)',
-    image: 'assets/mithila_makhana.jpg',
-    origin: 'Madhubani, Mithila',
-    popularity: 99,
-    inStock: true,
-    description: 'Authentic Madhubani art hand-painted by women cooperative artists using natural dye pigments on handmade paper canvas.',
-    heritageStory: 'Dating back to the Ramayana era, Madhubani paintings capture folklore and nature motifs, utilizing finger, twig, and matchstick stroke techniques.'
-  },
-  {
-    id: 'bhagalpuri-silk',
-    title: 'Bhagalpuri Silk (Tussar Stole)',
-    category: 'crafts',
-    isGI: true,
-    isOrganic: false,
-    isSeasonal: false,
-    isFamous: true,
-    season: 'winter',
-    price: 750,
-    unit: 'Premium Silk Stole (2 Meters)',
-    image: 'assets/katarni_rice.jpg',
-    origin: 'Bhagalpur Silk Handloom',
-    popularity: 96,
-    inStock: true,
-    description: '100% genuine, GI-certified Bhagalpuri Tussar Silk stole. Known for its rich texture, natural golden-beige shade, and structural resilience.',
-    heritageStory: 'Bhagalpur is famously known as the "Silk City" of India. Tussar silk is woven in handlooms by traditional weaver families.'
-  },
-  {
-    id: 'sikki-grass-craft',
-    title: 'Sikki Grass Craft Basket',
-    category: 'crafts',
-    isGI: true,
-    isOrganic: false,
-    isSeasonal: false,
-    isFamous: true,
-    season: 'winter',
-    price: 290,
-    unit: 'Handwoven Utility Box',
-    image: 'assets/puja_box.jpg',
-    origin: 'Mithila Region, Bihar',
-    popularity: 92,
-    inStock: true,
-    description: 'Golden Sikki Grass hand-braided utility basket. Light, organic, durable, and dyed in bright festive colors.',
-    heritageStory: 'Sikki grass is a wild golden reed grown in Mithila. Braiding it into craft items is a traditional folk art passed down from mother to daughter.'
+    description: 'Premium luxury perfume bottle featuring high-end gold caps and a delicate rose-wood fragrance.',
+    heritageStory: 'A captivating blend of midnight rose, wild orchids, and sandalwood base, distilled in Grasse.'
   }
 ];
 
@@ -404,7 +162,7 @@ function initializeLocalStorageDB() {
   // Safe version/cleanup wipe check to reload seed on taxonomy change to nested categories
   if (localStorage.getItem('kk_categories')) {
     const existing = JSON.parse(localStorage.getItem('kk_categories'));
-    if (existing.length < 10 || !existing.find(c => c.slug === 'fruits-fresh-produce')) {
+    if (existing.length < 5 || !existing.find(c => c.slug === 'makeup')) {
       localStorage.removeItem('kk_products');
       localStorage.removeItem('kk_categories');
       localStorage.removeItem('kk_product_images');
@@ -420,33 +178,21 @@ function initializeLocalStorageDB() {
   // 1. Categories Table
   if (!localStorage.getItem('kk_categories')) {
     const categories = [
-      // Parent categories (id 1 to 5)
-      { id: 1, category_name: 'Fruits & Fresh Produce', slug: 'fruits-fresh-produce', parent_id: null, status: true },
-      { id: 2, category_name: 'Staples & Grains', slug: 'staples-grains', parent_id: null, status: true },
-      { id: 3, category_name: 'Superfoods & Snacks', slug: 'superfoods-snacks', parent_id: null, status: true },
-      { id: 4, category_name: 'Handlooms & Handicrafts', slug: 'handlooms-handicrafts', parent_id: null, status: true },
-      { id: 5, category_name: 'Puja Essentials & Kits', slug: 'puja-essentials-kits', parent_id: null, status: true },
+      // Parent categories (id 1 to 3)
+      { id: 1, category_name: 'Makeup', slug: 'makeup', parent_id: null, status: true },
+      { id: 2, category_name: 'Skin Care', slug: 'skin-care', parent_id: null, status: true },
+      { id: 3, category_name: 'Fragrance', slug: 'fragrance', parent_id: null, status: true },
       
-      // Subcategories (id 6 to 26)
-      { id: 6, category_name: 'Shahi Litchi', slug: 'shahi-litchi', parent_id: 1, status: true },
-      { id: 7, category_name: 'Jardalu Mango', slug: 'jardalu-mango', parent_id: 1, status: true },
-      { id: 8, category_name: 'Katarni Rice', slug: 'katarni-rice', parent_id: 2, status: true },
-      { id: 9, category_name: 'Bhagalpuri Rice', slug: 'bhagalpuri-rice', parent_id: 2, status: true },
-      { id: 10, category_name: 'Chana Ka Sattu', slug: 'chana-ka-sattu', parent_id: 2, status: true },
-      { id: 11, category_name: 'Chura / Poha', slug: 'chura-poha', parent_id: 2, status: true },
-      { id: 12, category_name: 'Mithila Makhana', slug: 'mithila-makhana', parent_id: 3, status: true },
-      { id: 13, category_name: 'Bhuna Makhana', slug: 'bhuna-makhana', parent_id: 3, status: true },
-      { id: 14, category_name: 'Silao Khaja', slug: 'silao-khaja', parent_id: 3, status: true },
-      { id: 15, category_name: 'Tilkut', slug: 'tilkut', parent_id: 3, status: true },
-      { id: 16, category_name: 'Thekua', slug: 'thekua', parent_id: 3, status: true },
-      { id: 17, category_name: 'Jaggery', slug: 'jaggery', parent_id: 3, status: true },
-      { id: 18, category_name: 'Traditional Sweets', slug: 'traditional-sweets', parent_id: 3, status: true },
-      { id: 19, category_name: 'Madhubani Paintings', slug: 'madhubani-paintings', parent_id: 4, status: true },
-      { id: 20, category_name: 'Bhagalpuri Silk', slug: 'bhagalpuri-silk', parent_id: 4, status: true },
-      { id: 21, category_name: 'Sikki Grass Craft', slug: 'sikki-grass-craft', parent_id: 4, status: true },
-      { id: 22, category_name: 'Diwali Puja Kit', slug: 'diwali-puja-kit', parent_id: 5, status: true },
-      { id: 23, category_name: 'Durga Puja Kit', slug: 'durga-puja-kit', parent_id: 5, status: true },
-      { id: 24, category_name: 'Satyanarayan Puja Kit', slug: 'satyanarayan-puja-kit', parent_id: 5, status: true }
+      // Subcategories (id 4 to 12)
+      { id: 4, category_name: 'Lips Gloss', slug: 'lips-gloss', parent_id: 1, status: true },
+      { id: 5, category_name: 'Eyeliner', slug: 'eyeliner', parent_id: 1, status: true },
+      { id: 6, category_name: 'Foundation', slug: 'foundation', parent_id: 1, status: true },
+      { id: 7, category_name: 'Lipstick', slug: 'lipstick', parent_id: 1, status: true },
+      { id: 8, category_name: 'Eye Shadow', slug: 'eye-shadow', parent_id: 1, status: true },
+      { id: 9, category_name: 'Moisturizer', slug: 'moisturizer', parent_id: 2, status: true },
+      { id: 10, category_name: 'Serum', slug: 'serum', parent_id: 2, status: true },
+      { id: 11, category_name: 'Cleanser', slug: 'cleanser', parent_id: 2, status: true },
+      { id: 12, category_name: 'Perfume', slug: 'perfume', parent_id: 3, status: true }
     ];
     localStorage.setItem('kk_categories', JSON.stringify(categories));
   }
@@ -464,46 +210,28 @@ function initializeLocalStorageDB() {
 
     // Helper to generate SKU based on naming conventions
     function generateSKU(prodId, title) {
-      if (prodId.includes('litchi')) return 'USE-LIT-001';
-      if (prodId.includes('mango')) return 'USE-MNG-001';
-      if (prodId.includes('makhana')) return 'USE-MAK-001';
-      if (prodId.includes('sattu')) return 'USE-SAT-001';
-      if (prodId.includes('rice')) return 'USE-RIC-001';
-      if (prodId.includes('jamun')) return 'USE-JAM-001';
-      if (prodId.includes('tilkut')) return 'USE-TIL-001';
-      if (prodId.includes('khaja')) return 'USE-KHA-001';
-      if (prodId.includes('ladoo')) return 'USE-LAD-001';
-      if (prodId.includes('thekua')) return 'USE-THE-001';
-      if (prodId.includes('turmeric')) return 'USE-TUR-001';
+      if (prodId.includes('foundation')) return 'EMB-FDN-001';
+      if (prodId.includes('gloss')) return 'EMB-GLS-001';
+      if (prodId.includes('moisturizer')) return 'EMB-MST-001';
+      if (prodId.includes('serum')) return 'EMB-SER-001';
+      if (prodId.includes('cleanser')) return 'EMB-CLN-001';
+      if (prodId.includes('perfume')) return 'EMB-PRF-001';
       
       const words = title.toUpperCase().replace(/[^A-Z ]/g, '').split(' ');
       const prefix = words.length > 1 ? (words[0].substring(0, 1) + words[1].substring(0, 2)) : words[0].substring(0, 3);
-      return `USE-${prefix.padEnd(3, 'X')}-001`;
+      return `EMB-${prefix.padEnd(3, 'X')}-001`;
     }
 
     // Map product unique slug to subcategory ID
     const catSlugToSubcatId = {
-      'shahi-litchi': 6,
-      'jardalu-mango': 7,
-      'organic-jamun': 1,
-      'mithila-makhana': 12,
-      'bhuna-makhana': 13,
-      'makhana-kheer-kit': 18,
-      'katarni-rice': 8,
-      'bhagalpuri-rice': 9,
-      'chana-sattu': 10,
-      'chura-poha': 11,
-      'silao-khaja': 14,
-      'gaya-sesame-tilkut': 15,
-      'chhath-thekua': 16,
-      'sesame-anarsa': 18,
-      'organic-jaggery': 17,
-      'diwali-puja-package': 22,
-      'durgapuja-package': 23,
-      'satyanarayan-puja-package': 24,
-      'madhubani-paintings': 19,
-      'bhagalpuri-silk': 20,
-      'sikki-grass-craft': 21
+      'flawless-foundation': 6,
+      'premium-foundation': 6,
+      'active-foundation': 6,
+      'liquid-lip-gloss': 4,
+      'hydrating-moisturizer': 9,
+      'advanced-serum': 10,
+      'gentle-cleanser': 11,
+      'luxury-perfume': 12
     };
 
     DEFAULT_PRODUCTS.forEach((p, index) => {
@@ -518,23 +246,23 @@ function initializeLocalStorageDB() {
         product_title: p.title,
         slug: p.id,
         short_description: p.description,
-        full_description: p.description + " Hand-packed with care by our farmer cooperatives in Bihar.",
+        full_description: p.description + " Premium dermatologically-tested beauty formulation.",
         category_id: catId,
-        origin_region: p.origin || 'Bihar, India',
+        origin_region: p.origin || 'Paris, France',
         unit: p.unit.split(' ')[0] || 'Pack',
         package_size: p.unit || 'Standard Package',
         price: p.price,
-        sale_price: p.price - 20 > 0 ? p.price - 20 : p.price,
+        sale_price: p.price - 2 > 0 ? p.price - 2 : p.price,
         cost_price: Math.round(p.price * 0.6),
-        tax: 5.00,
-        brand: 'ZOLONOW',
+        tax: 18.00,
+        brand: 'EMBEL',
         featured: p.popularity > 90,
         organic: p.isOrganic || false,
         gi_tagged: p.isGI || false,
         seasonal: p.isSeasonal || false,
-        harvest_season: p.season || 'Winter',
-        shelf_life: '15 Days',
-        weight: 1.00,
+        harvest_season: p.season || 'All Year',
+        shelf_life: '24 Months',
+        weight: 0.15,
         image: p.image || '',
         status: 'Active',
         created_at: new Date().toISOString(),
@@ -638,7 +366,7 @@ function getProductsFromDB() {
     return {
       id: p.slug,
       title: p.product_title,
-      category: parentSlug || 'fruits-fresh-produce',
+      category: parentSlug || 'makeup',
       isGI: p.gi_tagged,
       isOrganic: p.organic,
       isSeasonal: p.seasonal,
@@ -1636,10 +1364,27 @@ function setupEventListeners() {
 
   // Category select from circular icons or promo banners
   window.handleCategoryFilterSelect = function(catKey) {
-    const btnToClick = document.querySelector(`.category-btn[data-category="${catKey}"]`) || document.querySelector('.category-btn[data-category="all"]');
-    if (btnToClick) {
-      elements.categoryBtns.forEach(btn => btn.classList.remove('active'));
-      btnToClick.classList.add('active');
+    const categories = JSON.parse(localStorage.getItem('kk_categories')) || [];
+    const cat = categories.find(c => c.slug === catKey);
+    if (cat) {
+      let parentSlug = cat.slug;
+      if (cat.parent_id !== null) {
+        const parent = categories.find(c => c.id === cat.parent_id);
+        if (parent) parentSlug = parent.slug;
+      }
+      
+      const btnToClick = document.querySelector(`.category-btn[data-category="${parentSlug}"]`) || document.querySelector('.category-btn[data-category="all"]');
+      if (btnToClick) {
+        elements.categoryBtns.forEach(btn => btn.classList.remove('active'));
+        btnToClick.classList.add('active');
+      }
+      
+      if (cat.parent_id !== null) {
+        elements.catalogSearch.value = cat.category_name;
+      } else {
+        elements.catalogSearch.value = '';
+      }
+      
       handleFilterSearch();
       document.getElementById('shop').scrollIntoView({ behavior: 'smooth' });
     }
