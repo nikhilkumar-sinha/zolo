@@ -1,4 +1,8 @@
--- Description: Normalized 9-table product schema for EMBEL
+-- ==========================================
+-- E-Commerce Database Schema Migration Script
+-- Target RDBMS: MySQL / PostgreSQL Compatible
+-- Author: Antigravity Code Assistant
+-- Description: Normalized 9-table product schema for ZOLONOW
 -- ==========================================
 
 -- 1. Categories Table
@@ -134,20 +138,41 @@ CREATE INDEX idx_product_tags_tag ON `product_tags` (`tag`);
 -- DEFAULT CATEGORIES SEED DATA
 -- Insert Parent Categories
 INSERT INTO categories (id, category_name, slug, parent_id, status) VALUES
-(1, 'Makeup', 'makeup', NULL, TRUE),
-(2, 'Skin Care', 'skin-care', NULL, TRUE),
-(3, 'Fragrance', 'fragrance', NULL, TRUE)
+(1, 'Fruits & Fresh Produce', 'fruits-fresh-produce', NULL, TRUE),
+(2, 'Staples & Grains', 'staples-grains', NULL, TRUE),
+(3, 'Superfoods & Snacks', 'superfoods-snacks', NULL, TRUE),
+(4, 'Handlooms & Handicrafts', 'handlooms-handicrafts', NULL, TRUE),
+(5, 'Puja Essentials & Kits', 'puja-essentials-kits', NULL, TRUE)
 ON DUPLICATE KEY UPDATE category_name=VALUES(category_name), slug=VALUES(slug), parent_id=VALUES(parent_id);
 
--- Insert Subcategories (IDs 4 to 12 mapping to parent_id)
+-- Insert Subcategories (IDs 6 to 26 mapping to parent_id)
 INSERT INTO categories (id, category_name, slug, parent_id, status) VALUES
-(4, 'Lips Gloss', 'lips-gloss', 1, TRUE),
-(5, 'Eyeliner', 'eyeliner', 1, TRUE),
-(6, 'Foundation', 'foundation', 1, TRUE),
-(7, 'Lipstick', 'lipstick', 1, TRUE),
-(8, 'Eye Shadow', 'eye-shadow', 1, TRUE),
-(9, 'Moisturizer', 'moisturizer', 2, TRUE),
-(10, 'Serum', 'serum', 2, TRUE),
-(11, 'Cleanser', 'cleanser', 2, TRUE),
-(12, 'Perfume', 'perfume', 3, TRUE)
+-- Fruits Subcategories
+(6, 'Shahi Litchi', 'shahi-litchi', 1, TRUE),
+(7, 'Jardalu Mango', 'jardalu-mango', 1, TRUE),
+
+-- Staples Subcategories
+(8, 'Katarni Rice', 'katarni-rice', 2, TRUE),
+(9, 'Bhagalpuri Rice', 'bhagalpuri-rice', 2, TRUE),
+(10, 'Chana Ka Sattu', 'chana-ka-sattu', 2, TRUE),
+(11, 'Chura / Poha', 'chura-poha', 2, TRUE),
+
+-- Superfoods & Sweets Subcategories
+(12, 'Mithila Makhana', 'mithila-makhana', 3, TRUE),
+(13, 'Bhuna Makhana', 'bhuna-makhana', 3, TRUE),
+(14, 'Silao Khaja', 'silao-khaja', 3, TRUE),
+(15, 'Tilkut', 'tilkut', 3, TRUE),
+(16, 'Thekua', 'thekua', 3, TRUE),
+(17, 'Jaggery', 'jaggery', 3, TRUE),
+(18, 'Traditional Sweets', 'traditional-sweets', 3, TRUE),
+
+-- Handicrafts Subcategories
+(19, 'Madhubani Paintings', 'madhubani-paintings', 4, TRUE),
+(20, 'Bhagalpuri Silk', 'bhagalpuri-silk', 4, TRUE),
+(21, 'Sikki Grass Craft', 'sikki-grass-craft', 4, TRUE),
+
+-- Puja Kits Subcategories
+(22, 'Diwali Puja Kit', 'diwali-puja-kit', 5, TRUE),
+(23, 'Durga Puja Kit', 'durga-puja-kit', 5, TRUE),
+(24, 'Satyanarayan Puja Kit', 'satyanarayan-puja-kit', 5, TRUE)
 ON DUPLICATE KEY UPDATE category_name=VALUES(category_name), slug=VALUES(slug), parent_id=VALUES(parent_id);

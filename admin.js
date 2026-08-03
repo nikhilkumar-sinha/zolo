@@ -147,25 +147,20 @@ function renderAnalytics() {
   }
 
   // Calculate Category demand stats
-  const catSales = { 'makeup': 0, 'skin-care': 0, 'fragrance': 0 };
+  const catSales = { fruits: 0, makhana: 0, grains: 0, sweets: 0, puja: 0, crafts: 0 };
   let grandTotalUnits = 0;
 
   activeOrders.forEach(order => {
     order.items.forEach(item => {
+      // Find category slug dynamically
       const prod = products.find(p => p.slug === item.id);
       if (prod) {
         const categories = JSON.parse(localStorage.getItem('kk_categories')) || [];
         const cat = categories.find(c => c.id === prod.category_id);
-        if (cat) {
-          let parentSlug = cat.slug;
-          if (cat.parent_id !== null) {
-            const parent = categories.find(c => c.id === cat.parent_id);
-            if (parent) parentSlug = parent.slug;
-          }
-          if (catSales[parentSlug] !== undefined) {
-            catSales[parentSlug] += item.quantity;
-            grandTotalUnits += item.quantity;
-          }
+        const catSlug = cat ? cat.slug : 'fruits';
+        if (catSales[catSlug] !== undefined) {
+          catSales[catSlug] += item.quantity;
+          grandTotalUnits += item.quantity;
         }
       }
     });
@@ -175,9 +170,12 @@ function renderAnalytics() {
   chartHolder.innerHTML = '';
 
   const categoriesText = {
-    'makeup': 'Makeup',
-    'skin-care': 'Skin Care',
-    'fragrance': 'Fragrance'
+    fruits: 'Orchard Fruits',
+    makhana: 'Mithila Makhana',
+    grains: 'Heritage Grains',
+    sweets: 'Sweets & Delicacies',
+    puja: 'Puja Packages',
+    crafts: 'Handlooms & Crafts'
   };
 
   Object.keys(catSales).forEach(cat => {

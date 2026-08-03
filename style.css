@@ -1,33 +1,33 @@
 /* 
-   EMBEL - Style Sheet
+   ZOLONOW - Style Sheet
    Author: Antigravity Code Assistant
-   Design System: Premium Spotless Beauty & Luxury Soft Rose
+   Design System: Premium Earthy & Rustic-Modern
 */
 
 /* --- Import Google Fonts --- */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Outfit:wght@300;400;500;600;700;800&display=swap');
 
 /* --- CSS Variables & Root Theme --- */
 :root {
   --font-primary: 'Outfit', sans-serif;
-  --font-serif: 'Playfair Display', serif;
+  --font-serif: 'Cinzel', serif;
 
-  /* Premium Spotless Rose & Luxury Gold Theme */
-  --color-primary: #D15B70;       /* Premium Rose Gold / Dusty Pink */
-  --color-primary-dark: #6D2431;  /* Dark Wine Red */
-  --color-primary-light: #FFF0F2; /* Soft Rose Cream */
-  --color-sunshine: #FBCFE8;      /* Soft Pink Glow */
-  --color-sunshine-bright: #F9A8D4; /* Light Rose Splash */
-  --color-accent: #E15A6B;        /* Coral Pink Accent */
-  --color-accent-hover: #C94859;  /* Coral Pink Hover */
-  --color-accent-light: #FFF5F6;  /* Luxury Cream Tint */
-  --color-gold: #D4AF37;          /* Metallic Gold Accent */
-  --color-bg: #FCF9FA;            /* Soft Porcelain White */
-  --color-bg-card: #FFFFFF;       /* Pure White Card */
-  --color-text-dark: #2B161B;     /* Deep Espresso / Charcoal */
-  --color-text-muted: #7E656B;    /* Muted Rose-Gray */
-  --color-border: #F3E4E6;        /* Soft Pastel Pink Border */
-  --color-success: #059669;       /* Fresh Mint Green */
+  /* Warm Sunshine & Terracotta Amber Palette */
+  --color-primary: #B45309;       /* Deep Terracotta Amber */
+  --color-primary-dark: #78350F;  /* Dark Amber Brown */
+  --color-primary-light: #FEF3C7; /* Warm Sunshine Cream */
+  --color-sunshine: #FDE68A;      /* Vibrant Warm Yellow */
+  --color-sunshine-bright: #FEF08A; /* Bright Warm Yellow */
+  --color-accent: #D97706;        /* Warm Amber Orange */
+  --color-accent-hover: #B45309;  /* Deep Amber Hover */
+  --color-accent-light: #FFFBEB;  /* Cream Sunshine Tint */
+  --color-gold: #F59E0B;          /* Warm Sun Gold */
+  --color-bg: #FDFBF7;            /* Soft Organic Warm Linen */
+  --color-bg-card: #FFFDF5;       /* Warm Soft Cream Card */
+  --color-text-dark: #351C0D;     /* Warm Dark Earth Brown */
+  --color-text-muted: #786454;    /* Warm Muted Gray-Brown */
+  --color-border: #F3E8D5;        /* Soft Warm Border */
+  --color-success: #059669;       /* Natural Emerald Green */
   --color-white: #FFFFFF;
 
   /* Layout and Transitions */
