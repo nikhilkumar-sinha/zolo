@@ -396,15 +396,87 @@ const DEFAULT_PRODUCTS = [
     inStock: true,
     description: 'Golden Sikki Grass hand-braided utility basket. Light, organic, durable, and dyed in bright festive colors.',
     heritageStory: 'Sikki grass is a wild golden reed grown in Mithila. Braiding it into craft items is a traditional folk art passed down from mother to daughter.'
+  },
+  {
+    id: 'kashmiri-kesar',
+    title: 'Grade A++ Kashmiri Kesar (Saffron)',
+    category: 'makhana',
+    isGI: true,
+    isOrganic: true,
+    isSeasonal: false,
+    isFamous: true,
+    season: 'monsoon',
+    price: 350,
+    unit: 'Pack of 1 Gram',
+    image: 'assets/puja_box.jpg',
+    origin: 'Pampore, Kashmir',
+    popularity: 98,
+    inStock: true,
+    description: 'GI-tagged Pampore Saffron (Lacha) of the highest grade. Unmatched deep color, robust aroma, and culinary potency.',
+    heritageStory: 'Pampore fields are known as the "Saffron Bowl of Kashmir". Hand-plucked stigmas are dried under shade to preserve active crocin compounds.'
+  },
+  {
+    id: 'darjeeling-tea',
+    title: 'Darjeeling First Flush Black Tea',
+    category: 'grains',
+    isGI: true,
+    isOrganic: true,
+    isSeasonal: false,
+    isFamous: true,
+    season: 'autumn',
+    price: 450,
+    unit: 'Pack of 250g',
+    image: 'assets/katarni_rice.jpg',
+    origin: 'Darjeeling, West Bengal',
+    popularity: 96,
+    inStock: true,
+    description: 'Certified organic Darjeeling Orthodox black tea. Delicate, floral first-flush tea with signature muscatel notes.',
+    heritageStory: 'Grown at 6,000+ feet in the misty Himalayan foothills of Darjeeling, hand-rolled by tea garden workers.'
+  },
+  {
+    id: 'mysore-sandalwood',
+    title: 'Pure Mysore Sandalwood Oil',
+    category: 'crafts',
+    isGI: true,
+    isOrganic: false,
+    isSeasonal: false,
+    isFamous: true,
+    season: 'winter',
+    price: 950,
+    unit: 'Bottle of 5ml',
+    image: 'assets/puja_box.jpg',
+    origin: 'Mysore, Karnataka',
+    popularity: 95,
+    inStock: true,
+    description: '100% pure, natural, and GI-certified Mysore Sandalwood oil. Distilled from mature heartwood with an exquisite warm-woody scent.',
+    heritageStory: 'Mysore sandalwood holds a legendary status in royal cosmetics and wellness. Steam-distilled in traditional state distilleries.'
+  },
+  {
+    id: 'alphonso-mango',
+    title: 'Devgad Alphonso Hapus Mangoes',
+    category: 'fruits',
+    isGI: true,
+    isOrganic: true,
+    isSeasonal: true,
+    isFamous: true,
+    season: 'summer',
+    price: 850,
+    unit: 'Box of 6 Pieces',
+    image: 'assets/jardalu_mango.jpg',
+    origin: 'Devgad, Maharashtra',
+    popularity: 99,
+    inStock: true,
+    description: 'Certified organic, naturally ripened Alphonso mangoes from Devgad orchards. Rich, saffron-toned pulp and sweet aroma.',
+    heritageStory: 'Nurtured under the coastal sun of the Konkan region. Sourced directly from Devgad farmer co-operatives.'
   }
 ];
 
 /// --- Database Seeding ---
 function initializeLocalStorageDB() {
-  // Safe version/cleanup wipe check to reload seed on taxonomy change to nested categories
-  if (localStorage.getItem('kk_categories')) {
-    const existing = JSON.parse(localStorage.getItem('kk_categories'));
-    if (existing.length < 10 || !existing.find(c => c.slug === 'fruits-fresh-produce')) {
+  // Safe version/cleanup wipe check to reload seed on taxonomy change or new products
+  if (localStorage.getItem('kk_products')) {
+    const existingProds = JSON.parse(localStorage.getItem('kk_products'));
+    if (!existingProds.find(p => p.id === 'kashmiri-kesar')) {
       localStorage.removeItem('kk_products');
       localStorage.removeItem('kk_categories');
       localStorage.removeItem('kk_product_images');
@@ -503,7 +575,11 @@ function initializeLocalStorageDB() {
       'satyanarayan-puja-package': 24,
       'madhubani-paintings': 19,
       'bhagalpuri-silk': 20,
-      'sikki-grass-craft': 21
+      'sikki-grass-craft': 21,
+      'kashmiri-kesar': 12,
+      'darjeeling-tea': 8,
+      'mysore-sandalwood': 20,
+      'alphonso-mango': 7
     };
 
     DEFAULT_PRODUCTS.forEach((p, index) => {
