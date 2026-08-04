@@ -25,11 +25,40 @@ function checkSession() {
   }
 }
 
-function handleLogin() {
+async function handleLogin() {
   const user = document.getElementById('username').value.trim();
   const pass = document.getElementById('password').value;
   const errorMsg = document.getElementById('login-error-msg');
 
+  try {
+    // Try authenticating via the PHP backend database controller first
+    const response = await fetch('login.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: user, password: pass })
+    });
+    
+    if (response.ok) {
+      const data = await response.json();
+      if (data.status === 'success') {
+        sessionStorage.setItem('kk_admin_logged', 'true');
+        document.getElementById('login-overlay').classList.add('hide');
+        errorMsg.style.display = 'none';
+        document.getElementById('username').value = '';
+        document.getElementById('password').value = '';
+        loadDashboardData();
+        return;
+      } else {
+        errorMsg.textContent = data.message || 'Incorrect credentials.';
+        errorMsg.style.display = 'block';
+        return;
+      }
+    }
+  } catch (err) {
+    console.warn("Backend database authentication unavailable, falling back to static client credentials.");
+  }
+
+  // Fallback to static credentials if PHP backend is not running/available (e.g., local preview or GitHub Pages)
   if (user === 'admin' && pass === 'khetihaar2026') {
     sessionStorage.setItem('kk_admin_logged', 'true');
     document.getElementById('login-overlay').classList.add('hide');
@@ -41,6 +70,7 @@ function handleLogin() {
 
     loadDashboardData();
   } else {
+    errorMsg.textContent = 'Incorrect credentials. Hint: admin / khetihaar2026';
     errorMsg.style.display = 'block';
   }
 }
