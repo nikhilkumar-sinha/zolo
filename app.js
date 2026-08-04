@@ -1020,6 +1020,17 @@ function updateCartUI() {
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
   elements.cartCounter.textContent = totalItems;
 
+  const floatingCart = document.getElementById('floating-cart');
+  if (floatingCart) {
+    if (totalItems > 0) {
+      floatingCart.style.display = 'flex';
+      const floatingCartCounter = document.getElementById('floating-cart-counter');
+      if (floatingCartCounter) floatingCartCounter.textContent = totalItems;
+    } else {
+      floatingCart.style.display = 'none';
+    }
+  }
+
   if (cart.length === 0) {
     elements.cartItemsWrapper.innerHTML = `
       <div class="cart-empty-state">
@@ -1101,6 +1112,34 @@ function updateCartUI() {
     elements.cartDiscount.textContent = `-₹${discount.toFixed(2)}`;
   } else {
     elements.discountRow.style.display = 'none';
+  }
+
+  if (floatingCart && totalItems > 0) {
+    const floatingCartList = document.getElementById('floating-cart-list');
+    const floatingCartTotal = document.getElementById('floating-cart-total');
+    if (floatingCartTotal) floatingCartTotal.textContent = `₹${subtotal.toFixed(2)}`;
+
+    if (floatingCartList) {
+      floatingCartList.innerHTML = '';
+      cart.forEach(item => {
+        const itemLi = document.createElement('li');
+        itemLi.className = 'floating-cart-item';
+        
+        let imageHTML = item.product.image 
+          ? `<img src="${item.product.image}" alt="${item.product.title}" class="floating-cart-item-img">`
+          : `<div class="floating-cart-item-img" style="background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%); display:flex; align-items:center; justify-content:center; color:white; font-size:0.5rem; font-weight:bold; text-align:center;">${item.product.title.split(' ')[0]}</div>`;
+          
+        itemLi.innerHTML = `
+          ${imageHTML}
+          <div class="floating-cart-item-details">
+            <h5>${item.product.title}</h5>
+            <span>Qty: ${item.quantity}</span>
+          </div>
+          <div class="floating-cart-item-price">₹${item.product.price * item.quantity}</div>
+        `;
+        floatingCartList.appendChild(itemLi);
+      });
+    }
   }
 
   lucide.createIcons();

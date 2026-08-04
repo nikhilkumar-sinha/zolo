@@ -855,6 +855,27 @@
     </div>
   </footer>
 
+  <!-- --- Floating Cart Widget --- -->
+  <div class="floating-cart-widget" id="floating-cart" style="display: none;">
+    <div class="floating-cart-preview" id="floating-cart-preview">
+      <h4>Cart Items</h4>
+      <ul class="floating-cart-list" id="floating-cart-list">
+        <!-- Dynamically populated -->
+      </ul>
+      <div class="floating-cart-subtotal-row">
+        <span>Subtotal</span>
+        <strong id="floating-cart-total">₹0.00</strong>
+      </div>
+      <div class="floating-cart-footer">
+        <button class="btn btn-secondary btn-sm" onclick="openCartDrawer()" style="width: 100%;">View & Checkout</button>
+      </div>
+    </div>
+    <button class="floating-cart-btn" onclick="openCartDrawer()" aria-label="Open floating cart">
+      <i data-lucide="shopping-cart"></i>
+      <span class="floating-cart-counter" id="floating-cart-counter">0</span>
+    </button>
+  </div>
+
   <!-- --- Shopping Cart Drawer --- -->
   <div class="cart-overlay" id="cart-overlay">
     <div class="cart-drawer">
