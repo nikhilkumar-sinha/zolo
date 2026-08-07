@@ -1,5 +1,5 @@
 /*
-   ZOLONOW - Admin Dashboard Controller
+   ZOLOFRESH - Admin Dashboard Controller
    Author: Antigravity Code Assistant
    Features: Admin Authentication, Normalized Table Operations, Relational CRUD, Auto-SKUs, CSV Export
 */

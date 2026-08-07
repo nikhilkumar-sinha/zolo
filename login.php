@@ -1,6 +1,6 @@
 <?php
 // ==========================================
-// ZOLONOW - Database Authentication Controller
+// ZOLOFRESH - Database Authentication Controller
 // ==========================================
 
 require_once 'config.php';

@@ -1,6 +1,6 @@
 <?php
 // ==========================================
-// ZOLONOW - Database Schema & Data Seeding Setup
+// ZOLOFRESH - Database Schema & Data Seeding Setup
 // ==========================================
 
 require_once 'config.php';
@@ -526,7 +526,7 @@ try {
 
     echo json_encode([
         'status' => 'success',
-        'message' => 'ZOLONOW Database Schema created and fully seeded with 24 categories and all product details successfully!'
+        'message' => 'ZOLOFRESH Database Schema created and fully seeded with 24 categories and all product details successfully!'
     ]);
 
 } catch (PDOException $e) {

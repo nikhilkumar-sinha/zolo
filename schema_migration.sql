@@ -2,7 +2,7 @@
 -- E-Commerce Database Schema Migration Script
 -- Target RDBMS: MySQL / PostgreSQL Compatible
 -- Author: Antigravity Code Assistant
--- Description: Normalized 9-table product schema for ZOLONOW
+-- Description: Normalized 9-table product schema for ZOLOFRESH
 -- ==========================================
 
 -- 1. Categories Table

@@ -1,5 +1,5 @@
 /*
-   ZOLONOW - JavaScript Application Logic
+   ZOLOFRESH - JavaScript Application Logic
    Author: Antigravity Code Assistant
    Features: State Management, LocalStorage DB, Cart Operations, Payment Validation, Confetti
 */
@@ -603,7 +603,7 @@ function initializeLocalStorageDB() {
         sale_price: p.price - 20 > 0 ? p.price - 20 : p.price,
         cost_price: Math.round(p.price * 0.6),
         tax: 5.00,
-        brand: 'ZOLONOW',
+        brand: 'ZOLOFRESH',
         featured: p.popularity > 90,
         organic: p.isOrganic || false,
         gi_tagged: p.isGI || false,
@@ -740,7 +740,7 @@ const HERITAGE_STORIES = {
     content: `
       <p>The Shahi Litchi of Muzaffarpur is arguably India's celebrated summer fruit. Awarded the Geographical Indication (GI) tag in 2018, this unique variety is distinguished by its thin, bright pink-red skin, heavy rose perfume, and remarkably sweet, juicy pulp.</p>
       <p>What makes Muzaffarpur the global capital for this fruit? The answer lies in the soil. The land surrounding the Gandak and Budhi Gandak rivers is high in calcium carbonate and organic silt. Combined with a specific relative humidity during the fruiting season in May, the trees produce fruit with high water content and low acid level.</p>
-      <p>At ZOLONOW, we partner directly with generational growers in orchards like Mushahari and Minapur. Litchis are highly perishable; they are harvested under the cool morning sky before the sun can dry their juices, pre-cooled, and flown to distribution channels within 24 hours of harvest.</p>
+      <p>At ZOLOFRESH, we partner directly with generational growers in orchards like Mushahari and Minapur. Litchis are highly perishable; they are harvested under the cool morning sky before the sun can dry their juices, pre-cooled, and flown to distribution channels within 24 hours of harvest.</p>
     `
   },
   mango: {
@@ -760,7 +760,7 @@ const HERITAGE_STORIES = {
     content: `
       <p>Makhana, or popped foxnuts, are the seeds of the Euryale ferox water plant. While now praised globally as a high-protein, low-calorie superfood, it has been cultivated in the wetlands of the Mithila region for thousands of years.</p>
       <p>The cultivation of Makhana is an extraordinary demonstration of human endurance. Farmers stand chest-deep in muddy pond waters under the sun, using bamboo nets to scoop up seed pods from the pond bed. The seeds are then washed, dried, roasted in iron pans, and popped one by one using a heavy wooden hammer over hot sand.</p>
-      <p>ZOLONOW supports the Mithila cooperative societies, ensuring that the farmers who perform this intense manual labor receive fair, direct wages, keeping this ancient, sustainable wetland farming alive.</p>
+      <p>ZOLOFRESH supports the Mithila cooperative societies, ensuring that the farmers who perform this intense manual labor receive fair, direct wages, keeping this ancient, sustainable wetland farming alive.</p>
     `
   }
 };

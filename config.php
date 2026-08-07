@@ -1,12 +1,12 @@
 <?php
 // ==========================================
-// ZOLONOW - Hostinger MySQL Database Configuration
+// ZOLOFRESH - Hostinger MySQL Database Configuration
 // ==========================================
 
 define('DB_HOST', 'localhost');
 define('DB_USER', 'u790143531_admin');
 define('DB_PASS', 'zolo_secure_pass_2026');
-define('DB_NAME', 'u790143531_zolo');
+define('DB_NAME', 'u790143531_zolofresh');
 
 // Establish PDO connection
 try {

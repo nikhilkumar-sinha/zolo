@@ -1,8 +1,8 @@
-# ZOLONOW — Premium Organic Farm Treasures & Bihari Specialties
+# ZOLOFRESH — Premium Organic Farm Treasures & Bihari Specialties
 
-ZOLONOW is a state-of-the-art e-commerce storefront showcasing the agricultural bounty, rich cultural heritage, sacred festival essentials, and generational delicacies of Bihar, India.
+ZOLOFRESH is a state-of-the-art e-commerce storefront showcasing the agricultural bounty, rich cultural heritage, sacred festival essentials, and generational delicacies of Bihar, India.
 
-Built with a premium earth-toned rustic design system, responsive glassmorphism navigation, and advanced micro-interactions, ZOLONOW connects local farmer cooperatives directly to families across India.
+Built with a premium earth-toned rustic design system, responsive glassmorphism navigation, and advanced micro-interactions, ZOLOFRESH connects local farmer cooperatives directly to families across India.
 
 ---
 
@@ -69,7 +69,7 @@ The database consists of 9 fully normalized tables defined in [schema_migration.
 
 The site is automatically deployed via GitHub Actions.
 
-*   **Live Custom Domain**: [https://zolonow.in](https://zolonow.in)
+*   **Live Custom Domain**: [https://zolofresh.in](https://zolofresh.in)
 *   **GitHub Pages Endpoint**: [https://nikhilkumar-sinha.github.io/zolo/](https://nikhilkumar-sinha.github.io/zolo/)
 *   **CI/CD Pipeline**: Configured in [.github/workflows/static.yml](.github/workflows/static.yml) for automated builds on push.
 
