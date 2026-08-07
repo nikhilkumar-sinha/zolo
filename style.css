@@ -194,7 +194,10 @@ header.scrolled {
 }
 
 .logo-img {
-  height: 48px;
+  height: 52px;
+  width: 52px;
+  border-radius: 50%;
+  object-fit: cover;
   display: block;
   transition: var(--transition-fast);
 }
