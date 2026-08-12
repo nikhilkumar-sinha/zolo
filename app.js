@@ -1842,6 +1842,53 @@ function setupEventListeners() {
       e.currentTarget.classList.add('active');
     });
   });
+
+  // Contact Form Submission Handler (Sends email to zolofreshofficial@gmail.com via PHP)
+  const contactForm = document.getElementById('contact-form');
+  if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      const originalText = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = `Sending... <span class="payment-spinner" style="width: 14px; height: 14px; border-width: 2px; border-color: var(--color-white) transparent transparent transparent;"></span>`;
+      
+      const name = document.getElementById('contact-name').value.trim();
+      const email = document.getElementById('contact-email').value.trim();
+      const subject = document.getElementById('contact-subject').value;
+      const message = document.getElementById('contact-message').value.trim();
+      
+      try {
+        const response = await fetch('contact_submit.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, subject, message })
+        });
+        
+        if (response.ok) {
+          const data = await response.json();
+          if (data.status === 'success') {
+            showToast(data.message || 'Thank you! Your message has been sent successfully.', 'success');
+            contactForm.reset();
+          } else {
+            showToast(data.message || 'Error submitting inquiry. Please try again.', 'error');
+          }
+        } else {
+          showToast('Failed to reach backend server. Using offline fallback...', 'info');
+          alert('Thank you for contacting us! We will get back to you within 24 hours. (Demo Mode)');
+          contactForm.reset();
+        }
+      } catch (err) {
+        console.warn("Failed to connect to contact submission backend, using offline fallback:", err);
+        alert('Thank you for contacting us! We will get back to you within 24 hours. (Demo Mode)');
+        contactForm.reset();
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
+      }
+    });
+  }
 }
 
 // --- Scroll Reveal Animations ---
