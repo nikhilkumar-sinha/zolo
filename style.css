@@ -191,6 +191,8 @@ header.scrolled {
   display: flex;
   align-items: center;
   gap: 10px;
+  flex-shrink: 0;
+  margin-right: 40px; /* Space alignment between logo/brand and Home link */
 }
 
 .logo-img {
@@ -204,6 +206,26 @@ header.scrolled {
 
 .logo-img:hover {
   transform: scale(1.02);
+}
+
+.header-logo-text {
+  font-family: 'Outfit', 'Inter', sans-serif;
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #1b4a35; /* Custom deep forest green from ZoloFresh theme */
+  letter-spacing: -0.5px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.header-logo-text span {
+  color: #4caf50 !important; /* Custom light green from ZoloFresh theme */
+  display: inline !important;
+  font-size: 1.95rem !important;
+  font-family: 'Outfit', 'Inter', sans-serif !important;
+  text-transform: none !important;
+  letter-spacing: -0.5px !important;
+  margin-top: 0 !important;
 }
 
 .logo-icon {
@@ -237,13 +259,13 @@ header.scrolled {
 
 .nav-links {
   display: flex;
-  gap: 32px;
+  gap: 15px;
   list-style: none;
 }
 
 .nav-links a {
-  font-weight: 500;
-  font-size: 0.95rem;
+  font-weight: 600;
+  font-size: 0.88rem;
   position: relative;
   padding: 6px 0;
 }

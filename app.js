@@ -285,6 +285,24 @@ const DEFAULT_PRODUCTS = [
     description: 'Pure, organic unrefined sugarcane jaggery (Gur/Bheli) made without chemical clarifiers. Dark, rich in iron, and naturally sweet.',
     heritageStory: 'Hand-pressed by cooperative farming groups using pure sugarcane juice boiled in large open iron pans.'
   },
+  {
+    id: 'traditional-sweets',
+    title: 'Traditional Sweets',
+    category: 'sweets',
+    isGI: false,
+    isOrganic: false,
+    isSeasonal: false,
+    isFamous: true,
+    season: 'winter',
+    price: 599,
+    unit: 'Pack of 1 Kg',
+    image: 'assets/Sweets.avif',
+    origin: 'Bangalore/Banaras flavour',
+    popularity: 92,
+    inStock: true,
+    description: 'Banarsi flavour Sweets.',
+    heritageStory: 'A delightful blend of traditional recipes bringing the authentic rich taste and flavour of Banaras heritage sweets right to your doorstep.'
+  },
 
   // 5. Sacred Puja Packages
   {
@@ -476,7 +494,7 @@ function initializeLocalStorageDB() {
   // Safe version/cleanup wipe check to reload seed on taxonomy change or new products
   if (localStorage.getItem('kk_products')) {
     const existingProds = JSON.parse(localStorage.getItem('kk_products'));
-    if (!existingProds.find(p => p.id === 'kashmiri-kesar')) {
+    if (!existingProds.find(p => p.id === 'kashmiri-kesar') || !existingProds.find(p => p.id === 'traditional-sweets')) {
       localStorage.removeItem('kk_products');
       localStorage.removeItem('kk_categories');
       localStorage.removeItem('kk_product_images');

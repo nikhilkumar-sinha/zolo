@@ -341,6 +341,20 @@ try {
             'desc' => '100% natural, chemical-free sugarcane jaggery block with rich minerals and iron.'
         ],
         [
+            'id' => 'traditional-sweets',
+            'title' => 'Traditional Sweets',
+            'category_id' => 18,
+            'is_gi' => 0,
+            'is_organic' => 0,
+            'is_seasonal' => 0,
+            'season' => 'winter',
+            'price' => 599.00,
+            'unit' => 'Pack of 1 Kg',
+            'image' => 'assets/Sweets.avif',
+            'origin' => 'Bangalore/Banaras flavour',
+            'desc' => 'Banarsi flavour Sweets.'
+        ],
+        [
             'id' => 'diwali-puja-package',
             'title' => 'Diwali Shubh Labh Puja Package',
             'category_id' => 22,
@@ -493,7 +507,7 @@ try {
 
     foreach ($products as $p) {
         // Generate a SKU
-        $skuWords = explode(' ', preg_replace('/[^A-Z ]/g', '', strtoupper($p['title'])));
+        $skuWords = explode(' ', preg_replace('/[^A-Z ]/', '', strtoupper($p['title'])));
         $skuPrefix = count($skuWords) > 1 ? (substr($skuWords[0], 0, 1) . substr($skuWords[1], 0, 2)) : substr($skuWords[0], 0, 3);
         $sku = "USE-" . str_pad($skuPrefix, 3, "X") . "-001";
         
