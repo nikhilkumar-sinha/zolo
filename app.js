@@ -1903,6 +1903,23 @@ const sectionObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 revealSections.forEach(section => sectionObserver.observe(section));
 
+// --- WhatsApp QR Code Lightbox Modals ---
+window.openQRModal = function() {
+  const modal = document.getElementById('qr-modal');
+  if (modal) {
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+};
+
+window.closeQRModal = function() {
+  const modal = document.getElementById('qr-modal');
+  if (modal) {
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+};
+
 // --- Dead Link Handler ---
 document.querySelectorAll('[data-coming-soon]').forEach(link => {
   link.addEventListener('click', function(e) {
@@ -1911,4 +1928,5 @@ document.querySelectorAll('[data-coming-soon]').forEach(link => {
     showToast(msg);
   });
 });
+
 

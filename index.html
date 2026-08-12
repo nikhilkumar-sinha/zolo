@@ -776,6 +776,15 @@
                   <p>support@zolofresh.in</p>
                 </div>
               </div>
+              
+              <!-- WhatsApp QR Code Card -->
+              <div class="contact-detail-item qr-code-item" style="margin-top: 24px; display: flex; flex-direction: column; gap: 8px; background: rgba(255, 255, 255, 0.6); padding: 16px; border-radius: 8px; border: 1px solid var(--color-border); max-width: 280px; align-items: center; text-align: center;">
+                <h5 style="margin: 0; color: #1b4a35; font-size: 0.95rem; font-weight: 700; display: flex; align-items: center; gap: 8px; width: 100%; justify-content: center;">
+                  <i data-lucide="qr-code"></i> Join WhatsApp Group
+                </h5>
+                <p style="margin: 0; font-size: 0.8rem; color: var(--color-text-muted);">Scan this code using the WhatsApp camera to join our group!</p>
+                <img src="assets/whatsapp_qr.png" alt="WhatsApp QR Code" class="whatsapp-qr-img" style="width: 160px; height: 160px; object-fit: cover; border-radius: 6px; box-shadow: var(--shadow-sm); cursor: zoom-in; margin-top: 4px;" onclick="openQRModal()" />
+              </div>
             </div>
           </div>
 
@@ -1232,6 +1241,16 @@
       <span>Basket</span>
     </button>
   </nav>
+
+  <!-- --- WhatsApp QR Code Lightbox Modal --- -->
+  <div id="qr-modal" class="modal-overlay" style="display: none; align-items: center; justify-content: center; z-index: 2000; background: rgba(0,0,0,0.85); position: fixed; inset: 0;" onclick="closeQRModal()">
+    <div style="position: relative; max-width: 90%; max-height: 90%; background: #fff; padding: 24px; border-radius: 12px; box-shadow: var(--shadow-lg); text-align: center;" onclick="event.stopPropagation()">
+      <button style="position: absolute; top: -15px; right: -15px; width: 32px; height: 32px; border-radius: 50%; border: none; background: #fff; box-shadow: var(--shadow-sm); cursor: pointer; font-weight: bold; font-size: 1.1rem; display: flex; align-items: center; justify-content: center;" onclick="closeQRModal()">&times;</button>
+      <h3 style="margin: 0 0 10px 0; color: #1b4a35; font-family: var(--font-serif); font-size: 1.4rem;">ZoloFresh WhatsApp Group</h3>
+      <img src="assets/whatsapp_qr.png" alt="ZoloFresh WhatsApp Group QR Code" style="max-width: 320px; width: 100%; height: auto; border-radius: 8px; box-shadow: var(--shadow-sm);" />
+      <p style="margin: 12px 0 0 0; font-size: 0.9rem; color: var(--color-text-muted); font-weight: 500;">Scan with your WhatsApp camera to join</p>
+    </div>
+  </div>
 
   <script src="app.js"></script>
 </body>
