@@ -1971,6 +1971,7 @@ function setupEventListeners() {
 
       const name = document.getElementById('contact-name').value.trim();
       const email = document.getElementById('contact-email').value.trim();
+      const phone = document.getElementById('contact-phone').value.trim();
       const subject = document.getElementById('contact-subject').value;
       const message = document.getElementById('contact-message').value.trim();
 
@@ -1978,7 +1979,7 @@ function setupEventListeners() {
         const response = await fetch('contact_submit.php', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, email, subject, message })
+          body: JSON.stringify({ name, email, phone, subject, message })
         });
 
         if (response.ok) {
