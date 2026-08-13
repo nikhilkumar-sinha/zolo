@@ -1012,6 +1012,11 @@ function addToCart(productId, qty = 1) {
   // Show toast notification instead of sliding open cart drawer aggressively
   showToast(`Added ${product.title} to your basket!`);
 
+  // Log to Analytics
+  if (typeof ZOLO_ANALYTICS !== 'undefined') {
+    ZOLO_ANALYTICS.logEvent('add_to_cart', product.title);
+  }
+
   // Micro-animation badge bounce
   elements.cartCounter.classList.add('bounce');
   setTimeout(() => elements.cartCounter.classList.remove('bounce'), 300);
@@ -1524,6 +1529,11 @@ function handleCheckoutNext() {
           // Save to local storage for tracking dashboard too
           saveLocalOrder(data.orderId, checkoutData);
 
+          // Log to Analytics
+          if (typeof ZOLO_ANALYTICS !== 'undefined') {
+            ZOLO_ANALYTICS.logEvent('checkout', `${data.orderId} | Total: ₹${checkoutData.totalAmount}`);
+          }
+
           // Advance to step 3 and show order ID
           elements.successOrderId.textContent = data.orderId;
           checkoutStep = 3;
@@ -2032,6 +2042,72 @@ document.querySelectorAll('[data-coming-soon]').forEach(link => {
     const msg = this.getAttribute('data-coming-soon') || 'This page is coming soon!';
     showToast(msg);
   });
+});
+
+// --- ZOLOFRESH LIGHTWEIGHT VISITOR ANALYTICS ---
+const ZOLO_ANALYTICS = {
+  getSessionId: function() {
+    let sid = localStorage.getItem('zolo_session_id');
+    if (!sid) {
+      sid = 'ZS-' + Math.random().toString(36).substring(2, 15) + '-' + Date.now();
+      localStorage.setItem('zolo_session_id', sid);
+    }
+    return sid;
+  },
+
+  logEvent: function(type, value = '') {
+    const payload = {
+      sessionId: this.getSessionId(),
+      eventType: type,
+      eventValue: value
+    };
+
+    fetch('analytics_capture.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+    .catch(err => console.warn('Analytics capture skipped/failed:', err));
+  },
+
+  init: function() {
+    // 1. Page View
+    this.logEvent('page_view', window.location.pathname);
+
+    // 2. Track WhatsApp clicks
+    document.body.addEventListener('click', (e) => {
+      const whatsappBtn = e.target.closest('a[href*="chat.whatsapp.com"]');
+      if (whatsappBtn) {
+        this.logEvent('whatsapp_join', whatsappBtn.href);
+      }
+
+      // Track general social shares if any
+      const socialLink = e.target.closest('.social-link, a[href*="instagram.com"]');
+      if (socialLink) {
+        this.logEvent('social_click', socialLink.href);
+      }
+    });
+
+    // 3. Track Search Queries
+    const searchInput = document.getElementById('catalog-search');
+    if (searchInput) {
+      let searchTimeout;
+      searchInput.addEventListener('input', (e) => {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(() => {
+          const query = e.target.value.trim();
+          if (query.length > 2) {
+            this.logEvent('search', query);
+          }
+        }, 1500); // Debounce search logs
+      });
+    }
+  }
+};
+
+// Initialize tracking once DOM loads
+document.addEventListener('DOMContentLoaded', () => {
+  ZOLO_ANALYTICS.init();
 });
 
 

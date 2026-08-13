@@ -156,6 +156,19 @@ function renderAnalytics() {
   document.getElementById('stat-average-order').textContent = `₹${averageValue.toFixed(2)}`;
   document.getElementById('stat-low-stock-count').textContent = lowStockCount;
 
+  // Fetch real analytics from the backend database logs
+  fetch('analytics_get.php')
+    .then(res => res.json())
+    .then(data => {
+      if (data.status === 'success') {
+        document.getElementById('stat-page-views').textContent = data.page_views;
+        document.getElementById('stat-unique-visitors').textContent = data.unique_visitors;
+        document.getElementById('stat-whatsapp-joins').textContent = data.whatsapp_joins;
+        document.getElementById('stat-searches-count').textContent = data.searches_count;
+      }
+    })
+    .catch(err => console.error('Error loading visitor analytics:', err));
+
   // Render Low Stock Alert Table
   const lowStockTbody = document.getElementById('low-stock-tbody');
   lowStockTbody.innerHTML = '';

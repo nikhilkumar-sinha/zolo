@@ -13,7 +13,7 @@ try {
 
     // 1. Drop existing tables if they exist to start fresh
     $tables = [
-        'order_items', 'orders',
+        'analytics_events', 'order_items', 'orders',
         'product_seo', 'seasonal_availability', 'product_tags', 
         'product_variants', 'product_attributes', 'product_inventory', 
         'product_images', 'products', 'categories', 'users'
@@ -56,6 +56,17 @@ try {
         `quantity` INT NOT NULL,
         `subtotal` DECIMAL(10,2) NOT NULL,
         FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`) ON DELETE CASCADE
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;");
+
+    // 2c. Create Analytics Events Table
+    $pdo->exec("CREATE TABLE IF NOT EXISTS `analytics_events` (
+        `id` BIGINT AUTO_INCREMENT PRIMARY KEY,
+        `session_id` VARCHAR(50) NOT NULL,
+        `visitor_ip` VARCHAR(45) NOT NULL,
+        `user_agent` VARCHAR(255) NOT NULL,
+        `event_type` VARCHAR(50) NOT NULL,
+        `event_value` TEXT,
+        `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;");
 
     // 3. Create Categories Table
