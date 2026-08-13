@@ -25,11 +25,11 @@ if (!$input) {
 }
 
 $name = isset($input['name']) ? trim($input['name']) : '';
-$phone = isset($input['phone']) ? trim($input['phone']) : '';
+$email = isset($input['email']) ? trim($input['email']) : ''; // Holds the user's Contact No or Email
 $subject = isset($input['subject']) ? trim($input['subject']) : 'General Farm Inquiry';
 $message = isset($input['message']) ? trim($input['message']) : '';
 
-if (empty($name) || empty($phone) || empty($message)) {
+if (empty($name) || empty($email) || empty($message)) {
     echo json_encode([
         'status' => 'error',
         'message' => 'Please fill in all required fields (Name, Contact No, and Message).'
@@ -68,7 +68,7 @@ $emailBody = "
             <span class='detail-label'>Customer Name:</span> " . htmlspecialchars($name) . "
         </div>
         <div class='detail-row'>
-            <span class='detail-label'>Contact No:</span> " . htmlspecialchars($phone) . "
+            <span class='detail-label'>Contact No:</span> " . htmlspecialchars($email) . "
         </div>
         <div class='detail-row'>
             <span class='detail-label'>Inquiry Subject:</span> " . htmlspecialchars($subject) . "
@@ -90,7 +90,12 @@ $emailBody = "
 $headers = "MIME-Version: 1.0" . "\r\n";
 $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 $headers .= "From: ZoloFresh Portal <webmaster@zolofresh.in>" . "\r\n";
-$headers .= "Reply-To: " . $name . " <" . $email . ">" . "\r\n";
+
+if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    $headers .= "Reply-To: " . $name . " <" . $email . ">" . "\r\n";
+} else {
+    $headers .= "Reply-To: ZoloFresh Portal <webmaster@zolofresh.in>" . "\r\n";
+}
 
 // Send email
 if (mail($to, $emailSubject, $emailBody, $headers)) {
