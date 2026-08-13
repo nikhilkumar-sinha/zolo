@@ -516,7 +516,7 @@ function initializeLocalStorageDB() {
       { id: 3, category_name: 'Superfoods & Snacks', slug: 'superfoods-snacks', parent_id: null, status: true },
       { id: 4, category_name: 'Handlooms & Handicrafts', slug: 'handlooms-handicrafts', parent_id: null, status: true },
       { id: 5, category_name: 'Puja Essentials & Kits', slug: 'puja-essentials-kits', parent_id: null, status: true },
-      
+
       // Subcategories (id 6 to 26)
       { id: 6, category_name: 'Shahi Litchi', slug: 'shahi-litchi', parent_id: 1, status: true },
       { id: 7, category_name: 'Jardalu Mango', slug: 'jardalu-mango', parent_id: 1, status: true },
@@ -565,7 +565,7 @@ function initializeLocalStorageDB() {
       if (prodId.includes('ladoo')) return 'USE-LAD-001';
       if (prodId.includes('thekua')) return 'USE-THE-001';
       if (prodId.includes('turmeric')) return 'USE-TUR-001';
-      
+
       const words = title.toUpperCase().replace(/[^A-Z ]/g, '').split(' ');
       const prefix = words.length > 1 ? (words[0].substring(0, 1) + words[1].substring(0, 2)) : words[0].substring(0, 3);
       return `USE-${prefix.padEnd(3, 'X')}-001`;
@@ -719,7 +719,7 @@ function getProductsFromDB() {
   return products.map(p => {
     const inv = inventory.find(i => i.product_id === p.id) || {};
     const cat = categories.find(c => c.id === p.category_id) || {};
-    
+
     // Find parent category slug for storefront tab categories compatibility
     let parentSlug = cat.slug;
     if (cat.parent_id !== null) {
@@ -841,10 +841,10 @@ function getProductImageHTML(product) {
   if (product.image) {
     return `<img src="${product.image}" alt="${product.title}" class="product-card-image" loading="lazy">`;
   }
-  
+
   let icon = 'sparkles';
   let gradient = 'linear-gradient(135deg, #2E5A44 0%, #D47A3B 100%)';
-  
+
   if (product.category === 'puja' || product.id.includes('puja') || product.id.includes('soop') || product.id.includes('ganga')) {
     icon = 'flame';
     gradient = 'linear-gradient(135deg, #C23B22 0%, #D47A3B 50%, #FF8C00 100%)';
@@ -870,7 +870,7 @@ function getProductImageHTML(product) {
 // --- CATALOG RENDERING & LOGIC ---
 function renderCatalog(productsToRender) {
   elements.productGrid.innerHTML = '';
-  
+
   if (productsToRender.length === 0) {
     elements.productGrid.innerHTML = `
       <div class="no-results">
@@ -931,10 +931,10 @@ function renderCatalog(productsToRender) {
             </div>
             <span class="product-unit-small" style="font-size: 0.75rem; color: var(--color-text-muted);">${product.unit}</span>
           </div>
-          ${product.inStock 
-            ? `<button class="btn-add-mint" onclick="addToCart('${product.id}')" aria-label="Add to cart" style="background: var(--color-primary); color: white; border-radius: var(--border-radius-sm); border: none; padding: 8px 16px; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: var(--transition-fast);">Add to Cart</button>`
-            : `<button class="btn-add-mint" disabled style="background-color: var(--color-border); color: var(--color-text-muted); border: none; border-radius: var(--border-radius-sm); padding: 8px 16px; font-size: 0.85rem; cursor: not-allowed;">Out of Stock</button>`
-          }
+          ${product.inStock
+        ? `<button class="btn-add-mint" onclick="addToCart('${product.id}')" aria-label="Add to cart" style="background: var(--color-primary); color: white; border-radius: var(--border-radius-sm); border: none; padding: 8px 16px; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: var(--transition-fast);">Add to Cart</button>`
+        : `<button class="btn-add-mint" disabled style="background-color: var(--color-border); color: var(--color-text-muted); border: none; border-radius: var(--border-radius-sm); padding: 8px 16px; font-size: 0.85rem; cursor: not-allowed;">Out of Stock</button>`
+      }
         </div>
       </div>
     `;
@@ -954,9 +954,9 @@ function handleFilterSearch() {
 
   let filtered = products.filter(p => {
     const matchesSearch = p.title.toLowerCase().includes(searchQuery) ||
-                          p.origin.toLowerCase().includes(searchQuery) ||
-                          p.description.toLowerCase().includes(searchQuery);
-    
+      p.origin.toLowerCase().includes(searchQuery) ||
+      p.description.toLowerCase().includes(searchQuery);
+
     let matchesCategory = true;
     if (activeCategory !== 'all') {
       matchesCategory = p.category === activeCategory;
@@ -984,7 +984,7 @@ function loadCartFromStorage() {
     try {
       cart = JSON.parse(savedCart);
       updateCartUI();
-    } catch(e) {
+    } catch (e) {
       cart = [];
     }
   }
@@ -1008,10 +1008,10 @@ function addToCart(productId, qty = 1) {
 
   saveCartToStorage();
   updateCartUI();
-  
+
   // Show toast notification instead of sliding open cart drawer aggressively
   showToast(`Added ${product.title} to your basket!`);
-  
+
   // Micro-animation badge bounce
   elements.cartCounter.classList.add('bounce');
   setTimeout(() => elements.cartCounter.classList.remove('bounce'), 300);
@@ -1025,7 +1025,7 @@ function updateCartQuantity(productId, delta) {
   if (item.quantity <= 0) {
     cart = cart.filter(i => i.product.id !== productId);
   }
-  
+
   saveCartToStorage();
   updateCartUI();
 }
@@ -1072,15 +1072,15 @@ function updateCartUI() {
   elements.cartItemsWrapper.innerHTML = '';
 
   let subtotal = 0;
-  
+
   cart.forEach(item => {
     const itemTotal = item.product.price * item.quantity;
     subtotal += itemTotal;
 
     const itemDiv = document.createElement('div');
     itemDiv.className = 'cart-item';
-    
-    let imageHTML = item.product.image 
+
+    let imageHTML = item.product.image
       ? `<img src="${item.product.image}" alt="${item.product.title}" class="cart-item-image">`
       : `<div class="cart-item-image" style="background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%); display:flex; align-items:center; justify-content:center; color:white; font-size:0.6rem; font-weight:bold; text-align:center; padding: 2px;">${item.product.title.split(' ')[0]}</div>`;
 
@@ -1144,11 +1144,11 @@ function updateCartUI() {
       cart.forEach(item => {
         const itemLi = document.createElement('li');
         itemLi.className = 'floating-cart-item';
-        
-        let imageHTML = item.product.image 
+
+        let imageHTML = item.product.image
           ? `<img src="${item.product.image}" alt="${item.product.title}" class="floating-cart-item-img">`
           : `<div class="floating-cart-item-img" style="background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%); display:flex; align-items:center; justify-content:center; color:white; font-size:0.5rem; font-weight:bold; text-align:center;">${item.product.title.split(' ')[0]}</div>`;
-          
+
         itemLi.innerHTML = `
           ${imageHTML}
           <div class="floating-cart-item-details">
@@ -1168,7 +1168,7 @@ function updateCartUI() {
 // Promo Code Apply
 function handleApplyCoupon() {
   const code = elements.couponInput.value.toUpperCase().trim();
-  
+
   if (code === 'BIHAR10') {
     appliedCoupon = 'BIHAR10';
     elements.couponMsg.textContent = '10% off applied on Bihar Goods!';
@@ -1187,7 +1187,7 @@ function handleApplyCoupon() {
     elements.couponMsg.textContent = 'Invalid promo code.';
     elements.couponMsg.className = 'coupon-status error';
   }
-  
+
   updateCartUI();
 }
 
@@ -1241,10 +1241,10 @@ function openProductQuickView(productId) {
           <span class="product-modal-unit">${product.unit}</span>
         </div>
         <div class="product-modal-actions">
-          ${product.inStock 
-            ? `<button class="btn btn-primary" onclick="addToCart('${product.id}'); document.getElementById('product-modal').classList.remove('open');">Add to Basket <i data-lucide="shopping-bag" style="width: 16px; height: 16px;"></i></button>`
-            : `<button class="btn btn-primary" disabled style="background-color:#E8E2D9; color:#A09088; cursor:not-allowed;">Sold Out <i data-lucide="slash" style="width: 16px; height: 16px;"></i></button>`
-          }
+          ${product.inStock
+      ? `<button class="btn btn-primary" onclick="addToCart('${product.id}'); document.getElementById('product-modal').classList.remove('open');">Add to Basket <i data-lucide="shopping-bag" style="width: 16px; height: 16px;"></i></button>`
+      : `<button class="btn btn-primary" disabled style="background-color:#E8E2D9; color:#A09088; cursor:not-allowed;">Sold Out <i data-lucide="slash" style="width: 16px; height: 16px;"></i></button>`
+    }
         </div>
       </div>
     </div>
@@ -1275,7 +1275,7 @@ function openStoryModal(storyId) {
 // --- CHECKOUT WIZARD PROCESS ---
 function openCheckoutWizard() {
   if (cart.length === 0) return;
-  
+
   closeCartDrawer();
   checkoutStep = 1;
   updateCheckoutStepUI();
@@ -1309,7 +1309,7 @@ function updateCheckoutStepUI() {
   } else if (checkoutStep === 3) {
     elements.checkoutNavBtns.style.display = 'none';
     triggerOrderSuccessConfetti();
-    
+
     // Clear cart state
     cart = [];
     appliedCoupon = null;
@@ -1365,7 +1365,7 @@ function populateCheckoutSummary() {
   elements.checkoutOrderBreakdown.appendChild(sRow);
 
   elements.checkoutTotalToPay.textContent = `₹${grandTotal.toFixed(2)}`;
-  
+
   // Set total dynamic amount inside UPI instructions
   const upiAmtText = document.getElementById('upi-amount-span');
   if (upiAmtText) {
@@ -1405,7 +1405,7 @@ function setupPaymentTabSwitching() {
     cardExpiryInput.addEventListener('input', (e) => {
       let val = e.target.value.replace(/\D/g, '');
       if (val.length >= 2) {
-        e.target.value = val.substring(0,2) + '/' + val.substring(2,4);
+        e.target.value = val.substring(0, 2) + '/' + val.substring(2, 4);
       } else {
         e.target.value = val;
       }
@@ -1433,7 +1433,7 @@ function handleCheckoutNext() {
       alert('Please enter a valid Email Address.');
       return;
     }
-    
+
     // Check pincode length
     if (pincode.length < 6 || isNaN(pincode)) {
       alert('Please enter a valid 6-digit Pincode.');
@@ -1515,36 +1515,39 @@ function handleCheckoutNext() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(checkoutData)
     })
-    .then(res => res.json())
-    .then(data => {
-      nextBtn.disabled = false;
-      nextBtn.innerHTML = `Place Secure Order <i data-lucide="lock"></i>`;
+      .then(res => res.json())
+      .then(data => {
+        nextBtn.disabled = false;
+        nextBtn.innerHTML = `Place Secure Order <i data-lucide="lock"></i>`;
 
-      if (data.status === 'success') {
-        // Save to local storage for tracking dashboard too
-        saveLocalOrder(data.orderId, checkoutData);
-        
-        // Advance to step 3 and show order ID
-        elements.successOrderId.textContent = data.orderId;
+        if (data.status === 'success') {
+          // Save to local storage for tracking dashboard too
+          saveLocalOrder(data.orderId, checkoutData);
+
+          // Advance to step 3 and show order ID
+          elements.successOrderId.textContent = data.orderId;
+          checkoutStep = 3;
+          updateCheckoutStepUI();
+
+          showToast(`Order #${data.orderId} created! Receipt sent to ${email}`, 'success');
+        } else {
+
+          alert('Order submission failed: ' + data.message);
+        }
+      })
+      .catch(err => {
+        console.error('Checkout error:', err);
+        // Local fallback in case server/database is offline (demo mode)
+        nextBtn.disabled = false;
+        nextBtn.innerHTML = `Place Secure Order <i data-lucide="lock"></i>`;
+
+        const orderId = generateOrderAndSave();
+        elements.successOrderId.textContent = orderId;
         checkoutStep = 3;
         updateCheckoutStepUI();
-      } else {
-        alert('Order submission failed: ' + data.message);
-      }
-    })
-    .catch(err => {
-      console.error('Checkout error:', err);
-      // Local fallback in case server/database is offline (demo mode)
-      nextBtn.disabled = false;
-      nextBtn.innerHTML = `Place Secure Order <i data-lucide="lock"></i>`;
-      
-      const orderId = generateOrderAndSave();
-      elements.successOrderId.textContent = orderId;
-      checkoutStep = 3;
-      updateCheckoutStepUI();
-      
-      showToast('Offline Mode: Order saved locally!', 'warning');
-    });
+
+        showToast('Offline Mode: Order saved locally!', 'warning');
+      });
   }
 }
 
@@ -1609,7 +1612,7 @@ function generateOrderAndSave() {
 
   orders.unshift(newOrder); // Add to beginning of database
   localStorage.setItem('kk_orders', JSON.stringify(orders));
-  
+
   return orderId;
 }
 
@@ -1652,7 +1655,7 @@ function triggerOrderSuccessConfetti() {
     conf.style.height = conf.style.width;
     conf.style.animationDuration = Math.random() * 2 + 1.5 + 's';
     conf.style.animationDelay = Math.random() * 0.4 + 's';
-    
+
     document.body.appendChild(conf);
     setTimeout(() => conf.remove(), 3500);
   }
@@ -1713,7 +1716,7 @@ function changeLanguage(langKey) {
   if (!TRANSLATIONS[langKey]) return;
   currentLanguage = langKey;
   const dict = TRANSLATIONS[langKey];
-  
+
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
     if (dict[key]) {
@@ -1726,7 +1729,7 @@ function changeLanguage(langKey) {
 
 function selectDeliveryTier(tierKey) {
   selectedDeliveryTier = tierKey;
-  
+
   document.querySelectorAll('.delivery-tier-card').forEach(card => {
     card.classList.remove('selected');
     const radio = card.querySelector('input[type="radio"]');
@@ -1785,11 +1788,11 @@ function executeOrderTracking(searchId) {
     metaId.textContent = `Order #${foundOrder.id}`;
     metaStatus.textContent = foundOrder.status || 'Confirmed';
     metaDate.textContent = `Date: ${foundOrder.date || 'Recent'}`;
-    
-    partnerName.textContent = foundOrder.deliveryTier === 'express' 
+
+    partnerName.textContent = foundOrder.deliveryTier === 'express'
       ? 'Bihar Krishi Cold-Express (24h Delivery)'
       : (foundOrder.deliveryTier === 'festival' ? 'Festival Freight Eco-Bamboocrate' : 'India Post Rural & Intra-State Express');
-    
+
     partnerDetails.innerHTML = `Customer: <strong>${foundOrder.customer.name}</strong> (${foundOrder.customer.pincode}). Total Paid: <strong>₹${foundOrder.pricing.total.toFixed(2)}</strong> via ${foundOrder.paymentMethod}.`;
 
     if (foundOrder.status === 'Delivered') {
@@ -1870,7 +1873,7 @@ function setupEventListeners() {
   });
 
   // Category select from circular icons or promo banners
-  window.handleCategoryFilterSelect = function(catKey) {
+  window.handleCategoryFilterSelect = function (catKey) {
     const btnToClick = document.querySelector(`.category-btn[data-category="${catKey}"]`) || document.querySelector('.category-btn[data-category="all"]');
     if (btnToClick) {
       elements.categoryBtns.forEach(btn => btn.classList.remove('active'));
@@ -1892,7 +1895,7 @@ function setupEventListeners() {
   });
 
   elements.closeCheckoutModalBtn.addEventListener('click', () => elements.checkoutModal.classList.remove('open'));
-  
+
   // Checkout actions
   elements.checkoutTriggerBtn.addEventListener('click', openCheckoutWizard);
   elements.checkoutNextBtn.addEventListener('click', handleCheckoutNext);
@@ -1950,24 +1953,24 @@ function setupEventListeners() {
   if (contactForm) {
     contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      
+
       const submitBtn = contactForm.querySelector('button[type="submit"]');
       const originalText = submitBtn.innerHTML;
       submitBtn.disabled = true;
       submitBtn.innerHTML = `Sending... <span class="payment-spinner" style="width: 14px; height: 14px; border-width: 2px; border-color: var(--color-white) transparent transparent transparent;"></span>`;
-      
+
       const name = document.getElementById('contact-name').value.trim();
       const email = document.getElementById('contact-email').value.trim();
       const subject = document.getElementById('contact-subject').value;
       const message = document.getElementById('contact-message').value.trim();
-      
+
       try {
         const response = await fetch('contact_submit.php', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ name, email, subject, message })
         });
-        
+
         if (response.ok) {
           const data = await response.json();
           if (data.status === 'success') {
@@ -2006,7 +2009,7 @@ const sectionObserver = new IntersectionObserver((entries) => {
 revealSections.forEach(section => sectionObserver.observe(section));
 
 // --- WhatsApp QR Code Lightbox Modals ---
-window.openQRModal = function() {
+window.openQRModal = function () {
   const modal = document.getElementById('qr-modal');
   if (modal) {
     modal.style.display = 'flex';
@@ -2014,7 +2017,7 @@ window.openQRModal = function() {
   }
 };
 
-window.closeQRModal = function() {
+window.closeQRModal = function () {
   const modal = document.getElementById('qr-modal');
   if (modal) {
     modal.style.display = 'none';
@@ -2024,7 +2027,7 @@ window.closeQRModal = function() {
 
 // --- Dead Link Handler ---
 document.querySelectorAll('[data-coming-soon]').forEach(link => {
-  link.addEventListener('click', function(e) {
+  link.addEventListener('click', function (e) {
     e.preventDefault();
     const msg = this.getAttribute('data-coming-soon') || 'This page is coming soon!';
     showToast(msg);

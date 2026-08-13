@@ -226,16 +226,57 @@ function renderAnalytics() {
 }
 
 // --- PANE 2: ORDERS MANAGER ---
-function renderOrders() {
-  const orders = JSON.parse(localStorage.getItem('kk_orders')) || [];
-  const filter = document.getElementById('order-status-filter').value;
+async function renderOrders() {
+  let orders = JSON.parse(localStorage.getItem('kk_orders')) || [];
+
+  try {
+    const response = await fetch('/api/orders');
+    if (response.ok) {
+      const data = await response.json();
+      if (data.status === 'success' && data.orders && data.orders.length > 0) {
+        const dbOrders = data.orders.map(o => ({
+          id: o.order_id,
+          date: o.created_at,
+          customer: {
+            name: o.customer_name,
+            phone: o.customer_phone,
+            email: o.customer_email,
+            address: `${o.shipping_address}, ${o.shipping_city}`,
+            pincode: o.shipping_zip
+          },
+          items: (o.items || []).map(i => ({
+            id: i.product_id,
+            title: i.product_title,
+            price: parseFloat(i.price || 0),
+            quantity: parseInt(i.quantity || 1)
+          })),
+          pricing: {
+            total: parseFloat(o.total_amount || 0)
+          },
+          paymentMethod: o.payment_method,
+          deliveryTier: o.delivery_tier,
+          status: o.status || 'Pending'
+        }));
+
+        const existingIds = new Set(dbOrders.map(o => o.id));
+        const extraLocal = orders.filter(o => !existingIds.has(o.id));
+        orders = [...dbOrders, ...extraLocal];
+      }
+    }
+  } catch (e) {
+    console.log('Database server offline, rendering local orders.');
+  }
+
+  const filterSelect = document.getElementById('order-status-filter');
+  const filter = filterSelect ? filterSelect.value : 'ALL';
   const tbody = document.getElementById('orders-tbody');
   
+  if (!tbody) return;
   tbody.innerHTML = '';
 
   const filteredOrders = orders.filter(o => {
     if (filter === 'ALL') return true;
-    return o.status.toUpperCase() === filter;
+    return (o.status || '').toUpperCase() === filter;
   });
 
   if (filteredOrders.length === 0) {
@@ -245,7 +286,7 @@ function renderOrders() {
 
   filteredOrders.forEach(order => {
     const row = document.createElement('tr');
-    const itemsText = order.items.map(i => `${i.title} (${i.quantity})`).join(', ');
+    const itemsText = (order.items || []).map(i => `${i.title} (${i.quantity})`).join(', ');
     const orderDate = new Date(order.date).toLocaleDateString('en-IN', {
       day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit'
     });
@@ -254,17 +295,17 @@ function renderOrders() {
       <td style="font-weight: 700;">${order.id}</td>
       <td>${orderDate}</td>
       <td>
-        <strong style="color:var(--color-primary-dark);">${order.customer.name}</strong><br>
-        <span style="font-size:0.8rem; color:var(--color-text-muted);">${order.customer.phone}</span>
+        <strong style="color:var(--color-primary-dark);">${order.customer ? order.customer.name : 'N/A'}</strong><br>
+        <span style="font-size:0.8rem; color:var(--color-text-muted);">${order.customer ? order.customer.phone : ''}</span>
       </td>
       <td style="max-width: 220px; font-size:0.85rem;">
-        ${order.customer.address} (Pincode: ${order.customer.pincode})
+        ${order.customer ? order.customer.address : ''} (Pincode: ${order.customer ? order.customer.pincode : ''})
         <div class="order-items-tooltip"><strong>Items:</strong> ${itemsText}</div>
       </td>
-      <td style="font-weight: 700;">₹${order.pricing.total.toFixed(2)}</td>
-      <td><span style="font-size:0.75rem; font-weight:700; color:var(--color-text-muted);">${order.paymentMethod}</span></td>
+      <td style="font-weight: 700;">₹${(order.pricing ? order.pricing.total : 0).toFixed(2)}</td>
+      <td><span style="font-size:0.75rem; font-weight:700; color:var(--color-text-muted);">${order.paymentMethod || 'COD'}</span></td>
       <td>
-        <span class="status-badge status-${order.status.toLowerCase()}">${order.status}</span>
+        <span class="status-badge status-${(order.status || 'pending').toLowerCase()}">${order.status || 'Pending'}</span>
       </td>
       <td>
         <select class="btn-status-action" onchange="updateOrderStatus('${order.id}', this.value)" aria-label="Change status of order ${order.id}">
