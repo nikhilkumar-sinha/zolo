@@ -1970,7 +1970,6 @@ function setupEventListeners() {
       submitBtn.innerHTML = `Sending... <span class="payment-spinner" style="width: 14px; height: 14px; border-width: 2px; border-color: var(--color-white) transparent transparent transparent;"></span>`;
 
       const name = document.getElementById('contact-name').value.trim();
-      const email = document.getElementById('contact-email').value.trim();
       const phone = document.getElementById('contact-phone').value.trim();
       const subject = document.getElementById('contact-subject').value;
       const message = document.getElementById('contact-message').value.trim();
@@ -1979,7 +1978,7 @@ function setupEventListeners() {
         const response = await fetch('contact_submit.php', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, email, phone, subject, message })
+          body: JSON.stringify({ name, phone, subject, message })
         });
 
         if (response.ok) {

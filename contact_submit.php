@@ -25,23 +25,14 @@ if (!$input) {
 }
 
 $name = isset($input['name']) ? trim($input['name']) : '';
-$email = isset($input['email']) ? trim($input['email']) : '';
 $phone = isset($input['phone']) ? trim($input['phone']) : '';
 $subject = isset($input['subject']) ? trim($input['subject']) : 'General Farm Inquiry';
 $message = isset($input['message']) ? trim($input['message']) : '';
 
-if (empty($name) || empty($email) || empty($phone) || empty($message)) {
+if (empty($name) || empty($phone) || empty($message)) {
     echo json_encode([
         'status' => 'error',
-        'message' => 'Please fill in all required fields (Name, Email, Contact No, and Message).'
-    ]);
-    exit;
-}
-
-if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    echo json_encode([
-        'status' => 'error',
-        'message' => 'Please enter a valid email address.'
+        'message' => 'Please fill in all required fields (Name, Contact No, and Message).'
     ]);
     exit;
 }
@@ -77,10 +68,7 @@ $emailBody = "
             <span class='detail-label'>Customer Name:</span> " . htmlspecialchars($name) . "
         </div>
         <div class='detail-row'>
-            <span class='detail-label'>Email Address:</span> " . htmlspecialchars($email) . "
-        </div>
-        <div class='detail-row'>
-            <span class='detail-label'>Mobile Number:</span> " . htmlspecialchars($phone) . "
+            <span class='detail-label'>Contact No:</span> " . htmlspecialchars($phone) . "
         </div>
         <div class='detail-row'>
             <span class='detail-label'>Inquiry Subject:</span> " . htmlspecialchars($subject) . "
