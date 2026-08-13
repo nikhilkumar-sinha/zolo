@@ -33,7 +33,7 @@ $message = isset($input['message']) ? trim($input['message']) : '';
 if (empty($name) || empty($email) || empty($phone) || empty($message)) {
     echo json_encode([
         'status' => 'error',
-        'message' => 'Please fill in all required fields (Name, Email, Mobile Number, and Message).'
+        'message' => 'Please fill in all required fields (Name, Email, Contact No, and Message).'
     ]);
     exit;
 }
