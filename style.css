@@ -52,6 +52,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -2257,6 +2258,21 @@ footer {
   }
   .nav-actions {
     gap: 8px;
+  }
+
+  /* Mobile Horizontal Scroll for Product Categories */
+  .category-tabs {
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    padding-bottom: 8px !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+  }
+  .category-tabs::-webkit-scrollbar {
+    display: none !important;
+  }
+  .category-btn {
+    flex-shrink: 0 !important;
   }
 
   .hero {
