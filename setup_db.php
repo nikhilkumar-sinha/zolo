@@ -13,6 +13,7 @@ try {
 
     // 1. Drop existing tables if they exist to start fresh
     $tables = [
+        'order_items', 'orders',
         'product_seo', 'seasonal_availability', 'product_tags', 
         'product_variants', 'product_attributes', 'product_inventory', 
         'product_images', 'products', 'categories', 'users'
@@ -27,6 +28,34 @@ try {
         `username` VARCHAR(50) NOT NULL UNIQUE,
         `password` VARCHAR(255) NOT NULL,
         `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;");
+
+    // 2b. Create Orders and Order Items Tables
+    $pdo->exec("CREATE TABLE IF NOT EXISTS `orders` (
+        `id` INT AUTO_INCREMENT PRIMARY KEY,
+        `order_id` VARCHAR(50) NOT NULL UNIQUE,
+        `customer_name` VARCHAR(255) NOT NULL,
+        `customer_email` VARCHAR(255) NOT NULL,
+        `customer_phone` VARCHAR(20) NOT NULL,
+        `shipping_address` TEXT NOT NULL,
+        `shipping_city` VARCHAR(100) NOT NULL,
+        `shipping_zip` VARCHAR(20) NOT NULL,
+        `payment_method` VARCHAR(50) NOT NULL,
+        `delivery_tier` VARCHAR(50) NOT NULL,
+        `total_amount` DECIMAL(10,2) NOT NULL,
+        `status` VARCHAR(50) DEFAULT 'Pending',
+        `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;");
+
+    $pdo->exec("CREATE TABLE IF NOT EXISTS `order_items` (
+        `id` INT AUTO_INCREMENT PRIMARY KEY,
+        `order_id` VARCHAR(50) NOT NULL,
+        `product_id` VARCHAR(100) NOT NULL,
+        `product_title` VARCHAR(255) NOT NULL,
+        `price` DECIMAL(10,2) NOT NULL,
+        `quantity` INT NOT NULL,
+        `subtotal` DECIMAL(10,2) NOT NULL,
+        FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`) ON DELETE CASCADE
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;");
 
     // 3. Create Categories Table

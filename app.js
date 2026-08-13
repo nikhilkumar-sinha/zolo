@@ -1308,8 +1308,6 @@ function updateCheckoutStepUI() {
     setupPaymentTabSwitching();
   } else if (checkoutStep === 3) {
     elements.checkoutNavBtns.style.display = 'none';
-    const orderId = generateOrderAndSave();
-    elements.successOrderId.textContent = orderId;
     triggerOrderSuccessConfetti();
     
     // Clear cart state
@@ -1420,11 +1418,19 @@ function handleCheckoutNext() {
     // Validate inputs
     const name = document.getElementById('shipping-name').value.trim();
     const phone = document.getElementById('shipping-phone').value.trim();
+    const email = document.getElementById('shipping-email').value.trim();
     const pincode = document.getElementById('shipping-pincode').value.trim();
+    const city = document.getElementById('shipping-city').value.trim();
     const address = document.getElementById('shipping-address').value.trim();
 
-    if (!name || !phone || !pincode || !address) {
+    if (!name || !phone || !email || !pincode || !city || !address) {
       alert('Please fill out all shipping details before proceeding.');
+      return;
+    }
+
+    // Validate email format
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      alert('Please enter a valid Email Address.');
       return;
     }
     
@@ -1459,16 +1465,86 @@ function handleCheckoutNext() {
       }
     }
 
-    // Simulate Payment Gateway processing overlay
+    // Capture shipping and order data
+    const name = document.getElementById('shipping-name').value.trim();
+    const phone = document.getElementById('shipping-phone').value.trim();
+    const email = document.getElementById('shipping-email').value.trim();
+    const pincode = document.getElementById('shipping-pincode').value.trim();
+    const city = document.getElementById('shipping-city').value.trim();
+    const address = document.getElementById('shipping-address').value.trim();
+
+    // Calculate totals
+    let subtotal = 0;
+    const itemsBreakdown = cart.map(item => {
+      subtotal += item.product.price * item.quantity;
+      return {
+        id: item.product.id,
+        title: item.product.title,
+        price: item.product.price,
+        quantity: item.quantity
+      };
+    });
+
+    let discount = 0;
+    if (appliedCoupon === 'BIHAR10') discount = subtotal * 0.1;
+    else if (appliedCoupon === 'PUJA20') discount = subtotal * 0.2;
+
+    const shipping = getDeliveryCost(subtotal);
+    const grandTotal = subtotal - discount + shipping;
+
+    const checkoutData = {
+      name,
+      phone,
+      email,
+      pincode,
+      city,
+      address,
+      paymentMethod: method,
+      deliveryTier: selectedDeliveryTier,
+      totalAmount: grandTotal,
+      cartItems: itemsBreakdown
+    };
+
     const nextBtn = elements.checkoutNextBtn;
     nextBtn.disabled = true;
-    nextBtn.innerHTML = `<span class="payment-spinner"></span> Processing Secure Payment...`;
+    nextBtn.innerHTML = `<span class="payment-spinner"></span> Processing Secure Order...`;
 
-    setTimeout(() => {
+    // Make AJAX request to checkout_submit.php
+    fetch('checkout_submit.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(checkoutData)
+    })
+    .then(res => res.json())
+    .then(data => {
       nextBtn.disabled = false;
+      nextBtn.innerHTML = `Place Secure Order <i data-lucide="lock"></i>`;
+
+      if (data.status === 'success') {
+        // Save to local storage for tracking dashboard too
+        saveLocalOrder(data.orderId, checkoutData);
+        
+        // Advance to step 3 and show order ID
+        elements.successOrderId.textContent = data.orderId;
+        checkoutStep = 3;
+        updateCheckoutStepUI();
+      } else {
+        alert('Order submission failed: ' + data.message);
+      }
+    })
+    .catch(err => {
+      console.error('Checkout error:', err);
+      // Local fallback in case server/database is offline (demo mode)
+      nextBtn.disabled = false;
+      nextBtn.innerHTML = `Place Secure Order <i data-lucide="lock"></i>`;
+      
+      const orderId = generateOrderAndSave();
+      elements.successOrderId.textContent = orderId;
       checkoutStep = 3;
       updateCheckoutStepUI();
-    }, 2200); // 2.2 second simulated bank loading screen
+      
+      showToast('Offline Mode: Order saved locally!', 'warning');
+    });
   }
 }
 
@@ -1535,6 +1611,30 @@ function generateOrderAndSave() {
   localStorage.setItem('kk_orders', JSON.stringify(orders));
   
   return orderId;
+}
+
+// Save order to LocalStorage when successfully created on database server
+function saveLocalOrder(orderId, data) {
+  const orders = JSON.parse(localStorage.getItem('kk_orders')) || [];
+  const newOrder = {
+    id: orderId,
+    date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+    deliveryTier: data.deliveryTier,
+    customer: {
+      name: data.name,
+      phone: data.phone,
+      pincode: data.pincode,
+      address: data.address
+    },
+    items: data.cartItems,
+    pricing: {
+      total: data.totalAmount
+    },
+    paymentMethod: data.paymentMethod.toUpperCase(),
+    status: 'Pending'
+  };
+  orders.unshift(newOrder);
+  localStorage.setItem('kk_orders', JSON.stringify(orders));
 }
 
 // Confetti success drops
