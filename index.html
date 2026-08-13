@@ -54,23 +54,10 @@
 </head>
 <body>
 
-  <!-- --- Emerald Top Header Bar --- -->
-  <div class="top-header-bar">
-    <div class="container top-header-container">
-      <button class="btn-browse-categories" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">
-        <i data-lucide="grid"></i> Browse All Categories <i data-lucide="chevron-down" style="width:14px; height:14px;"></i>
-      </button>
-      <ul class="top-nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#shop">Shop Bounty</a></li>
-        <li><a href="#sweet-treasures">Sweet Treasures</a></li>
-        <li><a href="#seasonal-calendar">Seasonal Fruits</a></li>
-        <li><a href="#artisans">Farmers & Artisans</a></li>
-        <li><a href="#contact">Contact Support</a></li>
-      </ul>
-      <div class="top-header-right">
-        <span>⚡ Direct Farm Doorstep Express Delivery</span>
-      </div>
+  <!-- --- Emerald Top Announcement Bar --- -->
+  <div class="top-header-bar" style="background-color: var(--color-primary); color: var(--color-white); font-size: 0.85rem; padding: 10px 0; font-weight: 500; text-align: center;">
+    <div class="container" style="display: flex; justify-content: center; align-items: center; letter-spacing: 0.5px;">
+      <span>🌿 Farm to doorstep &middot; Authentic regional produce &middot; Pan-India delivery</span>
     </div>
   </div>
 
@@ -83,20 +70,13 @@
       </a>
       
       <ul class="nav-links">
-        <li><a href="#" class="active" id="nav-home">Home</a></li>
-        <li><a href="#shop" id="nav-shop">Shop Bounty</a></li>
-        <li><a href="#sweet-treasures" id="nav-sweets">Sweet Treasures</a></li>
-        <li><a href="#seasonal-calendar" id="nav-calendar">Seasonal Cycles</a></li>
-        <li><a href="#heritage" id="nav-heritage">Our Heritage</a></li>
-        <li><a href="#artisans" id="nav-artisans">Farmers & Artisans</a></li>
-        <li><a href="#contact" id="nav-contact">Contact Us</a></li>
+        <li><a href="#shop" class="active" id="nav-shop">Shop</a></li>
+        <li><a href="#heritage" id="nav-heritage">Our Story</a></li>
+        <li><a href="#artisans" id="nav-artisans">Farmers</a></li>
+        <li><a href="#seasonal-calendar" id="nav-calendar">Seasonal</a></li>
       </ul>
 
       <div class="nav-actions">
-        <button class="btn-track-nav" id="open-tracking-modal-btn">
-          <i data-lucide="truck" style="width: 16px; height: 16px;"></i> <span>Track Order</span>
-        </button>
-
         <button class="nav-btn search-trigger" id="search-trigger-btn" aria-label="Search Catalog">
           <i data-lucide="search"></i>
         </button>
@@ -117,17 +97,18 @@
     <section class="sunshine-hero" id="home">
       <div class="container sunshine-hero-container">
         <div class="sunshine-hero-text">
-          <span class="hero-sub-tag">✨ Premium Indian Regional Specialties & Organic Treasures</span>
-          <h2 class="editorial-headline">Authentic Regional Goods & Organic Delicacies</h2>
-          <p class="sunshine-hero-desc">Certified Kashmiri Saffron, Darjeeling First Flush Tea, Mysore Sandalwood Oil, Ratnagiri Alphonso Mangoes, and Mithila Makhana sourced directly from verified regional heritage farms.</p>
+          <span class="hero-sub-tag">✨ Premium Bihar Regional Specialties & Farm Treasures</span>
+          <h2 class="editorial-headline">Taste the real Bihar.</h2>
+          <p class="sunshine-hero-desc">Authentic regional foods, traditional sweets and farm produce sourced from Bihar's farmers and artisans.</p>
           <div class="hero-action-group">
-            <a href="#shop" class="btn btn-amber-pill">Shop Fresh Harvest <i data-lucide="arrow-right"></i></a>
-            <a href="#sweet-treasures" class="btn btn-amber-outline">Sweet Treasures</a>
+            <a href="#shop" class="btn btn-amber-pill">Shop Now <i data-lucide="arrow-right"></i></a>
+            <a href="#heritage" class="btn btn-amber-outline">Our Story</a>
           </div>
           <div class="sunshine-trust-row">
-            <span class="trust-pill"><i data-lucide="shield-check" style="width:14px; height:14px; color:#B45309;"></i> 100% GI Tagged</span>
-            <span class="trust-pill"><i data-lucide="truck" style="width:14px; height:14px; color:#B45309;"></i> Express Doorstep</span>
-            <span class="trust-pill"><i data-lucide="star" style="width:14px; height:14px; fill:#F59E0B; color:#F59E0B;"></i> 4.9 Star Rated (10k+ Families)</span>
+            <span class="trust-pill"><i data-lucide="shield-check" style="width:14px; height:14px; color:var(--color-primary);"></i> Farm Sourced</span>
+            <span class="trust-pill"><i data-lucide="award" style="width:14px; height:14px; color:var(--color-primary);"></i> GI Specialties</span>
+            <span class="trust-pill"><i data-lucide="package" style="width:14px; height:14px; color:var(--color-primary);"></i> Freshly Packed</span>
+            <span class="trust-pill"><i data-lucide="truck" style="width:14px; height:14px; color:var(--color-primary);"></i> Pan-India Delivery</span>
           </div>
         </div>
         <div class="sunshine-hero-visual">
@@ -144,136 +125,75 @@
       <div class="torn-paper-divider"></div>
     </section>
 
-    <!-- --- Features / Value Bar --- -->
-    <section class="features-bar">
+    <!-- --- Shop by Category Section --- -->
+    <section class="category-cards-section section-padding" id="categories" style="background: var(--color-bg);">
       <div class="container">
-        <div class="features-grid">
-          <div class="feature-item">
-            <div class="feature-icon-wrapper">
-              <i data-lucide="sprout"></i>
+        <div class="section-header center-header" style="text-align: center; margin-bottom: 40px;">
+          <span class="sub-tagline" style="color: var(--color-primary); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; font-size: 0.8rem;">Categories</span>
+          <h2 style="font-family: var(--font-serif); font-size: 2.25rem; color: var(--color-text-dark); margin-top: 8px;">Shop by Category</h2>
+        </div>
+        
+        <div class="category-cards-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px;">
+          <!-- Category 1: Fruits & Fresh Produce -->
+          <div class="category-card" onclick="handleCategoryFilterSelect('fruits-fresh-produce')" style="cursor: pointer; background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: var(--border-radius-md); overflow: hidden; display: flex; flex-direction: column; transition: var(--transition-normal); box-shadow: var(--shadow-sm);">
+            <div class="category-card-image" style="height: 180px; overflow: hidden; position: relative;">
+              <img src="assets/shahi_litchi.jpg" alt="Fruits & Fresh Produce" style="width: 100%; height: 100%; object-fit: cover; transition: var(--transition-normal);" />
             </div>
-            <div class="feature-text">
-              <h4>100% Organic</h4>
-              <p>Chemical-free farm produce</p>
-            </div>
-          </div>
-          <div class="feature-item">
-            <div class="feature-icon-wrapper">
-              <i data-lucide="award"></i>
-            </div>
-            <div class="feature-text">
-              <h4>GI Tagged Specialties</h4>
-              <p>Authentic certified origins</p>
+            <div class="category-card-content" style="padding: 20px; flex-grow: 1; display: flex; flex-direction: column; gap: 6px;">
+              <h3 style="margin: 0; font-family: var(--font-serif); font-size: 1.25rem; color: var(--color-primary); font-weight: 700;">Fresh Produce</h3>
+              <p style="margin: 0; font-size: 0.85rem; color: var(--color-text-muted); flex-grow: 1; line-height: 1.5;">Muzaffarpur Shahi Litchi & Bhagalpur Mangoes</p>
+              <span style="font-size: 0.85rem; font-weight: 600; color: var(--color-accent); margin-top: 8px; display: inline-flex; align-items: center; gap: 4px;">Explore →</span>
             </div>
           </div>
-          <div class="feature-item">
-            <div class="feature-icon-wrapper">
-              <i data-lucide="truck"></i>
+          
+          <!-- Category 2: Mithila Makhana & Superfoods -->
+          <div class="category-card" onclick="handleCategoryFilterSelect('superfoods-snacks')" style="cursor: pointer; background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: var(--border-radius-md); overflow: hidden; display: flex; flex-direction: column; transition: var(--transition-normal); box-shadow: var(--shadow-sm);">
+            <div class="category-card-image" style="height: 180px; overflow: hidden; position: relative;">
+              <img src="assets/mithila_makhana.jpg" alt="Makhana & Superfoods" style="width: 100%; height: 100%; object-fit: cover; transition: var(--transition-normal);" />
             </div>
-            <div class="feature-text">
-              <h4>Express Farm Delivery</h4>
-              <p>Freshly packed at harvest</p>
+            <div class="category-card-content" style="padding: 20px; flex-grow: 1; display: flex; flex-direction: column; gap: 6px;">
+              <h3 style="margin: 0; font-family: var(--font-serif); font-size: 1.25rem; color: var(--color-primary); font-weight: 700;">Makhana & Superfoods</h3>
+              <p style="margin: 0; font-size: 0.85rem; color: var(--color-text-muted); flex-grow: 1; line-height: 1.5;">Premium Mithila foxnuts and healthy snacks</p>
+              <span style="font-size: 0.85rem; font-weight: 600; color: var(--color-accent); margin-top: 8px; display: inline-flex; align-items: center; gap: 4px;">Explore →</span>
             </div>
           </div>
-          <div class="feature-item">
-            <div class="feature-icon-wrapper">
-              <i data-lucide="users"></i>
+          
+          <!-- Category 3: Rice & Grains -->
+          <div class="category-card" onclick="handleCategoryFilterSelect('staples-grains')" style="cursor: pointer; background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: var(--border-radius-md); overflow: hidden; display: flex; flex-direction: column; transition: var(--transition-normal); box-shadow: var(--shadow-sm);">
+            <div class="category-card-image" style="height: 180px; overflow: hidden; position: relative;">
+              <img src="assets/katarni_rice.jpg" alt="Rice & Staples" style="width: 100%; height: 100%; object-fit: cover; transition: var(--transition-normal);" />
             </div>
-            <div class="feature-text">
-              <h4>Farmer Cooperative</h4>
-              <p>Direct fair profits to farmers</p>
+            <div class="category-card-content" style="padding: 20px; flex-grow: 1; display: flex; flex-direction: column; gap: 6px;">
+              <h3 style="margin: 0; font-family: var(--font-serif); font-size: 1.25rem; color: var(--color-primary); font-weight: 700;">Rice & Grains</h3>
+              <p style="margin: 0; font-size: 0.85rem; color: var(--color-text-muted); flex-grow: 1; line-height: 1.5;">Katarni Rice, Chana Sattu, and daily staples</p>
+              <span style="font-size: 0.85rem; font-weight: 600; color: var(--color-accent); margin-top: 8px; display: inline-flex; align-items: center; gap: 4px;">Explore →</span>
+            </div>
+          </div>
+          
+          <!-- Category 4: Traditional Sweets -->
+          <div class="category-card" onclick="handleCategoryFilterSelect('superfoods-snacks')" style="cursor: pointer; background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: var(--border-radius-md); overflow: hidden; display: flex; flex-direction: column; transition: var(--transition-normal); box-shadow: var(--shadow-sm);">
+            <div class="category-card-image" style="height: 180px; overflow: hidden; position: relative;">
+              <img src="assets/silao_khaja.jpg" alt="Traditional Sweets" style="width: 100%; height: 100%; object-fit: cover; transition: var(--transition-normal);" />
+            </div>
+            <div class="category-card-content" style="padding: 20px; flex-grow: 1; display: flex; flex-direction: column; gap: 6px;">
+              <h3 style="margin: 0; font-family: var(--font-serif); font-size: 1.25rem; color: var(--color-primary); font-weight: 700;">Traditional Sweets</h3>
+              <p style="margin: 0; font-size: 0.85rem; color: var(--color-text-muted); flex-grow: 1; line-height: 1.5;">Silao Khaja, Gaya Tilkut, and traditional sweets</p>
+              <span style="font-size: 0.85rem; font-weight: 600; color: var(--color-accent); margin-top: 8px; display: inline-flex; align-items: center; gap: 4px;">Explore →</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- --- Scrolling Marquee Banner --- -->
-    <div class="marquee-banner">
-      <div class="marquee-track">
-        <span>🥭 Jardalu Mango</span><span class="marquee-dot">•</span>
-        <span>🍈 Shahi Litchi</span><span class="marquee-dot">•</span>
-        <span>🌾 Katarni Rice</span><span class="marquee-dot">•</span>
-        <span>🫘 Mithila Makhana</span><span class="marquee-dot">•</span>
-        <span>🏺 Traditional Sattu</span><span class="marquee-dot">•</span>
-        <span>🪔 Puja Essentials</span><span class="marquee-dot">•</span>
-        <span>🥭 Jardalu Mango</span><span class="marquee-dot">•</span>
-        <span>🍈 Shahi Litchi</span><span class="marquee-dot">•</span>
-        <span>🌾 Katarni Rice</span><span class="marquee-dot">•</span>
-    </div>
 
-    <!-- --- Circular Categories Section --- -->
-    <section class="circular-categories-section section-padding">
-      <div class="container">
-        <div class="section-header center-header">
-          <span class="sub-tagline">Categories</span>
-          <h2>Featured <span>Categories</span></h2>
-        </div>
-        <div class="circular-categories-grid">
-          <div class="circle-cat-card" onclick="handleCategoryFilterSelect('fruits-fresh-produce')">
-            <div class="circle-cat-icon"><img src="assets/shahi_litchi.jpg" alt="Fruits & Fresh Produce"></div>
-            <h3>Fruits & Produce</h3>
-            <span>3 Products</span>
-          </div>
-          <div class="circle-cat-card" onclick="handleCategoryFilterSelect('staples-grains')">
-            <div class="circle-cat-icon"><img src="assets/katarni_rice.jpg" alt="Staples & Grains"></div>
-            <h3>Staples & Grains</h3>
-            <span>4 Products</span>
-          </div>
-          <div class="circle-cat-card" onclick="handleCategoryFilterSelect('superfoods-snacks')">
-            <div class="circle-cat-icon"><img src="assets/thekua.jpg" alt="Superfoods & Snacks"></div>
-            <h3>Superfoods & Snacks</h3>
-            <span>8 Products</span>
-          </div>
-          <div class="circle-cat-card" onclick="handleCategoryFilterSelect('handlooms-handicrafts')">
-            <div class="circle-cat-icon"><img src="assets/shahi_litchi.jpg" alt="Handlooms & Handicrafts" style="filter: hue-rotate(90deg);"></div>
-            <h3>Handlooms & Crafts</h3>
-            <span>3 Products</span>
-          </div>
-          <div class="circle-cat-card" onclick="handleCategoryFilterSelect('puja-essentials-kits')">
-            <div class="circle-cat-icon"><img src="assets/puja_box.jpg" alt="Puja Essentials & Kits"></div>
-            <h3>Puja Essentials</h3>
-            <span>3 Products</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- --- Dual Promotional Banners Section --- -->
-    <section class="dual-promo-banners-section">
-      <div class="container dual-promo-grid">
-        <div class="promo-banner-card promo-card-mint">
-          <div class="promo-content">
-            <span class="promo-pill-badge yellow-pill">Flat 20% Discount</span>
-            <h2>Purely Fresh Organic Harvest</h2>
-            <p>Certified Shahi Litchi & Bhagalpur Jardalu Mangoes delivered directly from Gangetic orchards.</p>
-            <a href="#shop" class="btn btn-emerald-pill">Shop Now <i data-lucide="arrow-right"></i></a>
-          </div>
-          <div class="promo-image-wrap">
-            <img src="assets/jardalu_mango.jpg" alt="Fresh Organic Harvest">
-          </div>
-        </div>
-
-        <div class="promo-banner-card promo-card-yellow">
-          <div class="promo-content">
-            <span class="promo-pill-badge green-pill">Flat 25% Discount</span>
-            <h2>Festive Sweets & Pure Quality</h2>
-            <p>Freshly prepared Silao Khaja, Gaya Tilkut, Chhath Thekua & Sacred Puja boxes.</p>
-            <a href="#sweet-treasures" class="btn btn-emerald-pill">Explore Sweets <i data-lucide="arrow-right"></i></a>
-          </div>
-          <div class="promo-image-wrap">
-            <img src="assets/thekua.jpg" alt="Festive Sweets & Delicacies">
-          </div>
-        </div>
-      </div>
-    </section>
 
     <!-- --- Seasonal Calendar / Cycles Section --- -->
-    <section class="calendar-section section-padding reveal-on-scroll" id="seasonal-calendar">
+    <section class="calendar-section section-padding reveal-on-scroll" id="seasonal-calendar" style="background: var(--color-bg-alt);">
       <div class="container">
-        <div class="section-header">
-          <h2>Seasonal Harvest Cycle</h2>
-          <p>Nature has its own rhythm. Discover Bihar's rich farm cycles and know exactly when your favorite fruits and goods are freshly harvested.</p>
+        <div class="section-header" style="text-align: center; margin-bottom: 40px;">
+          <span class="sub-tagline" style="color: var(--color-primary); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; font-size: 0.8rem;">Availability</span>
+          <h2 style="font-family: var(--font-serif); font-size: 2.25rem; color: var(--color-text-dark); margin-top: 8px;">What's fresh now?</h2>
+          <p style="font-size: 0.95rem; color: var(--color-text-muted); max-width: 600px; margin: 8px auto 0 auto; line-height: 1.6;">Discover what is currently in season and harvested fresh from our local farms.</p>
         </div>
 
         <div class="seasonal-calendar-widget">
@@ -413,22 +333,29 @@
             </div>
           </div>
         </div>
+        
+        <div style="text-align: center; margin-top: 36px;">
+          <a href="#shop" class="btn" style="background: var(--color-primary); color: white; border-radius: var(--border-radius-sm); border: none; padding: 12px 24px; font-size: 0.9rem; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; box-shadow: var(--shadow-sm);">
+            Explore Seasonal Products →
+          </a>
+        </div>
       </div>
     </section>
 
     <!-- --- Shopping Grid Section --- -->
-    <section class="shop-section section-padding reveal-on-scroll" id="shop">
+    <section class="shop-section section-padding reveal-on-scroll" id="shop" style="background: var(--color-bg);">
       <div class="container">
-        <div class="section-header">
-          <h2>Shop Our Organic Bounty</h2>
-          <p>Harvested at peak perfection, packed traditionally, and shipped to preserve flavor. Order from our seasonal catalog.</p>
+        <div class="section-header" style="text-align: center; margin-bottom: 40px;">
+          <span class="sub-tagline" style="color: var(--color-primary); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; font-size: 0.8rem;">Catalog</span>
+          <h2 style="font-family: var(--font-serif); font-size: 2.25rem; color: var(--color-text-dark); margin-top: 8px;">Best Sellers</h2>
+          <p style="font-size: 0.95rem; color: var(--color-text-muted); max-width: 600px; margin: 8px auto 0 auto; line-height: 1.6;">Harvested at peak perfection and shipped directly from Bihar's heritage farms.</p>
         </div>
 
         <div class="catalog-controls">
           <div class="catalog-search-filter">
             <div class="search-box-wrapper">
               <i class="search-icon" data-lucide="search"></i>
-              <input type="text" class="search-input" id="catalog-search" placeholder="Search Litchi, Mango, Makhana, Khaja, Tilkut, Puja Box...">
+              <input type="text" class="search-input" id="catalog-search" placeholder="Search Litchi, Mango, Makhana, Khaja, Tilkut...">
             </div>
             <select class="sort-select" id="catalog-sort" aria-label="Sort products">
               <option value="default">Default Sorting</option>
@@ -440,11 +367,10 @@
 
           <div class="category-tabs">
             <button class="category-btn active" data-category="all">All Specialties</button>
-            <button class="category-btn" data-category="fruits-fresh-produce">🍊 Orchard Fruits</button>
-            <button class="category-btn" data-category="staples-grains">🌾 Staples & Grains</button>
-            <button class="category-btn" data-category="superfoods-snacks">🍿 Superfoods & Snacks</button>
-            <button class="category-btn" data-category="handlooms-handicrafts">🎨 Handlooms & Crafts</button>
-            <button class="category-btn" data-category="puja-essentials-kits">🪔 Puja Essentials</button>
+            <button class="category-btn" data-category="fruits-fresh-produce">Fresh Produce</button>
+            <button class="category-btn" data-category="superfoods-snacks">Makhana & Superfoods</button>
+            <button class="category-btn" data-category="staples-grains">Rice & Grains</button>
+            <button class="category-btn" data-category="puja-essentials-kits">Puja Essentials</button>
           </div>
         </div>
 
@@ -458,9 +384,10 @@
     <!-- --- Our Heritage Section --- -->
     <section class="heritage-section section-padding reveal-on-scroll" id="heritage">
       <div class="container">
-        <div class="section-header">
-          <h2>Bihari Farm Heritage</h2>
-          <p>Every product tells a story of local mud, holy water, and generational knowledge. Learn about the legacy of our organic crops.</p>
+        <div class="section-header" style="text-align: center; margin-bottom: 40px;">
+          <span class="sub-tagline" style="color: var(--color-primary); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; font-size: 0.8rem;">Our Legacy</span>
+          <h2 style="font-family: var(--font-serif); font-size: 2.25rem; color: var(--color-text-dark); margin-top: 8px;">More than food. It's where we come from.</h2>
+          <p style="font-size: 0.95rem; color: var(--color-text-muted); max-width: 600px; margin: 8px auto 0 auto; line-height: 1.6;">Every product tells a story of local soil, sacred water, and generational knowledge. Discover the heritage behind our crops.</p>
         </div>
 
         <div class="heritage-grid">
@@ -513,12 +440,12 @@
     </section>
 
     <!-- --- Bihar's Sweet Treasures Section --- -->
-    <section class="sweets-section section-padding reveal-on-scroll" id="sweet-treasures" style="background: linear-gradient(180deg, var(--color-bg) 0%, #FFF8F0 100%);">
+    <section class="sweets-section section-padding reveal-on-scroll" id="sweet-treasures" style="background: var(--color-bg-alt); padding: 80px 0;">
       <div class="container">
-        <div class="madhubani-pattern-bar" style="margin-bottom: 24px; border-radius: 4px;"></div>
-        <div class="section-header">
-          <h2><span class="madhubani-heading-wrap">Bihar's Sweet Treasures & Festive Prasad</span></h2>
-          <p>Handcrafted by master halwais using pure cow ghee, organic jaggery, and centuries-old regional recipes. Prepared fresh daily for festive offerings & doorstep delivery.</p>
+        <div class="section-header" style="text-align: center; margin-bottom: 40px;">
+          <span class="sub-tagline" style="color: var(--color-primary); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; font-size: 0.8rem;">Festive Prasad</span>
+          <h2 style="font-family: var(--font-serif); font-size: 2.25rem; color: var(--color-text-dark); margin-top: 8px;">Traditional Sweets</h2>
+          <p style="font-size: 0.95rem; color: var(--color-text-muted); max-width: 600px; margin: 8px auto 0 auto; line-height: 1.6;">Handcrafted by master halwais using pure cow ghee, organic jaggery, and heritage regional recipes.</p>
         </div>
 
         <!-- Sweet Highlight Feature Cards Grid -->
@@ -645,12 +572,73 @@
       </div>
     </section>
 
-    <!-- --- Customer Testimonials Section --- -->
-    <section class="testimonials-section section-padding reveal-on-scroll" id="testimonials">
+    <!-- --- Why ZoloFresh Section --- -->
+    <section class="why-zolofresh-section section-padding" style="background: var(--color-bg-alt); padding: 80px 0;">
       <div class="container">
-        <div class="section-header">
-          <h2>What Our Customers Say</h2>
-          <p>Real reviews from families who trust ZOLOFRESH for authentic Bihar produce.</p>
+        <div class="section-header" style="text-align: center; margin-bottom: 48px;">
+          <span class="sub-tagline" style="color: var(--color-primary); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; font-size: 0.8rem;">Our Difference</span>
+          <h2 style="font-family: var(--font-serif); font-size: 2.25rem; color: var(--color-text-dark); margin-top: 8px;">Why ZoloFresh?</h2>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 32px;">
+          <div style="background: var(--color-bg-card); padding: 32px; border-radius: var(--border-radius-md); border: 1px solid var(--color-border); box-shadow: var(--shadow-sm); display: flex; flex-direction: column; gap: 8px;">
+            <h3 style="font-family: var(--font-serif); font-size: 1.25rem; color: var(--color-primary); margin: 0; font-weight: 700;">From the source</h3>
+            <p style="font-size: 0.9rem; color: var(--color-text-muted); line-height: 1.6; margin: 0;">Know where your food comes from. Every item is fully traceable back to the specific farmer co-op who grew it.</p>
+          </div>
+          <div style="background: var(--color-bg-card); padding: 32px; border-radius: var(--border-radius-md); border: 1px solid var(--color-border); box-shadow: var(--shadow-sm); display: flex; flex-direction: column; gap: 8px;">
+            <h3 style="font-family: var(--font-serif); font-size: 1.25rem; color: var(--color-primary); margin: 0; font-weight: 700;">Regional authenticity</h3>
+            <p style="font-size: 0.9rem; color: var(--color-text-muted); line-height: 1.6; margin: 0;">Products rooted in their original regions. We source items that have earned official GI tagging or local renown.</p>
+          </div>
+          <div style="background: var(--color-bg-card); padding: 32px; border-radius: var(--border-radius-md); border: 1px solid var(--color-border); box-shadow: var(--shadow-sm); display: flex; flex-direction: column; gap: 8px;">
+            <h3 style="font-family: var(--font-serif); font-size: 1.25rem; color: var(--color-primary); margin: 0; font-weight: 700;">Fairer sourcing</h3>
+            <p style="font-size: 0.9rem; color: var(--color-text-muted); line-height: 1.6; margin: 0;">We work closely with farmers and artisan communities, transferring the maximum percentage of profits directly back to them.</p>
+          </div>
+          <div style="background: var(--color-bg-card); padding: 32px; border-radius: var(--border-radius-md); border: 1px solid var(--color-border); box-shadow: var(--shadow-sm); display: flex; flex-direction: column; gap: 8px;">
+            <h3 style="font-family: var(--font-serif); font-size: 1.25rem; color: var(--color-primary); margin: 0; font-weight: 700;">Freshness first</h3>
+            <p style="font-size: 0.9rem; color: var(--color-text-muted); line-height: 1.6; margin: 0;">Products are sourced and packed with quality in mind, using express delivery to bring freshness to your doorstep.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- --- Farmer Story Section --- -->
+    <section class="farmer-story-section section-padding" id="artisans" style="background: var(--color-bg); padding: 80px 0;">
+      <div class="container">
+        <div class="section-header" style="text-align: center; margin-bottom: 48px;">
+          <span class="sub-tagline" style="color: var(--color-primary); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; font-size: 0.8rem;">Meet the people behind your food</span>
+          <h2 style="font-family: var(--font-serif); font-size: 2.25rem; color: var(--color-text-dark); margin-top: 8px;">A Legacy in Every Harvest</h2>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 48px; align-items: center;">
+          <div style="position: relative; border-radius: var(--border-radius-md); overflow: hidden; height: 380px; box-shadow: var(--shadow-md); border: 1px solid var(--color-border);">
+            <img src="assets/shahi_litchi.jpg" alt="Ramdhari Singh in Muzaffarpur Litchi Orchard" style="width: 100%; height: 100%; object-fit: cover;" />
+            <div style="position: absolute; bottom: 20px; left: 20px; background: rgba(24, 60, 43, 0.9); color: white; padding: 8px 16px; border-radius: 4px; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.5px;">
+              Muzaffarpur, Bihar
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <span style="font-weight: 700; text-transform: uppercase; color: var(--color-accent); font-size: 0.85rem; letter-spacing: 1px;">Featured Farmer Profile</span>
+            <h3 style="font-family: var(--font-serif); font-size: 2rem; color: var(--color-primary); margin: 0; line-height: 1.2;">Ramdhari Singh</h3>
+            <div style="font-size: 0.95rem; font-weight: 600; color: var(--color-text-dark); font-style: italic; margin-top: -4px;">3rd-Generation Litchi Grower</div>
+            <p style="font-size: 1rem; color: var(--color-text-muted); line-height: 1.6; margin: 0;">
+              "Our family has grown litchis in Muzaffarpur for generations. The calcium-rich silt of the Gangetic plain gives our Shahi Litchis their distinct sweetness and rose fragrance. By partnering with ZoloFresh, we deliver these delicate fruits fresh to metropolitan homes within hours of picking, bypassing long wholesale routes."
+            </p>
+            <div style="margin-top: 8px;">
+              <a href="#shop" class="btn" style="background: var(--color-primary); color: white; border-radius: var(--border-radius-sm); border: none; padding: 12px 24px; font-size: 0.9rem; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
+                Support Our Farmers →
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- --- Customer Testimonials Section --- -->
+    <section class="testimonials-section section-padding reveal-on-scroll" id="testimonials" style="background: var(--color-bg); padding: 80px 0;">
+      <div class="container">
+        <div class="section-header" style="text-align: center; margin-bottom: 48px;">
+          <span class="sub-tagline" style="color: var(--color-primary); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; font-size: 0.8rem;">Reviews</span>
+          <h2 style="font-family: var(--font-serif); font-size: 2.25rem; color: var(--color-text-dark); margin-top: 8px;">What Our Customers Say</h2>
+          <p style="font-size: 0.95rem; color: var(--color-text-muted); max-width: 600px; margin: 8px auto 0 auto; line-height: 1.6;">Real reviews from families who trust ZoloFresh for authentic regional produce.</p>
         </div>
         <div class="testimonials-grid">
           <div class="testimonial-card">
@@ -679,72 +667,7 @@
           </div>
         </div>
       </div>
-    <!-- --- Meet Farmers & Artisans Section --- -->
-    <section class="artisans-section section-padding reveal-on-scroll" id="artisans">
-      <div class="container">
-        <div class="madhubani-pattern-bar" style="margin-bottom: 24px; border-radius: 4px;"></div>
-        <div class="section-header">
-          <h2><span class="madhubani-heading-wrap">Meet Our Farmers & Artisans</span></h2>
-          <p>Every harvest and handicraft supports local families directly. 85%+ of your payment goes straight to regional producer accounts.</p>
-        </div>
 
-        <div class="artisans-grid">
-          <!-- Artisan 1 -->
-          <div class="artisan-card">
-            <div class="artisan-img-wrapper">
-              <span class="artisan-region-badge"><i data-lucide="map-pin" style="width: 14px; height: 14px;"></i> Muzaffarpur, Bihar</span>
-              <img src="assets/shahi_litchi.jpg" alt="Ramdhari Singh - Litchi Orchardist">
-            </div>
-            <div class="artisan-content">
-              <h3>Ramdhari Singh</h3>
-              <div class="artisan-role">Organic Litchi & Honey Producer</div>
-              <p class="artisan-bio">3rd generation orchardist growing GI-tagged Shahi Litchis without chemical pesticides, using traditional neem-leaf and bio-compost enrichment.</p>
-              <div class="artisan-impact-row">
-                <span class="impact-chip"><i data-lucide="check-circle" style="width: 12px; height: 12px;"></i> 85% Direct Profit</span>
-                <span class="impact-chip"><i data-lucide="leaf" style="width: 12px; height: 12px;"></i> Eco Jute Packing</span>
-                <span class="impact-chip"><i data-lucide="award" style="width: 12px; height: 12px;"></i> GI Certified</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Artisan 2 -->
-          <div class="artisan-card">
-            <div class="artisan-img-wrapper">
-              <span class="artisan-region-badge"><i data-lucide="map-pin" style="width: 14px; height: 14px;"></i> Mithila Region</span>
-              <img src="assets/mithila_makhana.jpg" alt="Sunita Devi - Mithila Makhana & Madhubani Artisan">
-            </div>
-            <div class="artisan-content">
-              <h3>Sunita Devi</h3>
-              <div class="artisan-role">Makhana Harvest & Madhubani Crafts</div>
-              <p class="artisan-bio">Leads a women's self-help cooperative harvesting natural lotus foxnuts from ponds and hand-painting Madhubani art packaging boxes.</p>
-              <div class="artisan-impact-row">
-                <span class="impact-chip"><i data-lucide="users" style="width: 12px; height: 12px;"></i> Women Co-op</span>
-                <span class="impact-chip"><i data-lucide="palette" style="width: 12px; height: 12px;"></i> Hand-Painted Motif</span>
-                <span class="impact-chip"><i data-lucide="heart" style="width: 12px; height: 12px;"></i> Fair Wage</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Artisan 3 -->
-          <div class="artisan-card">
-            <div class="artisan-img-wrapper">
-              <span class="artisan-region-badge"><i data-lucide="map-pin" style="width: 14px; height: 14px;"></i> Bhagalpur, Bihar</span>
-              <img src="assets/katarni_rice.jpg" alt="Bijay Kumar Mandal - Heritage Grain Farmer">
-            </div>
-            <div class="artisan-content">
-              <h3>Bijay Kumar Mandal</h3>
-              <div class="artisan-role">Katarni Paddy & Jardalu Cultodian</div>
-              <p class="artisan-bio">Preserving ancient aromatic Katarni rice seeds and tending flood-plain Jardalu mango trees harvested at peak solar ripeness.</p>
-              <div class="artisan-impact-row">
-                <span class="impact-chip"><i data-lucide="sprout" style="width: 12px; height: 12px;"></i> Seed Saver</span>
-                <span class="impact-chip"><i data-lucide="truck" style="width: 12px; height: 12px;"></i> Express Logistics</span>
-                <span class="impact-chip"><i data-lucide="shield-check" style="width: 12px; height: 12px;"></i> 100% Organic</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <!-- --- Contact Form Section --- -->
     <section class="contact-section section-padding reveal-on-scroll" id="contact">
@@ -824,62 +747,64 @@
   </main>
 
   <!-- --- Footer --- -->
-  <footer>
+  <!-- --- Footer --- -->
+  <footer style="background-color: var(--color-primary); color: var(--color-white); padding: 60px 0 30px 0; border-top: 1px solid var(--color-border);">
     <div class="container">
       <div class="footer-grid">
         <div class="footer-about">
-          <h3>ZOLOFRESH</h3>
-          <p>Honoring generations of Bihari agriculture. We provide 100% organic, seasonal harvests, GI-tagged native produce, and spiritual festival essentials directly to families nationwide.</p>
-          <div class="footer-social-links">
-            <a href="#" class="social-link" aria-label="Facebook" data-coming-soon="Follow us on Facebook — page coming soon!"><i data-lucide="facebook"></i></a>
-            <a href="https://www.instagram.com/smzolofreshinsta/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram"><i data-lucide="instagram"></i></a>
-            <a href="#" class="social-link" aria-label="Twitter" data-coming-soon="Follow us on Twitter/X — page coming soon!"><i data-lucide="twitter"></i></a>
-            <a href="#" class="social-link" aria-label="Youtube" data-coming-soon="Subscribe to our YouTube channel — coming soon!"><i data-lucide="youtube"></i></a>
-          </div>
+          <h3 style="font-family: var(--font-serif); font-size: 1.5rem; color: var(--color-white); margin-bottom: 12px; letter-spacing: 0.5px;">ZOLOFRESH</h3>
+          <p style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.7); line-height: 1.6; margin-bottom: 20px;">Authentic regional food and heritage products, sourced from farmers and artisans.</p>
         </div>
 
         <div class="footer-links-col">
-          <h4>Farm Products</h4>
-          <ul class="footer-links-list">
-            <li><a href="#shop">Shahi Litchi</a></li>
-            <li><a href="#shop">Jardalu Mango</a></li>
-            <li><a href="#shop">Mithila Makhana</a></li>
-            <li><a href="#shop">Gram Sattu</a></li>
-            <li><a href="#shop">Katarni Rice</a></li>
-            <li><a href="#shop">Puja Essentials</a></li>
+          <h4 style="font-family: var(--font-primary); font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--color-white); margin-bottom: 16px;">Shop</h4>
+          <ul class="footer-links-list" style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px;">
+            <li><a href="#shop" style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.7); text-decoration: none; transition: var(--transition-fast);">Fresh Produce</a></li>
+            <li><a href="#shop" style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.7); text-decoration: none; transition: var(--transition-fast);">Makhana</a></li>
+            <li><a href="#sweet-treasures" style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.7); text-decoration: none; transition: var(--transition-fast);">Sweets</a></li>
+            <li><a href="#shop" style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.7); text-decoration: none; transition: var(--transition-fast);">Rice & Staples</a></li>
+            <li><a href="#shop" style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.7); text-decoration: none; transition: var(--transition-fast);">Puja Essentials</a></li>
           </ul>
         </div>
 
         <div class="footer-links-col">
-          <h4>Our Legacy</h4>
-          <ul class="footer-links-list">
-            <li><a href="#heritage">The Soil of Muzaffarpur</a></li>
-            <li><a href="#heritage">Bhagalpur Farmer Network</a></li>
-            <li><a href="#heritage">Mithila Cooperative</a></li>
-            <li><a href="#seasonal-calendar">Seasonal Harvest Calendar</a></li>
-            <li><a href="#heritage">Organic Certifications</a></li>
+          <h4 style="font-family: var(--font-primary); font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--color-white); margin-bottom: 16px;">Company</h4>
+          <ul class="footer-links-list" style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px;">
+            <li><a href="#heritage" style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.7); text-decoration: none; transition: var(--transition-fast);">Our Story</a></li>
+            <li><a href="#artisans" style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.7); text-decoration: none; transition: var(--transition-fast);">Farmers</a></li>
+            <li><a href="#seasonal-calendar" style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.7); text-decoration: none; transition: var(--transition-fast);">Seasonal</a></li>
+            <li><a href="#contact" style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.7); text-decoration: none; transition: var(--transition-fast);">Contact</a></li>
           </ul>
         </div>
 
         <div class="footer-links-col">
-          <h4>Customer Service</h4>
-          <ul class="footer-links-list">
-            <li><a href="#contact">Contact Support</a></li>
-            <li><a href="#contact">Bulk Orders & Catering</a></li>
-            <li><a href="javascript:void(0)" onclick="openTrackingModal()">Shipping & Harvest Tracking</a></li>
-            <li><a href="delivery.html">Refund Policy</a></li>
-            <li><a href="delivery.html">Delivery FAQs</a></li>
+          <h4 style="font-family: var(--font-primary); font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--color-white); margin-bottom: 16px;">Help</h4>
+          <ul class="footer-links-list" style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px;">
+            <li><a href="delivery.html" style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.7); text-decoration: none; transition: var(--transition-fast);">Shipping</a></li>
+            <li><a href="delivery.html" style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.7); text-decoration: none; transition: var(--transition-fast);">Returns</a></li>
+            <li><a href="javascript:void(0)" onclick="openTrackingModal()" style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.7); text-decoration: none; transition: var(--transition-fast);">Track Order</a></li>
+            <li><a href="delivery.html" style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.7); text-decoration: none; transition: var(--transition-fast);">FAQs</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-col">
+          <h4 style="font-family: var(--font-primary); font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--color-white); margin-bottom: 16px;">Social</h4>
+          <ul class="footer-links-list" style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px;">
+            <li><a href="https://www.instagram.com/smzolofreshinsta/" target="_blank" rel="noopener noreferrer" style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.7); text-decoration: none; transition: var(--transition-fast);">Instagram</a></li>
+            <li><a href="#" style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.7); text-decoration: none; transition: var(--transition-fast);">Facebook</a></li>
+            <li><a href="https://chat.whatsapp.com/Fejuxi9NWkh9TsfhWcay1x" target="_blank" style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.7); text-decoration: none; transition: var(--transition-fast);">WhatsApp</a></li>
           </ul>
         </div>
       </div>
 
-      <div class="footer-bottom">
-        <p>&copy; 2026 ZOLOFRESH. All Rights Reserved. Built with Organic Love.</p>
-        <div class="footer-bottom-links">
-          <a href="delivery.html">Privacy Policy</a>
-          <a href="delivery.html">Terms of Service</a>
-          <a href="delivery.html">Shipping Guidelines</a>
-          <a href="admin.html" style="opacity: 0.5; font-weight: 600;">Admin Dashboard</a>
+      <div class="footer-bottom" style="margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px;">
+        <p style="font-size: 0.85rem; color: rgba(255, 255, 255, 0.5); margin: 0;">&copy; 2026 ZoloFresh. All Rights Reserved.</p>
+        <div class="footer-bottom-links" style="display: flex; gap: 20px;">
+          <a href="delivery.html" style="font-size: 0.85rem; color: rgba(255, 255, 255, 0.5); text-decoration: none;">Privacy</a>
+          <a href="delivery.html" style="font-size: 0.85rem; color: rgba(255, 255, 255, 0.5); text-decoration: none;">Terms</a>
+          <a href="delivery.html" style="font-size: 0.85rem; color: rgba(255, 255, 255, 0.5); text-decoration: none;">Refund Policy</a>
+          <a href="delivery.html" style="font-size: 0.85rem; color: rgba(255, 255, 255, 0.5); text-decoration: none;">Shipping Policy</a>
+          <a href="admin.html" style="font-size: 0.85rem; color: rgba(255, 255, 255, 0.3); text-decoration: none; font-weight: 600;">Admin</a>
         </div>
       </div>
     </div>

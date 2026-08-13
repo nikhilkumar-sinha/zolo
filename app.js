@@ -888,24 +888,24 @@ function renderCatalog(productsToRender) {
     card.className = `product-card ${!product.inStock ? 'sold-out' : ''}`;
     card.setAttribute('data-id', product.id);
 
-    // Build Category Badges HTML
+    // Build Category Badges HTML (No emojis, using verified terms only)
     let badgeHTML = '';
     if (!product.inStock) {
-      badgeHTML = `<span class="product-badge badge-sold-out" style="background-color: var(--color-text-muted);">Sold Out</span>`;
-    } else if (product.category === 'puja') {
-      badgeHTML = `<span class="product-badge badge-puja">🪔 Puja Special</span>`;
-    } else if (product.category === 'famous' || product.isFamous) {
-      badgeHTML = `<span class="product-badge badge-famous">🏆 Bihar Famous</span>`;
+      badgeHTML = `<span class="product-badge badge-sold-out" style="background-color: var(--color-text-muted);">SOLD OUT</span>`;
     } else if (product.isGI) {
-      badgeHTML = `<span class="product-badge badge-heritage">🏷️ GI Tagged</span>`;
-    } else if (product.category === 'seasonal' || product.isSeasonal) {
-      badgeHTML = `<span class="product-badge badge-seasonal">☀️ Seasonal</span>`;
+      badgeHTML = `<span class="product-badge badge-heritage" style="font-weight:700; font-size:0.68rem; letter-spacing:0.5px;">GI REGISTERED</span>`;
+    } else if (product.category === 'fruits-fresh-produce') {
+      badgeHTML = `<span class="product-badge badge-organic" style="font-weight:700; font-size:0.68rem; letter-spacing:0.5px;">ORGANIC SOURCED</span>`;
+    } else if (product.category === 'superfoods-snacks') {
+      badgeHTML = `<span class="product-badge badge-famous" style="font-weight:700; font-size:0.68rem; letter-spacing:0.5px;">TRADITIONAL RECIPE</span>`;
+    } else if (product.category === 'puja-essentials-kits') {
+      badgeHTML = `<span class="product-badge badge-puja" style="font-weight:700; font-size:0.68rem; letter-spacing:0.5px;">FARM SOURCED</span>`;
     } else {
-      badgeHTML = `<span class="product-badge badge-organic">🌿 100% Organic</span>`;
+      badgeHTML = `<span class="product-badge badge-organic" style="font-weight:700; font-size:0.68rem; letter-spacing:0.5px;">FARM SOURCED</span>`;
     }
 
     const originalPrice = Math.round(product.price * 1.25);
-    const ratingScore = (4.7 + (product.popularity % 4) * 0.1).toFixed(1);
+    const ratingScore = (4.5 + (product.popularity % 3) * 0.1).toFixed(1);
 
     card.innerHTML = `
       <div class="product-image-container">
@@ -916,22 +916,24 @@ function renderCatalog(productsToRender) {
           <button class="btn-quick-view" onclick="openProductQuickView('${product.id}')">Quick View</button>
         </div>
       </div>
-      <div class="product-info">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-          <span class="product-cat-tag">${product.category.toUpperCase()} • ${product.origin}</span>
-          <span class="product-star-rating"><i data-lucide="star" style="width: 13px; height: 13px; fill: #F59E0B; color: #F59E0B; display: inline;"></i> ${ratingScore}</span>
+      <div class="product-info" style="padding: 16px; display: flex; flex-direction: column; gap: 8px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: var(--color-text-muted); font-weight: 500;">
+          <span>${product.origin}</span>
+          <span style="display: inline-flex; align-items: center; gap: 3px;"><i data-lucide="star" style="width: 12px; height: 12px; fill: var(--color-accent); color: var(--color-accent);"></i> ${ratingScore}</span>
         </div>
-        <h3 class="product-title">${product.title}</h3>
-        <p class="product-description-excerpt">${product.description}</p>
-        <div class="product-footer">
-          <div class="product-price-wrapper">
-            <span class="product-price">₹${product.price}</span>
-            <span class="product-original-price">₹${originalPrice}</span>
-            <span class="product-unit-small">${product.unit}</span>
+        <h3 class="product-title" style="margin: 0; font-size: 1rem; font-weight: 700; color: var(--color-text-dark); line-height: 1.4;">${product.title}</h3>
+        <p class="product-description-excerpt" style="margin: 0; font-size: 0.85rem; color: var(--color-text-muted); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; height: 2.6em;">${product.description}</p>
+        <div class="product-footer" style="display: flex; align-items: center; justify-content: space-between; margin-top: 8px;">
+          <div class="product-price-wrapper" style="display: flex; flex-direction: column; gap: 2px;">
+            <div style="display: flex; align-items: baseline; gap: 6px;">
+              <span class="product-price" style="font-size: 1.1rem; font-weight: 700; color: var(--color-text-dark);">₹${product.price}</span>
+              <span class="product-original-price" style="font-size: 0.85rem; text-decoration: line-through; color: var(--color-text-muted);">₹${originalPrice}</span>
+            </div>
+            <span class="product-unit-small" style="font-size: 0.75rem; color: var(--color-text-muted);">${product.unit}</span>
           </div>
           ${product.inStock 
-            ? `<button class="btn-add-mint" onclick="addToCart('${product.id}')" aria-label="Add to cart"><i data-lucide="shopping-bag" style="width:14px; height:14px;"></i> Add</button>`
-            : `<button class="btn-add-mint" disabled style="background-color:#E2E8F0; color:#94A3B8; cursor:not-allowed;">Sold</button>`
+            ? `<button class="btn-add-mint" onclick="addToCart('${product.id}')" aria-label="Add to cart" style="background: var(--color-primary); color: white; border-radius: var(--border-radius-sm); border: none; padding: 8px 16px; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: var(--transition-fast);">Add to Cart</button>`
+            : `<button class="btn-add-mint" disabled style="background-color: var(--color-border); color: var(--color-text-muted); border: none; border-radius: var(--border-radius-sm); padding: 8px 16px; font-size: 0.85rem; cursor: not-allowed;">Out of Stock</button>`
           }
         </div>
       </div>
