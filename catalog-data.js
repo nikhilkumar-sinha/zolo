@@ -1,6 +1,6 @@
 // ==========================================
 // ZOLOFRESH - Generated Catalog Data (Excel Source)
-// Generated: 2026-08-27 14:30:49
+// Generated: 2026-08-27 14:34:34
 // ==========================================
 
 const DEFAULT_CATEGORIES = [
