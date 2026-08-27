@@ -72,7 +72,6 @@
       <ul class="nav-links">
         <li><a href="#shop" class="active" id="nav-shop">Shop</a></li>
         <li><a href="#heritage" id="nav-heritage">Our Story</a></li>
-        <li><a href="#artisans" id="nav-artisans">Farmers</a></li>
         <li><a href="#seasonal-calendar" id="nav-calendar">Seasonal</a></li>
         <li><a href="#catering" id="nav-catering">Catering</a></li>
       </ul>
@@ -416,6 +415,28 @@
           <p style="font-size: 0.95rem; color: var(--color-text-muted); max-width: 600px; margin: 8px auto 0 auto; line-height: 1.6;">Every product tells a story of local soil, sacred water, and generational knowledge. Discover the heritage behind our crops.</p>
         </div>
 
+        <!-- Mission & Vision block -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-bottom: 48px;">
+          <div style="background: var(--color-bg-card); padding: 32px; border-radius: var(--border-radius-md); border: 1px solid var(--color-border); box-shadow: var(--shadow-sm); display: flex; flex-direction: column; gap: 12px; border-top: 4px solid var(--color-primary);">
+            <div style="display: flex; align-items: center; gap: 10px; color: var(--color-primary);">
+              <i data-lucide="target" style="width: 24px; height: 24px;"></i>
+              <h3 style="font-family: var(--font-serif); font-size: 1.4rem; margin: 0; font-weight: 700;">Our Mission</h3>
+            </div>
+            <p style="font-size: 0.95rem; color: var(--color-text-muted); line-height: 1.6; margin: 0;">To empower local farming cooperatives and traditional artisan clusters by building a transparent, direct-to-consumer bridge, securing fair value for their labor and preserving generations of regional expertise.</p>
+          </div>
+          <div style="background: var(--color-bg-card); padding: 32px; border-radius: var(--border-radius-md); border: 1px solid var(--color-border); box-shadow: var(--shadow-sm); display: flex; flex-direction: column; gap: 12px; border-top: 4px solid var(--color-accent);">
+            <div style="display: flex; align-items: center; gap: 10px; color: var(--color-accent);">
+              <i data-lucide="eye" style="width: 24px; height: 24px;"></i>
+              <h3 style="font-family: var(--font-serif); font-size: 1.4rem; margin: 0; font-weight: 700;">Our Vision</h3>
+            </div>
+            <p style="font-size: 0.95rem; color: var(--color-text-muted); line-height: 1.6; margin: 0;">To be the trusted gateway for authentic, GI-tagged regional specialties, cultivating a sustainable agricultural ecosystem where heritage flourishes and rural livelihoods thrive.</p>
+          </div>
+        </div>
+
+        <div class="section-header center-header" style="text-align: center; margin-bottom: 30px; margin-top: 20px;">
+          <h3 style="font-family: var(--font-serif); font-size: 1.75rem; color: var(--color-text-dark); margin: 0;">Heritage Stories</h3>
+        </div>
+
         <div class="heritage-grid">
           <!-- Story 1: Shahi Litchi -->
           <div class="heritage-card">
@@ -749,37 +770,7 @@
       </div>
     </section>
 
-    <!-- --- Farmer Story Section --- -->
-    <section class="farmer-story-section section-padding" id="artisans" style="background: var(--color-bg); padding: 80px 0;">
-      <div class="container">
-        <div class="section-header" style="text-align: center; margin-bottom: 48px;">
-          <span class="sub-tagline" style="color: var(--color-primary); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; font-size: 0.8rem;">Meet the people behind your food</span>
-          <h2 style="font-family: var(--font-serif); font-size: 2.25rem; color: var(--color-text-dark); margin-top: 8px;">A Legacy in Every Harvest</h2>
-        </div>
-        
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 48px; align-items: center;">
-          <div style="position: relative; border-radius: var(--border-radius-md); overflow: hidden; height: 380px; box-shadow: var(--shadow-md); border: 1px solid var(--color-border);">
-            <img src="assets/shahi_litchi.jpg" alt="Ramdhari Singh in Muzaffarpur Litchi Orchard" style="width: 100%; height: 100%; object-fit: cover;" />
-            <div style="position: absolute; bottom: 20px; left: 20px; background: rgba(24, 60, 43, 0.9); color: white; padding: 8px 16px; border-radius: 4px; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.5px;">
-              Muzaffarpur, Bihar
-            </div>
-          </div>
-          <div style="display: flex; flex-direction: column; gap: 16px;">
-            <span style="font-weight: 700; text-transform: uppercase; color: var(--color-accent); font-size: 0.85rem; letter-spacing: 1px;">Featured Farmer Profile</span>
-            <h3 style="font-family: var(--font-serif); font-size: 2rem; color: var(--color-primary); margin: 0; line-height: 1.2;">Ramdhari Singh</h3>
-            <div style="font-size: 0.95rem; font-weight: 600; color: var(--color-text-dark); font-style: italic; margin-top: -4px;">3rd-Generation Litchi Grower</div>
-            <p style="font-size: 1rem; color: var(--color-text-muted); line-height: 1.6; margin: 0;">
-              "Our family has grown litchis in Muzaffarpur for generations. The calcium-rich silt of the Gangetic plain gives our Shahi Litchis their distinct sweetness and rose fragrance. By partnering with ZoloFresh, we deliver these delicate fruits fresh to metropolitan homes within hours of picking, bypassing long wholesale routes."
-            </p>
-            <div style="margin-top: 8px;">
-              <a href="#shop" class="btn" style="background: var(--color-primary); color: white; border-radius: var(--border-radius-sm); border: none; padding: 12px 24px; font-size: 0.9rem; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
-                Support Our Farmers →
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+
 
     <!-- --- Customer Testimonials Section --- -->
     <section class="testimonials-section section-padding reveal-on-scroll" id="testimonials" style="background: var(--color-bg); padding: 80px 0;">
