@@ -198,11 +198,22 @@ function renderAnalytics() {
       // Find category slug dynamically
       const prod = products.find(p => p.slug === item.id);
       if (prod) {
-        const categories = JSON.parse(localStorage.getItem('kk_categories')) || [];
-        const cat = categories.find(c => c.id === prod.category_id);
-        const catSlug = cat ? cat.slug : 'fruits';
-        if (catSales[catSlug] !== undefined) {
-          catSales[catSlug] += item.quantity;
+        let catKey = 'fruits';
+        const cid = prod.category_id;
+        if (cid === 12 || cid === 13) {
+          catKey = 'makhana';
+        } else if (cid === 8 || cid === 9 || cid === 10 || cid === 11) {
+          catKey = 'grains';
+        } else if (cid === 14 || cid === 15 || cid === 16 || cid === 17 || cid === 18) {
+          catKey = 'sweets';
+        } else if (cid === 22 || cid === 23 || cid === 24) {
+          catKey = 'puja';
+        } else if (cid === 19 || cid === 20 || cid === 21) {
+          catKey = 'crafts';
+        }
+        
+        if (catSales[catKey] !== undefined) {
+          catSales[catKey] += item.quantity;
           grandTotalUnits += item.quantity;
         }
       }

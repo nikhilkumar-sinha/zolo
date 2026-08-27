@@ -230,9 +230,98 @@ class ZoloRequestHandler(http.server.BaseHTTPRequestHandler):
 
         if path in ['/checkout_submit.php', '/api/checkout']:
             self.handle_checkout_submit()
+        elif path == '/contact_submit.php':
+            self.handle_contact_submit()
         else:
             self.send_response(404)
             self.end_headers()
+
+    def handle_contact_submit(self):
+        content_length = int(self.headers.get('Content-Length', 0))
+        post_data = self.rfile.read(content_length)
+
+        try:
+            payload = json.loads(post_data.decode('utf-8'))
+        except Exception as e:
+            self.send_json_response({'status': 'error', 'message': f'Invalid JSON payload: {e}'}, status_code=400)
+            return
+
+        name = payload.get('name', '').strip()
+        email = payload.get('email', '').strip()
+        subject = payload.get('subject', 'General Inquiry').strip()
+        message = payload.get('message', '').strip()
+
+        if not (name and email and message):
+            self.send_json_response({
+                'status': 'error',
+                'message': 'Please fill in all required fields.'
+            }, status_code=400)
+            return
+
+        print(f"\n========================================\n[INCOMING INQUIRY] {subject}\nSender: {name} ({email})\nMessage:\n{message}\n========================================\n")
+
+        # Save to local email_outbox
+        outbox_dir = os.path.join(os.path.dirname(__file__), 'email_outbox')
+        os.makedirs(outbox_dir, exist_ok=True)
+        timestamp = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
+        inquiry_file = os.path.join(outbox_dir, f"inquiry_{timestamp}.html")
+
+        # Build visual HTML representation for the local inbox
+        html_content = f"""
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="utf-8">
+            <title>ZOLOFRESH Inquiry</title>
+            <style>
+                body {{ font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; color: #242424; background-color: #faf7f0; margin: 0; padding: 20px; }}
+                .container {{ max-width: 600px; margin: 0 auto; padding: 25px; border: 1px solid #e4ded2; border-radius: 12px; background-color: #ffffff; box-shadow: 0 4px 12px rgba(24,60,43,0.05); }}
+                .header {{ border-bottom: 3px solid #183c2b; padding-bottom: 12px; margin-bottom: 24px; text-align: center; }}
+                .header h2 {{ color: #183c2b; margin: 0; font-size: 22px; }}
+                .badge {{ font-size: 0.95rem; font-weight: bold; color: #d99a24; margin-top: 8px; text-transform: uppercase; letter-spacing: 0.5px; }}
+                .section-title {{ font-size: 0.95rem; font-weight: bold; color: #183c2b; border-bottom: 1px solid #e4ded2; padding-bottom: 6px; margin: 20px 0 10px 0; text-transform: uppercase; }}
+                .detail-row {{ margin-bottom: 8px; font-size: 0.95rem; }}
+                .detail-label {{ font-weight: bold; color: #66635d; width: 140px; display: inline-block; }}
+                .message-box {{ background-color: #fcf8f2; padding: 15px; border-left: 4px solid #d99a24; border-radius: 4px; margin-top: 10px; font-size: 0.95rem; white-space: pre-line; }}
+                .footer {{ font-size: 0.85rem; color: #66635d; border-top: 1px solid #e4ded2; margin-top: 30px; padding-top: 15px; text-align: center; }}
+            </style>
+        </head>
+        <body>
+            <div class="container">
+                <div class="header">
+                    <h2>🌿 New Inquiry Received</h2>
+                    <div class="badge">{subject}</div>
+                </div>
+                
+                <div class="section-title">Sender Details</div>
+                <div class="detail-row"><span class="detail-label">Name:</span> {name}</div>
+                <div class="detail-row"><span class="detail-label">Contact/Email:</span> {email}</div>
+
+                <div class="section-title">Message Details</div>
+                <div class="message-box">{message}</div>
+                
+                <div class="footer">
+                    <p>Logged locally by ZOLOFRESH Dev Server at {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</p>
+                </div>
+            </div>
+        </body>
+        </html>
+        """
+
+        try:
+            with open(inquiry_file, 'w', encoding='utf-8') as f:
+                f.write(html_content)
+            print(f"Inquiry logged to file: {inquiry_file}")
+            email_sent = True
+        except Exception as e:
+            print(f"Failed to log inquiry to file: {e}")
+            email_sent = False
+
+        self.send_json_response({
+            'status': 'success',
+            'message': 'Thank you! Your inquiry has been received. Our team will contact you shortly.',
+            'fileLogged': email_sent
+        })
 
     def handle_checkout_submit(self):
         content_length = int(self.headers.get('Content-Length', 0))
@@ -352,9 +441,12 @@ class ZoloRequestHandler(http.server.BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(response_bytes)
 
+class ThreadingTCPServer(socketserver.ThreadingMixIn, socketserver.TCPServer):
+    pass
+
 def run_server():
-    socketserver.TCPServer.allow_reuse_address = True
-    with socketserver.TCPServer(("", PORT), ZoloRequestHandler) as httpd:
+    ThreadingTCPServer.allow_reuse_address = True
+    with ThreadingTCPServer(("", PORT), ZoloRequestHandler) as httpd:
         print(f"ZOLOFRESH Database & Order Server running at http://localhost:{PORT}/")
         try:
             httpd.serve_forever()

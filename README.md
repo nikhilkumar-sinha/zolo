@@ -84,17 +84,58 @@ To point the domain to GitHub, configure these records in your GoDaddy DNS setti
 
 ---
 
+## 📊 Spreadsheet Catalog Management (Excel)
+
+ZoloFresh uses a standard Microsoft Excel spreadsheet ([`catalog.xlsx`](file:///d:/organic_online_website/catalog.xlsx)) as the primary administrative source of truth for all products and categories. 
+
+### Spreadsheet Schema (`catalog.xlsx` - "Products" sheet):
+*   **`category`**: Parent category segment (`Fruits`, `Grains`, `Makhana`, `Puja`, `Sweets`, `Crafts`).
+*   **`Product Name`**: Full display name of the item.
+*   **`Sub-Categorie`**: Tag specifying classification (`GI Tagged`, `Organic`, `Traditional`).
+*   **`SKU`**: Unique stock keeping unit.
+*   **`Discount`**: Numerical discount percentage (e.g. `5` for 5%).
+*   **`Price`**: Final discounted unit price.
+*   **`Sales Price`**: Original base unit price.
+*   **`Unit`**: Package measurement (e.g., `Pack of 500g`, `Handmade Canvas (A4 Size)`).
+*   **`Stock Quantity`**: Available inventory count (e.g., `50 Units`, `100 Grams`).
+*   **`Product Image`**: Relative path to local assets (e.g., `.\assets\shahi_litchi.jpg`).
+
+### Synchronization Scripts
+A custom Python script [`sync_catalog.py`](file:///d:/organic_online_website/sync_catalog.py) translates changes between the Excel spreadsheet, SQLite database, and the static website files.
+
+1.  **Install Spreadsheet Dependencies**:
+    ```bash
+    python -m pip install openpyxl
+    ```
+2.  **Import & Sync (Apply Excel Changes to Website)**:
+    Modify details directly in `catalog.xlsx`, save it, then run:
+    ```bash
+    python sync_catalog.py
+    ```
+    *This updates the local SQLite database (`zolofresh.db`) and exports the static JSON models to [`catalog-data.js`](file:///d:/organic_online_website/catalog-data.js) to instantly update the website storefront.*
+3.  **Export (Re-generate Excel from Database)**:
+    If products are added via the database control panel, export them back into the spreadsheet with:
+    ```bash
+    python sync_catalog.py --export
+    ```
+
+---
+
 ## 🛠️ Local Development & Quick Start
 
 1.  Clone the repository:
     ```bash
     git clone https://github.com/nikhilkumar-sinha/zolo.git
     ```
-2.  Launch a local web server (Python 3):
+2.  Install requirements:
     ```bash
-    python -m http.server 8000
+    python -m pip install openpyxl
     ```
-3.  Open `http://localhost:8000` in your web browser.
+3.  Launch the local server:
+    ```bash
+    python server.py
+    ```
+4.  Open `http://localhost:8000` in your web browser.
 
 ---
 

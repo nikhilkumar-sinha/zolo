@@ -74,6 +74,7 @@
         <li><a href="#heritage" id="nav-heritage">Our Story</a></li>
         <li><a href="#artisans" id="nav-artisans">Farmers</a></li>
         <li><a href="#seasonal-calendar" id="nav-calendar">Seasonal</a></li>
+        <li><a href="#catering" id="nav-catering">Catering</a></li>
       </ul>
 
       <div class="nav-actions">
@@ -178,6 +179,30 @@
             <div class="category-card-content" style="padding: 20px; flex-grow: 1; display: flex; flex-direction: column; gap: 6px;">
               <h3 style="margin: 0; font-family: var(--font-serif); font-size: 1.25rem; color: var(--color-primary); font-weight: 700;">Traditional Sweets</h3>
               <p style="margin: 0; font-size: 0.85rem; color: var(--color-text-muted); flex-grow: 1; line-height: 1.5;">Silao Khaja, Gaya Tilkut, and traditional sweets</p>
+              <span style="font-size: 0.85rem; font-weight: 600; color: var(--color-accent); margin-top: 8px; display: inline-flex; align-items: center; gap: 4px;">Explore →</span>
+            </div>
+          </div>
+
+          <!-- Category 5: Handlooms & Handicrafts -->
+          <div class="category-card" onclick="handleCategoryFilterSelect('handlooms-handicrafts')" style="cursor: pointer; background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: var(--border-radius-md); overflow: hidden; display: flex; flex-direction: column; transition: var(--transition-normal); box-shadow: var(--shadow-sm);">
+            <div class="category-card-image" style="height: 180px; overflow: hidden; position: relative;">
+              <img src="assets/mithila_painting.jpg" alt="Handlooms & Handicrafts" style="width: 100%; height: 100%; object-fit: cover; transition: var(--transition-normal);" />
+            </div>
+            <div class="category-card-content" style="padding: 20px; flex-grow: 1; display: flex; flex-direction: column; gap: 6px;">
+              <h3 style="margin: 0; font-family: var(--font-serif); font-size: 1.25rem; color: var(--color-primary); font-weight: 700;">Handlooms & Handicrafts</h3>
+              <p style="margin: 0; font-size: 0.85rem; color: var(--color-text-muted); flex-grow: 1; line-height: 1.5;">Madhubani Art Paintings & Bhagalpuri Tussar Silk</p>
+              <span style="font-size: 0.85rem; font-weight: 600; color: var(--color-accent); margin-top: 8px; display: inline-flex; align-items: center; gap: 4px;">Explore →</span>
+            </div>
+          </div>
+
+          <!-- Category 6: Puja Essentials & Kits -->
+          <div class="category-card" onclick="handleCategoryFilterSelect('puja-essentials-kits')" style="cursor: pointer; background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: var(--border-radius-md); overflow: hidden; display: flex; flex-direction: column; transition: var(--transition-normal); box-shadow: var(--shadow-sm);">
+            <div class="category-card-image" style="height: 180px; overflow: hidden; position: relative;">
+              <img src="assets/puja_box.jpg" alt="Puja Essentials" style="width: 100%; height: 100%; object-fit: cover; transition: var(--transition-normal);" />
+            </div>
+            <div class="category-card-content" style="padding: 20px; flex-grow: 1; display: flex; flex-direction: column; gap: 6px;">
+              <h3 style="margin: 0; font-family: var(--font-serif); font-size: 1.25rem; color: var(--color-primary); font-weight: 700;">Puja Essentials</h3>
+              <p style="margin: 0; font-size: 0.85rem; color: var(--color-text-muted); flex-grow: 1; line-height: 1.5;">Diwali, Durga Puja packages, and sacred Gangajal</p>
               <span style="font-size: 0.85rem; font-weight: 600; color: var(--color-accent); margin-top: 8px; display: inline-flex; align-items: center; gap: 4px;">Explore →</span>
             </div>
           </div>
@@ -371,6 +396,7 @@
             <button class="category-btn" data-category="superfoods-snacks">Makhana & Superfoods</button>
             <button class="category-btn" data-category="staples-grains">Rice & Grains</button>
             <button class="category-btn" data-category="puja-essentials-kits">Puja Essentials</button>
+            <button class="category-btn" data-category="handlooms-handicrafts">Handlooms & Handicrafts</button>
           </div>
         </div>
 
@@ -568,6 +594,129 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- --- Catering Section --- -->
+    <section class="catering-section section-padding reveal-on-scroll" id="catering" style="background: var(--color-bg); padding: 80px 0;">
+      <div class="container">
+        <div class="catering-grid">
+          
+          <!-- Left Column: Catering Showcase -->
+          <div class="catering-content">
+            <span class="sub-tagline" style="color: var(--color-primary); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; font-size: 0.8rem;">🌿 ZoloFresh Banquets</span>
+            <h2 style="font-family: var(--font-serif); font-size: 2.5rem; color: var(--color-text-dark); margin: 12px 0 20px 0; line-height: 1.2;">Organic & Traditional Event Catering</h2>
+            <p style="color: var(--color-text-muted); font-size: 1.05rem; line-height: 1.7; margin-bottom: 30px;">
+              Bring the authentic, farm-fresh heritage of Bihar to your special celebrations. From intimate family gatherings to grand wedding banquets and sacred festivals, we cater with 100% organic, locally sourced seasonal ingredients cooked by traditional chefs.
+            </p>
+            
+            <div class="catering-packages-list">
+              
+              <!-- Package 1: Satvik -->
+              <div class="catering-package-item">
+                <div class="catering-pkg-icon">
+                  <i data-lucide="flower-2"></i>
+                </div>
+                <div class="catering-pkg-details">
+                  <h3>Festive Satvik Box</h3>
+                  <p>100% pure vegetarian, onion-and-garlic-free traditional prasads and meals. Prepared with sacred cleanliness for Chhath Puja, Diwali, and Durga Puja rituals.</p>
+                  <span class="catering-pkg-highlight">✨ Sourced Gangajal & organic raw ingredients</span>
+                </div>
+              </div>
+              
+              <!-- Package 2: Farm Feast -->
+              <div class="catering-package-item">
+                <div class="catering-pkg-icon">
+                  <i data-lucide="flame"></i>
+                </div>
+                <div class="catering-pkg-details">
+                  <h3>Organic Farm Feast</h3>
+                  <p>Live rustic wood-fire counters featuring authentic Litti Chokha, hand-ground Sattu coolers, and fresh organic greens. Gives your guests a true rural Bihari culinary experience.</p>
+                  <span class="catering-pkg-highlight">🔥 Wood-fired live counters & clay-oven cooking</span>
+                </div>
+              </div>
+              
+              <!-- Package 3: Royal Mithila Banquet -->
+              <div class="catering-package-item">
+                <div class="catering-pkg-icon">
+                  <i data-lucide="award"></i>
+                </div>
+                <div class="catering-pkg-details">
+                  <h3>Royal Mithila & Bihari Banquet</h3>
+                  <p>A premium grand feast presenting Bihar's finest GI-tagged treasures: Shahi Litchi mocktails, Jardalu Mango desserts, flaky Silao Khaja, and Gaya sesame Tilkut.</p>
+                  <span class="catering-pkg-highlight">👑 Features all 6 GI-tagged Bihari specialties</span>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <!-- Right Column: Booking Inquiry Form -->
+          <div class="catering-form-container">
+            <div class="catering-form-card">
+              <h3>Book Your Organic Feast</h3>
+              <p>Fill out this form to inquire about our catering packages, menu options, and availability for your event.</p>
+              
+              <form id="catering-form">
+                <div class="form-group">
+                  <label for="catering-name">Your Full Name *</label>
+                  <div class="input-with-icon">
+                    <i data-lucide="user"></i>
+                    <input type="text" id="catering-name" placeholder="Enter your name" required>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label for="catering-contact">Email or Phone Number *</label>
+                  <div class="input-with-icon">
+                    <i data-lucide="phone"></i>
+                    <input type="text" id="catering-contact" placeholder="Email or contact number" required>
+                  </div>
+                </div>
+                
+                <div class="form-row-2">
+                  <div class="form-group">
+                    <label for="catering-date">Event Date *</label>
+                    <div class="input-with-icon">
+                      <input type="date" id="catering-date" required>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="catering-guests">Estimated Guests *</label>
+                    <div class="input-with-icon">
+                      <i data-lucide="users"></i>
+                      <input type="number" id="catering-guests" min="10" placeholder="Min. 10 guests" required>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label for="catering-package">Choose Package Tier *</label>
+                  <div class="input-with-icon">
+                    <i data-lucide="utensils"></i>
+                    <select id="catering-package" required>
+                      <option value="" disabled selected>Select a package option</option>
+                      <option value="Satvik Box">Festive Satvik Box (Sacred Rituals)</option>
+                      <option value="Farm Feast">Organic Farm Feast (Live Litti Chokha)</option>
+                      <option value="Royal Mithila">Royal Mithila Banquet (GI Specials)</option>
+                      <option value="Custom Event">Custom Menu Celebration</option>
+                    </select>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label for="catering-message">Special Culinary Requests / Notes</label>
+                  <textarea id="catering-message" rows="3" placeholder="Tell us about food preferences, allergen requirements, theme ideas, etc."></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: 10px;">
+                  Send Catering Request <i data-lucide="send"></i>
+                </button>
+              </form>
+            </div>
+          </div>
+          
         </div>
       </div>
     </section>
@@ -1193,6 +1342,7 @@
     </div>
   </div>
 
+  <script src="catalog-data.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

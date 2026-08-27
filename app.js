@@ -4,491 +4,6 @@
    Features: State Management, LocalStorage DB, Cart Operations, Payment Validation, Confetti
 */
 
-// --- DEFAULT PRODUCT SEED DATABASE ---
-const DEFAULT_PRODUCTS = [
-  // 1. Orchard Fruits
-  {
-    id: 'shahi-litchi',
-    title: 'Certified Shahi Litchi',
-    category: 'fruits',
-    isGI: true,
-    isOrganic: true,
-    isSeasonal: true,
-    isFamous: true,
-    season: 'summer',
-    price: 240,
-    unit: 'Per Kg (approx. 40-45 units)',
-    image: 'assets/shahi_litchi.jpg',
-    origin: 'Muzaffarpur, Bihar',
-    popularity: 98,
-    inStock: true,
-    description: 'Muzaffarpur\'s famous GI-tagged Shahi Litchi is legendary for its bright rose-pink outer shell, heavy perfume, and exceptionally sweet, translucent pulp.',
-    heritageStory: 'Cultivated in the calcareous soil of Muzaffarpur fed by the Gandak River basin. The high calcium content of the land gives these litchis their signature rosy skin and unparalleled sweetness.'
-  },
-  {
-    id: 'jardalu-mango',
-    title: 'Bhagalpur Jardalu Mango',
-    category: 'fruits',
-    isGI: true,
-    isOrganic: true,
-    isSeasonal: true,
-    isFamous: true,
-    season: 'summer',
-    price: 190,
-    unit: 'Per Kg (approx. 4-5 units)',
-    image: 'assets/jardalu_mango.jpg',
-    origin: 'Bhagalpur, Bihar',
-    popularity: 95,
-    inStock: true,
-    description: 'Famed for its unique sweet aroma and bright lemon-yellow skin, the Bhagalpur Jardalu Mango is a certified GI treasure with thin skin and fiberless saffron pulp.',
-    heritageStory: 'Originally brought to Bhagalpur by the royals of Aliganj. Generations of farmers have preserved the graftings nourished by the alluvial silts of the Ganges.'
-  },
-  {
-    id: 'organic-jamun',
-    title: 'Wild Organic Jamun (Black Plum)',
-    category: 'fruits',
-    isGI: false,
-    isOrganic: true,
-    isSeasonal: true,
-    isFamous: false,
-    season: 'monsoon',
-    price: 180,
-    unit: 'Pack of 500g',
-    image: '',
-    origin: 'Muzaffarpur & Champaran',
-    popularity: 85,
-    inStock: true,
-    description: 'Hand-picked wild monsoon Jamun. Deep purple, tangy-sweet, and renowned for its natural blood-sugar regulating and digestive health benefits.',
-    heritageStory: 'Harvested from wild heritage trees in forest belts. Packed in eco-bamboo baskets to keep the tender fruit intact.'
-  },
-
-  // 2. Mithila Makhana
-  {
-    id: 'mithila-makhana',
-    title: 'Premium Mithila Makhana',
-    category: 'makhana',
-    isGI: true,
-    isOrganic: true,
-    isSeasonal: false,
-    isFamous: true,
-    season: 'monsoon',
-    price: 380,
-    unit: 'Pack of 500g (Jumbo Size)',
-    image: 'assets/mithila_makhana.jpg',
-    origin: 'Mithila Region, Bihar',
-    popularity: 94,
-    inStock: true,
-    description: 'GI-tagged Mithila Makhana (Phool Patasa) are high-grade popped foxnuts harvested from freshwater lotus ponds. Protein-rich, gluten-free superfood.',
-    heritageStory: 'Farmers dive under water in Mithila ponds to extract seeds which are hand-roasted and popped over iron woks using heavy mallets.'
-  },
-  {
-    id: 'bhuna-makhana',
-    title: 'Bhuna Makhana (Roasted Foxnuts)',
-    category: 'makhana',
-    isGI: true,
-    isOrganic: true,
-    isSeasonal: false,
-    isFamous: true,
-    season: 'monsoon',
-    price: 150,
-    unit: 'Pack of 200g',
-    image: 'assets/mithila_makhana.jpg',
-    origin: 'Mithila Region, Bihar',
-    popularity: 90,
-    inStock: true,
-    description: 'Lightly roasted, crispy Mithila Makhana seasoned with pink salt, pepper, and organic turmeric. A premium, guilt-free healthy snack.',
-    heritageStory: 'Freshly harvested makhana roasted in slow sand pans to achieve the ultimate crunch without losing nutritional values.'
-  },
-  {
-    id: 'makhana-kheer-kit',
-    title: 'Mithila Makhana Kheer Mix',
-    category: 'makhana',
-    isGI: true,
-    isOrganic: true,
-    isSeasonal: false,
-    isFamous: true,
-    season: 'monsoon',
-    price: 250,
-    unit: 'Pack of 300g (Ready Pudding Mix)',
-    image: 'assets/mithila_makhana.jpg',
-    origin: 'Darbhanga, Mithila',
-    popularity: 93,
-    inStock: true,
-    description: 'Gourmet pudding kit containing pre-roasted GI Mithila Makhana, saffron strands, green cardamom powder, cashew nuts, and raisins.',
-    heritageStory: 'Makhana Kheer is the traditional festive dessert served across Mithila during Kojagara and auspicious family celebrations.'
-  },
-
-  // 3. Grains & Flours
-  {
-    id: 'katarni-rice',
-    title: 'Fragrant Katarni Rice',
-    category: 'grains',
-    isGI: true,
-    isOrganic: true,
-    isSeasonal: false,
-    isFamous: true,
-    season: 'autumn',
-    price: 130,
-    unit: 'Pack of 1 Kg',
-    image: 'assets/katarni_rice.jpg',
-    origin: 'Jagdishpur, Bhagalpur',
-    popularity: 88,
-    inStock: true,
-    description: 'Slender-grained, aromatic GI Katarni Rice famous for its unique texture, natural fragrance, and light digestibility. Ideal for Chura and Kheer.',
-    heritageStory: 'Katarni Rice has a certified GI tag. The unique microclimate of Jagdishpur gives this rice its signature aroma.'
-  },
-  {
-    id: 'bhagalpuri-rice',
-    title: 'Bhagalpuri Rice',
-    category: 'grains',
-    isGI: false,
-    isOrganic: true,
-    isSeasonal: false,
-    isFamous: true,
-    season: 'autumn',
-    price: 110,
-    unit: 'Pack of 1 Kg',
-    image: 'assets/katarni_rice.jpg',
-    origin: 'Bhagalpur, Bihar',
-    popularity: 87,
-    inStock: true,
-    description: 'Premium organic white grain rice sourced directly from cooperative farmers in the Bhagalpur floodplains. Daily staple grain.',
-    heritageStory: 'Grown on fertile Gangetic plain lands using eco-compost fertilizers and harvested at maximum maturity.'
-  },
-  {
-    id: 'chana-sattu',
-    title: 'Chana ka Sattu (Gram Sattu)',
-    category: 'grains',
-    isGI: false,
-    isOrganic: true,
-    isSeasonal: false,
-    isFamous: true,
-    season: 'summer',
-    price: 90,
-    unit: 'Pack of 1 Kg',
-    image: 'assets/traditional_sattu.jpg',
-    origin: 'Buxar, Bihar',
-    popularity: 90,
-    inStock: true,
-    description: 'Traditional Bihari Sattu made from dry-roasted black chana ground in slow stone mills (jaanta). High in plant protein and cooling digestive properties.',
-    heritageStory: 'Sattu is Bihar\'s ancient peasant superfood. Stone grinding preserves the essential roasted aroma and digestive fiber.'
-  },
-  {
-    id: 'chura-poha',
-    title: 'Chura / Poha / Avlaki',
-    category: 'grains',
-    isGI: false,
-    isOrganic: true,
-    isSeasonal: false,
-    isFamous: true,
-    season: 'autumn',
-    price: 80,
-    unit: 'Pack of 500g',
-    image: 'assets/katarni_rice.jpg',
-    origin: 'Mithila Region, Bihar',
-    popularity: 89,
-    inStock: true,
-    description: 'Crisp, flattened rice flakes prepared from premium aromatic Katarni paddy. Perfect for traditional Dahi-Chura breakfast offerings.',
-    heritageStory: 'The Katarni paddy is soaked, roasted briefly, and beaten in traditional wooden mills to produce these highly aromatic flakes.'
-  },
-
-  // 4. Sweets & Delicacies
-  {
-    id: 'silao-khaja',
-    title: 'Famous Silao Khaja (GI Tagged)',
-    category: 'sweets',
-    isGI: true,
-    isOrganic: false,
-    isSeasonal: false,
-    isFamous: true,
-    season: 'winter',
-    price: 220,
-    unit: 'Pack of 500g (12 Pieces)',
-    image: 'assets/silao_khaja.jpg',
-    origin: 'Silao, Nalanda',
-    popularity: 97,
-    inStock: true,
-    description: 'GI-certified 52-layered wafer-thin crispy sweet from Silao. Delicately fried in desi ghee and dipped in light cardamom sugar syrup.',
-    heritageStory: 'Legend says Lord Buddha and King Bimbisara enjoyed Silao Khaja. The unique water of Silao gives its dough an unmatched multi-layered crunch.'
-  },
-  {
-    id: 'gaya-sesame-tilkut',
-    title: 'Gaya Special Sesame Tilkut',
-    category: 'sweets',
-    isGI: false,
-    isOrganic: true,
-    isSeasonal: true,
-    isFamous: true,
-    season: 'winter',
-    price: 280,
-    unit: 'Pack of 500g',
-    image: 'assets/gaya_tilkut.jpg',
-    origin: 'Ramana Road, Gaya',
-    popularity: 95,
-    inStock: true,
-    description: 'The world-famous winter sweet of Gaya. White sesame seeds and organic jaggery syrup pounded by hand into multi-layered crispy sheets that melt instantly.',
-    heritageStory: 'Pounded using heavy iron hammers in the historic lanes of Gaya. Famous across India during Makar Sankranti.'
-  },
-  {
-    id: 'chhath-thekua',
-    title: 'Authentic Chhath Prasad Thekua',
-    category: 'sweets',
-    isGI: false,
-    isOrganic: true,
-    isSeasonal: true,
-    isFamous: true,
-    isFreshToday: true,
-    season: 'winter',
-    price: 240,
-    unit: 'Pack of 500g (Approx 16-18 pcs)',
-    image: 'assets/thekua.jpg',
-    origin: 'Patna & Gaya, Bihar',
-    popularity: 99,
-    inStock: true,
-    description: 'Sacred Bihari festive delicacy made with whole wheat flour, pure desi cow ghee, organic jaggery, cardamom, and dry fruits. Hand-molded using carved wooden dies.',
-    heritageStory: 'The primary sacred offering during Chhath Puja. Slow-cooked over open wood fires to achieve a crispy, rich crust and long shelf life.'
-  },
-  {
-    id: 'sesame-anarsa',
-    title: 'Traditional Sesame Anarsa',
-    category: 'sweets',
-    isGI: false,
-    isOrganic: true,
-    isSeasonal: true,
-    isFamous: true,
-    isFreshToday: true,
-    season: 'autumn',
-    price: 260,
-    unit: 'Pack of 500g',
-    image: 'assets/anarsa.jpg',
-    origin: 'Gaya & Mithila',
-    popularity: 96,
-    inStock: true,
-    description: 'Crisp, golden-brown rice flour and jaggery/khoya sweet crusted with white sesame seeds. Soft and chewy on the inside, wonderfully crunchy outside.',
-    heritageStory: 'A festival staple prepared during Diwali, Teej, and weddings. Soaked rice is coarsely ground, fermented with jaggery, and fried in pure ghee.'
-  },
-  {
-    id: 'organic-jaggery',
-    title: 'Organic Jaggery (Bheli)',
-    category: 'sweets',
-    isGI: false,
-    isOrganic: true,
-    isSeasonal: false,
-    isFamous: true,
-    season: 'winter',
-    price: 120,
-    unit: 'Pack of 1 Kg',
-    image: 'assets/puja_box.jpg',
-    origin: 'Patna Region, Bihar',
-    popularity: 94,
-    inStock: true,
-    description: 'Pure, organic unrefined sugarcane jaggery (Gur/Bheli) made without chemical clarifiers. Dark, rich in iron, and naturally sweet.',
-    heritageStory: 'Hand-pressed by cooperative farming groups using pure sugarcane juice boiled in large open iron pans.'
-  },
-  {
-    id: 'traditional-sweets',
-    title: 'Traditional Sweets',
-    category: 'sweets',
-    isGI: false,
-    isOrganic: false,
-    isSeasonal: false,
-    isFamous: true,
-    season: 'winter',
-    price: 599,
-    unit: 'Pack of 1 Kg',
-    image: 'assets/Sweets.avif',
-    origin: 'Bangalore/Banaras flavour',
-    popularity: 92,
-    inStock: true,
-    description: 'Banarsi flavour Sweets.',
-    heritageStory: 'A delightful blend of traditional recipes bringing the authentic rich taste and flavour of Banaras heritage sweets right to your doorstep.'
-  },
-
-  // 5. Sacred Puja Packages
-  {
-    id: 'diwali-puja-package',
-    title: 'Diwali Sacred Puja Package',
-    category: 'puja',
-    isGI: false,
-    isOrganic: true,
-    isSeasonal: true,
-    isFamous: true,
-    season: 'winter',
-    price: 450,
-    unit: 'Complete Kit (12 items)',
-    image: 'assets/puja_box.jpg',
-    origin: 'Gaya & Patna, Bihar',
-    popularity: 98,
-    inStock: true,
-    description: 'Special Diwali kit: Terracotta diyas, sacred Gangajal, yellow cowries, lotus seeds, pure cow ghee wicks, raw honey, and natural incense.',
-    heritageStory: 'Assembled by priest cooperatives under strict rules of purification for home prosperity rituals.'
-  },
-  {
-    id: 'durgapuja-package',
-    title: 'Durga Puja Sacred Package',
-    category: 'puja',
-    isGI: false,
-    isOrganic: true,
-    isSeasonal: true,
-    isFamous: true,
-    season: 'autumn',
-    price: 550,
-    unit: 'Complete Kit (15 items)',
-    image: 'assets/puja_box.jpg',
-    origin: 'Mithila Region, Bihar',
-    popularity: 97,
-    inStock: true,
-    description: 'Comprehensive Durga Puja items: Sandalwood paste, red chunri, barley seeds, sacred soil, dry fruits, copper kalash, and dhoop sticks.',
-    heritageStory: 'Selected to match Mithila traditional rites for Navratri and Durga invocation.'
-  },
-  {
-    id: 'satyanarayan-puja-package',
-    title: 'Satyanarayan Bhagwan Puja Package',
-    category: 'puja',
-    isGI: false,
-    isOrganic: true,
-    isSeasonal: false,
-    isFamous: true,
-    season: 'winter',
-    price: 380,
-    unit: 'Complete Kit (10 items)',
-    image: 'assets/puja_box.jpg',
-    origin: 'Gaya Shrine Co-op',
-    popularity: 95,
-    inStock: true,
-    description: 'Sacred kit for Satyanarayan Vrat: Panchamrit honey, tulsi seeds, janeyu thread, red-yellow mauli, camphor, and ritual story book.',
-    heritageStory: 'Directly sourced from Gaya weavers and organic farms for family peace and vow fulfillment.'
-  },
-
-  // 6. Bihari Handlooms & Crafts
-  {
-    id: 'madhubani-paintings',
-    title: 'Madhubani Paintings (GI Tagged)',
-    category: 'crafts',
-    isGI: true,
-    isOrganic: false,
-    isSeasonal: false,
-    isFamous: true,
-    season: 'winter',
-    price: 650,
-    unit: 'Handmade Canvas (A4 Size)',
-    image: 'assets/mithila_makhana.jpg',
-    origin: 'Madhubani, Mithila',
-    popularity: 99,
-    inStock: true,
-    description: 'Authentic Madhubani art hand-painted by women cooperative artists using natural dye pigments on handmade paper canvas.',
-    heritageStory: 'Dating back to the Ramayana era, Madhubani paintings capture folklore and nature motifs, utilizing finger, twig, and matchstick stroke techniques.'
-  },
-  {
-    id: 'bhagalpuri-silk',
-    title: 'Bhagalpuri Silk (Tussar Stole)',
-    category: 'crafts',
-    isGI: true,
-    isOrganic: false,
-    isSeasonal: false,
-    isFamous: true,
-    season: 'winter',
-    price: 750,
-    unit: 'Premium Silk Stole (2 Meters)',
-    image: 'assets/katarni_rice.jpg',
-    origin: 'Bhagalpur Silk Handloom',
-    popularity: 96,
-    inStock: true,
-    description: '100% genuine, GI-certified Bhagalpuri Tussar Silk stole. Known for its rich texture, natural golden-beige shade, and structural resilience.',
-    heritageStory: 'Bhagalpur is famously known as the "Silk City" of India. Tussar silk is woven in handlooms by traditional weaver families.'
-  },
-  {
-    id: 'sikki-grass-craft',
-    title: 'Sikki Grass Craft Basket',
-    category: 'crafts',
-    isGI: true,
-    isOrganic: false,
-    isSeasonal: false,
-    isFamous: true,
-    season: 'winter',
-    price: 290,
-    unit: 'Handwoven Utility Box',
-    image: 'assets/puja_box.jpg',
-    origin: 'Mithila Region, Bihar',
-    popularity: 92,
-    inStock: true,
-    description: 'Golden Sikki Grass hand-braided utility basket. Light, organic, durable, and dyed in bright festive colors.',
-    heritageStory: 'Sikki grass is a wild golden reed grown in Mithila. Braiding it into craft items is a traditional folk art passed down from mother to daughter.'
-  },
-  {
-    id: 'kashmiri-kesar',
-    title: 'Grade A++ Kashmiri Kesar (Saffron)',
-    category: 'makhana',
-    isGI: true,
-    isOrganic: true,
-    isSeasonal: false,
-    isFamous: true,
-    season: 'monsoon',
-    price: 350,
-    unit: 'Pack of 1 Gram',
-    image: 'assets/puja_box.jpg',
-    origin: 'Pampore, Kashmir',
-    popularity: 98,
-    inStock: true,
-    description: 'GI-tagged Pampore Saffron (Lacha) of the highest grade. Unmatched deep color, robust aroma, and culinary potency.',
-    heritageStory: 'Pampore fields are known as the "Saffron Bowl of Kashmir". Hand-plucked stigmas are dried under shade to preserve active crocin compounds.'
-  },
-  {
-    id: 'darjeeling-tea',
-    title: 'Darjeeling First Flush Black Tea',
-    category: 'grains',
-    isGI: true,
-    isOrganic: true,
-    isSeasonal: false,
-    isFamous: true,
-    season: 'autumn',
-    price: 450,
-    unit: 'Pack of 250g',
-    image: 'assets/katarni_rice.jpg',
-    origin: 'Darjeeling, West Bengal',
-    popularity: 96,
-    inStock: true,
-    description: 'Certified organic Darjeeling Orthodox black tea. Delicate, floral first-flush tea with signature muscatel notes.',
-    heritageStory: 'Grown at 6,000+ feet in the misty Himalayan foothills of Darjeeling, hand-rolled by tea garden workers.'
-  },
-  {
-    id: 'mysore-sandalwood',
-    title: 'Pure Mysore Sandalwood Oil',
-    category: 'crafts',
-    isGI: true,
-    isOrganic: false,
-    isSeasonal: false,
-    isFamous: true,
-    season: 'winter',
-    price: 950,
-    unit: 'Bottle of 5ml',
-    image: 'assets/puja_box.jpg',
-    origin: 'Mysore, Karnataka',
-    popularity: 95,
-    inStock: true,
-    description: '100% pure, natural, and GI-certified Mysore Sandalwood oil. Distilled from mature heartwood with an exquisite warm-woody scent.',
-    heritageStory: 'Mysore sandalwood holds a legendary status in royal cosmetics and wellness. Steam-distilled in traditional state distilleries.'
-  },
-  {
-    id: 'alphonso-mango',
-    title: 'Devgad Alphonso Hapus Mangoes',
-    category: 'fruits',
-    isGI: true,
-    isOrganic: true,
-    isSeasonal: true,
-    isFamous: true,
-    season: 'summer',
-    price: 850,
-    unit: 'Box of 6 Pieces',
-    image: 'assets/jardalu_mango.jpg',
-    origin: 'Devgad, Maharashtra',
-    popularity: 99,
-    inStock: true,
-    description: 'Certified organic, naturally ripened Alphonso mangoes from Devgad orchards. Rich, saffron-toned pulp and sweet aroma.',
-    heritageStory: 'Nurtured under the coastal sun of the Konkan region. Sourced directly from Devgad farmer co-operatives.'
-  }
-];
-
 /// --- Database Seeding ---
 function initializeLocalStorageDB() {
   // Safe version/cleanup wipe check to reload seed on taxonomy change or new products
@@ -509,36 +24,7 @@ function initializeLocalStorageDB() {
 
   // 1. Categories Table
   if (!localStorage.getItem('kk_categories')) {
-    const categories = [
-      // Parent categories (id 1 to 5)
-      { id: 1, category_name: 'Fruits & Fresh Produce', slug: 'fruits-fresh-produce', parent_id: null, status: true },
-      { id: 2, category_name: 'Staples & Grains', slug: 'staples-grains', parent_id: null, status: true },
-      { id: 3, category_name: 'Superfoods & Snacks', slug: 'superfoods-snacks', parent_id: null, status: true },
-      { id: 4, category_name: 'Handlooms & Handicrafts', slug: 'handlooms-handicrafts', parent_id: null, status: true },
-      { id: 5, category_name: 'Puja Essentials & Kits', slug: 'puja-essentials-kits', parent_id: null, status: true },
-
-      // Subcategories (id 6 to 26)
-      { id: 6, category_name: 'Shahi Litchi', slug: 'shahi-litchi', parent_id: 1, status: true },
-      { id: 7, category_name: 'Jardalu Mango', slug: 'jardalu-mango', parent_id: 1, status: true },
-      { id: 8, category_name: 'Katarni Rice', slug: 'katarni-rice', parent_id: 2, status: true },
-      { id: 9, category_name: 'Bhagalpuri Rice', slug: 'bhagalpuri-rice', parent_id: 2, status: true },
-      { id: 10, category_name: 'Chana Ka Sattu', slug: 'chana-ka-sattu', parent_id: 2, status: true },
-      { id: 11, category_name: 'Chura / Poha', slug: 'chura-poha', parent_id: 2, status: true },
-      { id: 12, category_name: 'Mithila Makhana', slug: 'mithila-makhana', parent_id: 3, status: true },
-      { id: 13, category_name: 'Bhuna Makhana', slug: 'bhuna-makhana', parent_id: 3, status: true },
-      { id: 14, category_name: 'Silao Khaja', slug: 'silao-khaja', parent_id: 3, status: true },
-      { id: 15, category_name: 'Tilkut', slug: 'tilkut', parent_id: 3, status: true },
-      { id: 16, category_name: 'Thekua', slug: 'thekua', parent_id: 3, status: true },
-      { id: 17, category_name: 'Jaggery', slug: 'jaggery', parent_id: 3, status: true },
-      { id: 18, category_name: 'Traditional Sweets', slug: 'traditional-sweets', parent_id: 3, status: true },
-      { id: 19, category_name: 'Madhubani Paintings', slug: 'madhubani-paintings', parent_id: 4, status: true },
-      { id: 20, category_name: 'Bhagalpuri Silk', slug: 'bhagalpuri-silk', parent_id: 4, status: true },
-      { id: 21, category_name: 'Sikki Grass Craft', slug: 'sikki-grass-craft', parent_id: 4, status: true },
-      { id: 22, category_name: 'Diwali Puja Kit', slug: 'diwali-puja-kit', parent_id: 5, status: true },
-      { id: 23, category_name: 'Durga Puja Kit', slug: 'durga-puja-kit', parent_id: 5, status: true },
-      { id: 24, category_name: 'Satyanarayan Puja Kit', slug: 'satyanarayan-puja-kit', parent_id: 5, status: true }
-    ];
-    localStorage.setItem('kk_categories', JSON.stringify(categories));
+    localStorage.setItem('kk_categories', JSON.stringify(DEFAULT_CATEGORIES));
   }
 
   // 2. Products Table and related normalized child tables
@@ -1998,6 +1484,64 @@ function setupEventListeners() {
         console.warn("Failed to connect to contact submission backend, using offline fallback:", err);
         alert('Thank you for contacting us! We will get back to you within 24 hours. (Demo Mode)');
         contactForm.reset();
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
+      }
+    });
+  }
+
+  // Catering Form Submission Handler
+  const cateringForm = document.getElementById('catering-form');
+  if (cateringForm) {
+    cateringForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const submitBtn = cateringForm.querySelector('button[type="submit"]');
+      const originalText = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = `Sending... <span class="payment-spinner" style="width: 14px; height: 14px; border-width: 2px; border-color: var(--color-white) transparent transparent transparent;"></span>`;
+
+      const name = document.getElementById('catering-name').value.trim();
+      const contact = document.getElementById('catering-contact').value.trim();
+      const date = document.getElementById('catering-date').value;
+      const guests = document.getElementById('catering-guests').value;
+      const packageTier = document.getElementById('catering-package').value;
+      const notes = document.getElementById('catering-message').value.trim();
+
+      const subject = `Catering Booking Inquiry - ${packageTier}`;
+      const message = `Catering Booking Details:
+- Customer Name: ${name}
+- Contact Info: ${contact}
+- Event Date: ${date}
+- Estimated Guest Count: ${guests}
+- Chosen Package: ${packageTier}
+- Special Notes/Requests: ${notes || "None"}`;
+
+      try {
+        const response = await fetch('contact_submit.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email: contact, subject, message })
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          if (data.status === 'success') {
+            showToast(data.message || 'Catering request submitted successfully!', 'success');
+            cateringForm.reset();
+          } else {
+            showToast(data.message || 'Error submitting catering inquiry. Please try again.', 'error');
+          }
+        } else {
+          showToast('Offline fallback activated...', 'info');
+          alert(`Thank you! Your inquiry for ${packageTier} on ${date} (for ${guests} guests) has been submitted. (Demo Mode)`);
+          cateringForm.reset();
+        }
+      } catch (err) {
+        console.warn("Failed to connect to contact submission backend, using offline fallback:", err);
+        alert(`Thank you! Your inquiry for ${packageTier} on ${date} (for ${guests} guests) has been submitted. (Demo Mode)`);
+        cateringForm.reset();
       } finally {
         submitBtn.disabled = false;
         submitBtn.innerHTML = originalText;
